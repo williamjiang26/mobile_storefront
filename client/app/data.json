@@ -1,0 +1,25 @@
+{
+  "headers": ["cookies"],
+  "popular products": [
+    {
+      "name": "chocolate chip cookie"
+    },
+    {
+      "name": "placeholder"
+    },
+    {
+      "name": "placeholder"
+    }
+  ],
+  "features": [
+    {
+      "name": "high quality"
+    },
+    {
+      "name": "healthy"
+    },
+    {
+      "name": "convenient"
+    }
+  ]
+}
