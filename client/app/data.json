@@ -1,8 +1,21 @@
 {
-  "headers": ["cookies"],
+  "headers": [
+    "cookies",
+    "placeholder",
+    "placeholder",
+    "placeholder",
+    "placeholder",
+    "placeholder"
+  ],
   "popular products": [
     {
       "name": "chocolate chip cookie"
+    },
+    {
+      "name": "chocolate chip cookie 2"
+    },
+    {
+      "name": "chocolate chip cookie 3"
     },
     {
       "name": "placeholder"
