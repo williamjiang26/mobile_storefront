@@ -10,23 +10,55 @@
   "popular products": [
     {
       "name": "yogurt",
-      "url": "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/images.jpg"
+      "url": "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/images.jpg",
+      "start price": "$5"
     },
     {
       "name": "coconut water",
-      "url": ""
+      "url": "",
+      "start price": "$5"
     },
     {
       "name": "chicken breast",
-      "url": "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/Screen+Shot+2026-05-16+at+2.45.40+PM.png"
+      "url": "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/Screen+Shot+2026-05-16+at+2.45.40+PM.png",
+      "start price": "$5"
     },
     {
       "name": "chocolate chip cookie",
-      "url": ""
+      "url": "",
+      "start price": "$5"
     },
     {
       "name": "curry block",
-      "url": "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/images-1.jpg"
+      "url": "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/images-1.jpg",
+      "start price": "$5"
+    }
+  ],
+  "products in stock": [
+    {
+      "name": "yogurt",
+      "url": "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/images.jpg",
+      "price": "$5"
+    },
+    {
+      "name": "coconut water",
+      "url": "",
+      "price": "$5"
+    },
+    {
+      "name": "chicken breast",
+      "url": "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/Screen+Shot+2026-05-16+at+2.45.40+PM.png",
+      "price": "$5"
+    },
+    {
+      "name": "chocolate chip cookie",
+      "url": "",
+      "price": "$5"
+    },
+    {
+      "name": "curry block",
+      "url": "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/images-1.jpg",
+      "price": "$5"
     }
   ],
   "features": [
