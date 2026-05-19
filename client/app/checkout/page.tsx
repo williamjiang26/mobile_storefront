@@ -6,15 +6,20 @@ import {
 } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import { useRouter } from "next/navigation";
-
-import { fetchClientSecret } from "../api/create-checkout-session/route";
+import {
+  motion,
+  useScroll,
+  useMotionValueEvent,
+  AnimatePresence,
+} from "motion/react";
+import { fetchClientSecret } from "../actions/stripe";
+import { useState } from "react";
 
 const stripePromise = loadStripe(
-  process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
+  process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY as string
 );
 
 const Checkout = () => {
-  const router = useRouter();
   // return <CheckoutFlow />;
   //  return (
   //   <div>
@@ -23,31 +28,13 @@ const Checkout = () => {
   //   </div>
   // );
   return (
-    <div className="flex flex-col h-screen bg-zinc-700">
-      <div className="flex flex-row h-10 gap-3 items-center justify-center bg-zinc-100 font-sans dark:bg-black">
-        {/* fixed - banner*/}
-        {/* logo */}
-        <div
-          className="hover:bg-zinc-200 p-3 hover:rounded-lg"
-          onClick={() => router.push("/")}
-        >
-          logo
-        </div>
-        <div className="hover:bg-zinc-200 p-3 hover:rounded-lg">search box</div>
-        <div className="hover:bg-zinc-200 p-3 hover:rounded-lg">about</div>
-        <div className="hover:bg-zinc-200 p-3 hover:rounded-lg">
-          other links
-        </div>
-        <div className="hover:bg-zinc-200 p-3 hover:rounded-lg">guides</div>
-        <div className="hover:bg-zinc-200 p-3 hover:rounded-lg">log in</div>
-        <div className="hover:bg-zinc-200 p-3 hover:rounded-lg">sign up</div>
-      </div>
-      <div className="min-h-screen bg-slate-50  ">
+    <div className="flex flex-col bg-zinc-700">
+      <div className="   bg-slate-50  ">
         <EmbeddedCheckoutProvider
           stripe={stripePromise}
-          options={{ fetchClientSecret }}
+          options={{ fetchClientSecret}}
         >
-          <div className="mx-auto h-screen ">
+          <div className="mx-auto  ">
             <EmbeddedCheckout />
           </div>{" "}
         </EmbeddedCheckoutProvider>

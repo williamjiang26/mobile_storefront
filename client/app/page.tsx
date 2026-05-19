@@ -11,11 +11,49 @@ import {
 import { useState, useEffect } from "react";
 // import Image from "next/image";
 
+function AccordionItem({ f }: { f: Record<string, any> }) {
+  const [isOpen, setIsOpen] = useState(false);
+  return (
+    <div className="flex flex-col border-b border-gray-200 py-4 w-full">
+      {/* Trigger: Clicking this toggles the state */}
+      <div
+        className="w-full text-2xl cursor-pointer flex justify-between items-center select-none"
+        onClick={() => setIsOpen(!isOpen)}
+      >
+        <span>{f["question"]}</span>
+
+        {/* Optional animated chevron indicator */}
+        <motion.span
+          animate={{ rotate: isOpen ? 180 : 0 }}
+          transition={{ duration: 0.2 }}
+          className="text-sm"
+        >
+          ▼
+        </motion.span>
+      </div>
+
+      {/* Animated Content Wrapper */}
+      <AnimatePresence initial={false}>
+        {isOpen && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+            className="overflow-hidden" // Prevents text layout glitches during animation
+          >
+            <div className="pt-2 text-gray-600">{f["answer"]}</div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+}
 export default function Home() {
   const router = useRouter();
   const { scrollY } = useScroll();
   const [hidden, setHidden] = useState(false);
-  const [open, setOpen] = useState(null);
+  const [open, setOpen] = useState("");
   useMotionValueEvent(scrollY, "change", (current) => {
     const previous = scrollY.getPrevious() ?? 0;
     if (current > previous && current > 150) {
@@ -45,14 +83,12 @@ export default function Home() {
         </div>
         <div className="flex justify-between">
           <div className="relative p-3">
-            <div className="hover:bg-zinc-200 hover:rounded-lg p-3">
-              About
-            </div>
+            <div className="hover:bg-zinc-200 hover:rounded-lg p-3">About</div>
           </div>
           <div
             className="relative p-3"
             onMouseEnter={() => setOpen("links")}
-            onMouseLeave={() => setOpen(null)}
+            onMouseLeave={() => setOpen("")}
           >
             <div className="hover:bg-zinc-200 hover:rounded-lg p-3">
               other links
@@ -81,7 +117,7 @@ export default function Home() {
           <div
             className="relative p-3"
             onMouseEnter={() => setOpen("guides")}
-            onMouseLeave={() => setOpen(null)}
+            onMouseLeave={() => setOpen("")}
           >
             <div className="hover:bg-zinc-200 hover:rounded-lg p-3">guides</div>
 
@@ -106,12 +142,14 @@ export default function Home() {
             </AnimatePresence>
           </div>
           <div className="relative p-3">
+            <div className="hover:bg-zinc-200 hover:rounded-lg p-3">Blog</div>
+          </div>
+          <div className="relative p-3">
+            <div className="hover:bg-zinc-200 hover:rounded-lg p-3">Log in</div>
+          </div>
+          <div className="relative p-3">
             <div className="hover:bg-zinc-200 hover:rounded-lg p-3">
-              Log in
-            </div>
-          </div> <div className="relative p-3">
-            <div className="hover:bg-zinc-200 hover:rounded-lg p-3">
-             Sign up
+              Sign up
             </div>
           </div>
         </div>
@@ -189,7 +227,7 @@ export default function Home() {
                     )}
                   </div>
                   <div className="font-semibold p-1">{p["name"]}</div>
-                  <div className=" p-1">{p["description"]}</div>
+                  {/* <div className=" p-1">{p["description"]}</div> */}
                   <div className=" p-1">{p["price"]}</div>
                 </div>
                 <div className="justify-center flex p-3">
@@ -204,16 +242,39 @@ export default function Home() {
             ))}
           </div>
         </div>
-        <div className="flex flex-col h-125 w-[80%] mx-auto items-center justify-between bg-zinc-50 pb-20 font-sans dark:bg-black">
+        <div className="flex flex-col  w-[80%] mx-auto items-center justify-between bg-zinc-50 pb-20 font-sans dark:bg-black">
           {/* 3 - video and explore button product catalog */}
-          <div className="basis-1/6 flex items-center justify-center">
-            featured
-          </div>
-          <div className="bg-zinc-100 w-35 h-12 items-center justify-center flex self-start rounded-md hover:border hover:border-zinc-200">
-            <div className="" onClick={() => router.push("/catalog")}>
-              Explore
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1 }}
+            className="relative w-full  overflow-hidden rounded-xl shadow-lg group"
+          >
+            <video
+              autoPlay
+              muted
+              loop
+              playsInline
+              className="w-full h-auto object-cover"
+            >
+              <source src="/video.mov" type="video/mp4" />
+            </video>
+
+            <div className="absolute inset-0 bg-black/30 transition-colors duration-300 group-hover:bg-black/40" />
+
+            <div className="absolute bottom-0 left-0 p-8">
+              <motion.button
+                initial={{ y: 20, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ delay: 0.5, duration: 0.5 }}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="px-6 py-3 text-black font-semibold rounded-full shadow-md backdrop-blur-sm bg-white/90 hover:bg-white transition-all tracking-wide"
+              >
+                Explore
+              </motion.button>
             </div>
-          </div>
+          </motion.div>
         </div>
         <div className="flex flex-col h-125 items-center justify-center bg-zinc-300 font-sans dark:bg-black pb-5">
           {/* 2 - best features - animated scroll*/}
@@ -222,12 +283,24 @@ export default function Home() {
           </div>
           <div className="basis-5/6 flex flex-row w-[80%] mx-auto justify-between overflow-x-auto">
             {data["features"].slice(0, 3).map((f) => (
-              <div className="flex flex-col p-1 w-59">
-                <div className=" rounded-md bg-zinc-200 p-1">
-                  <div className="rounded-lg aspect-square bg-zinc-50 p-1">
-                    photo
+              <div className="group flex flex-col p-1 w-60 cursor-pointer">
+                {/* The main image container controls the rounding and hides the expanding/shrinking image */}
+                <div className="relative overflow-hidden rounded-xl h-96 bg-zinc-200">
+                  {/* Image starts scaled up, and zooms out to scale-100 when the group is hovered */}
+                  <Image
+                    src={f["url"] || "/placeholder.png"} // Fixed the fallback logic string
+                    alt={f["name"] || "Feature"}
+                    fill
+                    className="object-cover scale-110 transition-transform duration-500 ease-out group-hover:scale-100"
+                  />
+
+                  {/* Dark gradient overlay to ensure text is legible against light images */}
+                  <div className="absolute inset-0 bg-linear-to-t from-black/60 via-black/20 to-transparent" />
+
+                  {/* Text forced to the bottom-left corner */}
+                  <div className="absolute bottom-0 left-0 p-3 text-white font-semibold text-lg  ">
+                    {f["name"]}
                   </div>
-                  <div className="p-1">{f["name"]}</div>
                 </div>
               </div>
             ))}
@@ -236,12 +309,21 @@ export default function Home() {
         <div className="flex flex-col h-125 w-[80%] mx-auto items-center justify-between bg-zinc-100 pb-20 font-sans dark:bg-black">
           {/* 4 - Reviews */}
           <div className="basis-1/6 flex items-center justify-center">
-            Reviews
+            Leave a review
           </div>
-          <div className="bg-zinc-100 w-35 h-12 items-center justify-center flex self-start rounded-md hover:border hover:border-zinc-200">
+          <div className="bg-zinc-100 w-35 h-12 flex items-center justify-center rounded-md hover:border hover:border-zinc-200">
             <div className="" onClick={() => router.push("/catalog")}>
               placeholder
             </div>
+          </div>
+        </div>
+        <div className="flex h-125 w-[80%] mx-auto items-center justify-between bg-zinc-100 pb-20 font-sans dark:bg-black">
+          {/* 5 - FAQ */}
+          <div className="p-8 text-xl w-full">FAQs</div>
+          <div className="flex flex-col w-full">
+            {data["frequently asked questions"].map((f) => (
+              <AccordionItem f={f} />
+            ))}
           </div>
         </div>
         <div className="flex flex-col h-125 w-[80%] mx-auto items-center justify-between bg-zinc-200 pb-20 font-sans dark:bg-black">
@@ -249,16 +331,52 @@ export default function Home() {
           <div className="basis-1/6 flex items-center justify-center">
             Process
           </div>
-          <div className="bg-zinc-100 w-35 h-12 items-center justify-center flex self-start rounded-md hover:border hover:border-zinc-200">
+          <div className="basis-5/6 flex flex-row w-[80%] mx-auto justify-between overflow-x-auto">
+            {data["process"].slice(0, 3).map((f) => (
+              <div className="group flex flex-col p-1 w-60 cursor-pointer">
+                {/* The main image container controls the rounding and hides the expanding/shrinking image */}
+                <div className="relative overflow-hidden rounded-xl h-96 bg-zinc-200">
+                  {/* Image starts scaled up, and zooms out to scale-100 when the group is hovered */}
+                  <Image
+                    src={f["url"] || "/placeholder.png"} // Fixed the fallback logic string
+                    alt={f["name"] || "Feature"}
+                    fill
+                    className="object-cover scale-110 transition-transform duration-500 ease-out group-hover:scale-100"
+                  />
+
+                  {/* Dark gradient overlay to ensure text is legible against light images */}
+                  <div className="absolute inset-0 bg-linear-to-t from-black/60 via-black/20 to-transparent" />
+
+                  {/* Text forced to the bottom-left corner */}
+                  <div className="absolute bottom-0 left-0 p-3 text-white font-semibold text-lg  ">
+                    {f["name"]}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+        {/*  */}
+        <div className="flex flex-col h-125 w-[80%] mx-auto items-center justify-between bg-zinc-200 pb-20 font-sans dark:bg-black">
+          {/* 6 - Find a location near you */}
+          <div className="basis-1/6 flex items-center justify-center">
+            Find a showroom near you
+          </div>
+          <div className=" bg-zinc-100 w-35 h-12 items-center justify-center flex  rounded-md hover:border hover:border-zinc-200">
             <div className="" onClick={() => router.push("/catalog")}>
               placeholder
             </div>
           </div>
         </div>
         {/* other components - reviews  */}
-        <div className="flex flex-col h-125  items-center justify-center bg-zinc-500 font-sans dark:bg-black  pb-5">
-          footer - socials - contact - locations - warranty and policies - blog
-          - site map - payment methods
+        <div className="flex h-125 items-center justify-between w-[80%] mx-auto bg-zinc-500 font-sans dark:bg-black  pb-5">
+          <div className="flex flex-col justify-center items-center">
+            <div>socials</div> <div>socials</div>
+          </div>
+          <div className="flex flex-col">contact</div>{" "}
+          <div className="flex flex-col">locations</div>
+          <div className="flex flex-col">warranty and policies</div>{" "}
+          <div className="flex flex-col">payment methods</div>
         </div>
       </div>
     </div>

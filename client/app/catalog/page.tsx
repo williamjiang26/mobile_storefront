@@ -6,12 +6,7 @@ const Catalog = () => {
   const router = useRouter();
   return (
     <div className="flex flex-col h-screen bg-zinc-700">
-      <div className="flex flex-row h-10 gap-1 items-center justify-center bg-zinc-100 font-sans dark:bg-black">
-        {/* fixed - banner*/}
-        {/* logo */}
-        <div onClick={() => router.push("/")}>logo</div>
-        search box - about - other links - guides - log in - sign up
-      </div>
+       <div>socials</div> <div>socials</div> <div>socials</div> <div>socials</div> <div>socials</div> <div>socials</div> <div>socials</div> <div>socials</div>
       <div className="flex flex-row h-10 gap-10 items-center justify-center bg-zinc-100 font-sans dark:bg-black">
         {/* fixed - two options */}
         <div className="hover:bg-zinc-200 flex">
@@ -30,8 +25,7 @@ const Catalog = () => {
                 <div className="">
                   <Image
                     src={
-                      "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/images.jpg" ||
-                      "/placeholder.png"
+                      "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/images.jpg"  
                     }
                     alt=""
                     fill

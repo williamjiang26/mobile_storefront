@@ -1,6 +1,5 @@
 "use client";
 import React, { useState } from "react";
-import Checkbox from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
@@ -31,7 +30,13 @@ const Page = () => {
   const nextStep = () => setStep((s) => Math.min(s + 1, steps.length));
   const prevStep = () => setStep((s) => Math.max(s - 1, 1));
 
-  const Card = ({ index, children }) => {
+  const Card = ({
+    index,
+    children,
+  }: {
+    index: number;
+    children: React.ReactNode;
+  }) => {
     return (
       <div className={`border rounded-lg p-1 `}>
         <div className=""> {steps[index - 1].title}</div>
@@ -88,8 +93,7 @@ const Page = () => {
           <div className="relative rounded-lg aspect-square bg-zinc-100 p-1">
             <Image
               src={
-                "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/images.jpg" ||
-                "/placeholder.png"
+                "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/images.jpg"
               }
               alt=""
               fill
@@ -103,7 +107,7 @@ const Page = () => {
       <div className="border rounded-lg w-full p-1">
         {/* multistep form */}
         <form className="space-y-1 ">
-          <Card index="1">
+          <Card index={1}>
             {step === 1 && (
               <div className="flex gap-1 justify-between ">
                 {["original", "avocado", "matcha"].map((flavor) => (
@@ -126,7 +130,7 @@ const Page = () => {
               </div>
             )}
           </Card>
-          <Card index="2">
+          <Card index={2}>
             {step === 2 && (
               <div className="flex gap-1">
                 {["small", "medium", "large"].map((size) => (
@@ -147,7 +151,7 @@ const Page = () => {
               </div>
             )}
           </Card>
-          <Card index="3">
+          <Card index={3}>
             {step === 3 && (
               <div className="flex gap-1">
                 {["strawberry", "banana", "blueberry", "mango", "peach"].map(
@@ -172,7 +176,7 @@ const Page = () => {
               </div>
             )}
           </Card>
-          <Card index="4">
+          <Card index={4}>
             {step === 4 && (
               <div className="flex gap-1">
                 {/* terms and agreements */}
@@ -183,7 +187,7 @@ const Page = () => {
               </div>
             )}
           </Card>
-          <Card index="5">
+          <Card index={5}>
             {step === 5 && (
               <div className="flex gap-1">
                 {/* return policy */}
