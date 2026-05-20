@@ -8,7 +8,11 @@ const Page = () => {
   const steps = [
     { id: 1, title: "Yogurt Flavor", subtitle: "Select a yogurt flavor:" },
     { id: 2, title: "Size", subtitle: "Choose a size:" },
-    { id: 3, title: "Fruit Flavor", subtitle: "Select a fruit flavor:" },
+    {
+      id: 3,
+      title: "Fruit Flavor (select any two)",
+      subtitle: "Select a fruit flavor:",
+    },
     {
       id: 4,
       title: "Terms and Agreements",
@@ -38,7 +42,7 @@ const Page = () => {
     children: React.ReactNode;
   }) => {
     return (
-      <div className={`border rounded-lg p-1 `}>
+      <div className={`rounded-lg p-1 `}>
         <div className=""> {steps[index - 1].title}</div>
 
         {children}
@@ -77,8 +81,8 @@ const Page = () => {
   };
 
   return (
-    <div className="flex justify-between h-screen mx-auto w-[80%] gap-1">
-      <div className="border rounded-lg w-full">
+    <div className="flex justify-between h-screen mx-auto w-full gap-1">
+      <div className="rounded-lg ml-auto w-full">
         {/* product image */}{" "}
         <button
           type="button"
@@ -104,7 +108,7 @@ const Page = () => {
         </div>
       </div>
       {/* Form */}
-      <div className="border rounded-lg w-full p-1">
+      <div className="rounded-l-lg mr-auto w-full p-1 bg-slate-100">
         {/* multistep form */}
         <form className="space-y-1 ">
           <Card index={1}>
@@ -112,7 +116,7 @@ const Page = () => {
               <div className="flex gap-1 justify-between ">
                 {["original", "avocado", "matcha"].map((flavor) => (
                   <div
-                    className={`border rounded-lg px-3 py-2 w-full aspect-square cursor-pointer ${
+                    className={`relative overflow-hidden border rounded-lg px-3 py-2 w-full aspect-square cursor-pointer ${
                       formData.yogurtFlavor === flavor
                         ? "border-orange-300"
                         : ""
@@ -124,7 +128,18 @@ const Page = () => {
                       }))
                     }
                   >
-                    {flavor}
+                    <Image
+                      src={
+                        "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/Screen+Shot+2026-05-16+at+2.45.40+PM.png" ||
+                        "/placeholder.png"
+                      } // Fixed the fallback logic string
+                      alt={"" || "Feature"}
+                      fill
+                      className="object-cover scale-110 transition-transform duration-500 ease-out group-hover:scale-100"
+                    />
+                    <div className="absolute top-0 left-0 m-3 text-lg">
+                      {flavor}
+                    </div>
                   </div>
                 ))}
               </div>
@@ -132,10 +147,10 @@ const Page = () => {
           </Card>
           <Card index={2}>
             {step === 2 && (
-              <div className="flex gap-1">
+              <div className="flex gap-1 justify-between">
                 {["small", "medium", "large"].map((size) => (
                   <div
-                    className={`rounded-lg border px-3 py-2 cursor-pointer ${
+                    className={`relative overflow-hidden rounded-lg border px-3 py-2 w-full aspect-square cursor-pointer ${
                       formData.size === size ? "border-orange-300" : ""
                     }`}
                     onClick={() =>
@@ -145,7 +160,18 @@ const Page = () => {
                       }))
                     }
                   >
-                    {size}
+                    <Image
+                      src={
+                        "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/Screen+Shot+2026-05-16+at+2.45.40+PM.png" ||
+                        "/placeholder.png"
+                      } // Fixed the fallback logic string
+                      alt={"" || "Feature"}
+                      fill
+                      className="object-cover scale-110 transition-transform duration-500 ease-out group-hover:scale-100"
+                    />
+                    <div className="absolute top-0 left-0 m-3 text-lg">
+                      {size}
+                    </div>
                   </div>
                 ))}
               </div>
@@ -157,7 +183,7 @@ const Page = () => {
                 {["strawberry", "banana", "blueberry", "mango", "peach"].map(
                   (fruit) => (
                     <div
-                      className={`rounded-lg border px-3 py-2 cursor-pointer ${
+                      className={`relative overflow-hidden rounded-lg border px-3 py-2 w-full aspect-square cursor-pointer ${
                         formData.fruitAddOns === fruit
                           ? "border-orange-300"
                           : ""
@@ -169,7 +195,18 @@ const Page = () => {
                         }))
                       }
                     >
-                      {fruit}
+                      <Image
+                        src={
+                          "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/Screen+Shot+2026-05-16+at+2.45.40+PM.png" ||
+                          "/placeholder.png"
+                        } // Fixed the fallback logic string
+                        alt={"" || "Feature"}
+                        fill
+                        className="object-cover scale-110 transition-transform duration-500 ease-out group-hover:scale-100"
+                      />
+                      <div className="absolute top-0 left-0 m-3 text-lg">
+                        {fruit}
+                      </div>
                     </div>
                   )
                 )}
@@ -203,5 +240,4 @@ const Page = () => {
     </div>
   );
 };
-
 export default Page;
