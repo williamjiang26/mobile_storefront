@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import Header from "../components/header";
 
 const Page = () => {
   const router = useRouter();
@@ -15,11 +16,16 @@ const Page = () => {
     },
     {
       id: 4,
+      title: "Delivery",
+      subtitle: "Pick Up or Delivery?",
+    },
+    {
+      id: 5,
       title: "Terms and Agreements",
       subtitle: "Confirm that you have read and agreed",
     },
     {
-      id: 5,
+      id: 6,
       title: "Return policy and Warranty",
       subtitle: "Confirm that you have read and agreed",
     },
@@ -29,6 +35,7 @@ const Page = () => {
     yogurtFlavor: "",
     size: "",
     fruitAddOns: "",
+    delivery: "",
   });
 
   const nextStep = () => setStep((s) => Math.min(s + 1, steps.length));
@@ -81,117 +88,52 @@ const Page = () => {
   };
 
   return (
-    <div className="flex justify-between h-screen mx-auto w-full gap-1">
-      <div className="rounded-lg ml-auto w-full">
-        {/* product image */}{" "}
-        <button
-          type="button"
-          onClick={() => {
-            router.push("/catalog");
-          }}
-          className="rounded-lg border px-5 py-3 m-1 text-sm font-medium   disabled:cursor-not-allowed disabled:opacity-40"
-        >
-          Back
-        </button>
-        <div className="rounded-md p-1">
-          <div className="relative rounded-lg aspect-square bg-zinc-100 p-1">
-            <Image
-              src={
-                "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/images.jpg"
-              }
-              alt=""
-              fill
-              className="object-cover rounded-lg"
-            />
+    <div className="flex flex-col justify-between h-screen  w-full ">
+      <Header />
+      <div className="mt-30 flex gap-1 w-[80%] mx-auto h-full">
+        <div className="rounded-lg ml-auto w-full">
+          {/* product image */}{" "}
+          <button
+            type="button"
+            onClick={() => {
+              router.push("/catalog");
+            }}
+            className="rounded-lg border px-5 py-3 m-1 text-sm font-medium   disabled:cursor-not-allowed disabled:opacity-40"
+          >
+            Back
+          </button>
+          <div className="rounded-md p-1">
+            <div className="relative rounded-lg aspect-square bg-zinc-100 p-1">
+              <Image
+                src={
+                  "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/images.jpg"
+                }
+                alt=""
+                fill
+                className="object-cover rounded-lg"
+              />
+            </div>
+            <div className="font-semibold p-1">yogurt</div>
           </div>
-          <div className="font-semibold p-1">yogurt</div>
         </div>
-      </div>
-      {/* Form */}
-      <div className="rounded-l-lg mr-auto w-full p-1 bg-slate-100">
-        {/* multistep form */}
-        <form className="space-y-1 ">
-          <Card index={1}>
-            {step === 1 && (
-              <div className="flex gap-1 justify-between ">
-                {["original", "avocado", "matcha"].map((flavor) => (
-                  <div
-                    className={`relative overflow-hidden border rounded-lg px-3 py-2 w-full aspect-square cursor-pointer ${
-                      formData.yogurtFlavor === flavor
-                        ? "border-orange-300"
-                        : ""
-                    }`}
-                    onClick={() =>
-                      setFormData((prev) => ({
-                        ...prev,
-                        yogurtFlavor: flavor,
-                      }))
-                    }
-                  >
-                    <Image
-                      src={
-                        "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/Screen+Shot+2026-05-16+at+2.45.40+PM.png" ||
-                        "/placeholder.png"
-                      } // Fixed the fallback logic string
-                      alt={"" || "Feature"}
-                      fill
-                      className="object-cover scale-110 transition-transform duration-500 ease-out group-hover:scale-100"
-                    />
-                    <div className="absolute top-0 left-0 m-3 text-lg">
-                      {flavor}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            )}
-          </Card>
-          <Card index={2}>
-            {step === 2 && (
-              <div className="flex gap-1 justify-between">
-                {["small", "medium", "large"].map((size) => (
-                  <div
-                    className={`relative overflow-hidden rounded-lg border px-3 py-2 w-full aspect-square cursor-pointer ${
-                      formData.size === size ? "border-orange-300" : ""
-                    }`}
-                    onClick={() =>
-                      setFormData((prev) => ({
-                        ...prev,
-                        size: size,
-                      }))
-                    }
-                  >
-                    <Image
-                      src={
-                        "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/Screen+Shot+2026-05-16+at+2.45.40+PM.png" ||
-                        "/placeholder.png"
-                      } // Fixed the fallback logic string
-                      alt={"" || "Feature"}
-                      fill
-                      className="object-cover scale-110 transition-transform duration-500 ease-out group-hover:scale-100"
-                    />
-                    <div className="absolute top-0 left-0 m-3 text-lg">
-                      {size}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            )}
-          </Card>
-          <Card index={3}>
-            {step === 3 && (
-              <div className="flex gap-1">
-                {["strawberry", "banana", "blueberry", "mango", "peach"].map(
-                  (fruit) => (
+        {/* Form */}
+        <div className="rounded-l-lg mr-auto w-full p-1 bg-slate-100">
+          {/* multistep form */}
+          <form className="space-y-1 ">
+            <Card index={1}>
+              {step === 1 && (
+                <div className="flex gap-1 justify-between ">
+                  {["original", "avocado", "matcha"].map((flavor) => (
                     <div
-                      className={`relative overflow-hidden rounded-lg border px-3 py-2 w-full aspect-square cursor-pointer ${
-                        formData.fruitAddOns === fruit
+                      className={`relative overflow-hidden border rounded-lg px-3 py-2 w-full aspect-square cursor-pointer ${
+                        formData.yogurtFlavor === flavor
                           ? "border-orange-300"
                           : ""
                       }`}
                       onClick={() =>
                         setFormData((prev) => ({
                           ...prev,
-                          fruitAddOns: fruit,
+                          yogurtFlavor: flavor,
                         }))
                       }
                     >
@@ -205,37 +147,137 @@ const Page = () => {
                         className="object-cover scale-110 transition-transform duration-500 ease-out group-hover:scale-100"
                       />
                       <div className="absolute top-0 left-0 m-3 text-lg">
-                        {fruit}
+                        {flavor}
                       </div>
                     </div>
-                  )
-                )}
-              </div>
-            )}
-          </Card>
-          <Card index={4}>
-            {step === 4 && (
-              <div className="flex gap-1">
-                {/* terms and agreements */}
-                <div>
-                  <input type="checkbox" />
-                  terms and agreements
+                  ))}
                 </div>
-              </div>
-            )}
-          </Card>
-          <Card index={5}>
-            {step === 5 && (
-              <div className="flex gap-1">
-                {/* return policy */}
-                <div>
-                  <input type="checkbox" />
-                  return policy
+              )}
+            </Card>
+            <Card index={2}>
+              {step === 2 && (
+                <div className="flex gap-1 justify-between">
+                  {["small", "medium", "large"].map((size) => (
+                    <div
+                      className={`relative overflow-hidden rounded-lg border px-3 py-2 w-full aspect-square cursor-pointer ${
+                        formData.size === size ? "border-orange-300" : ""
+                      }`}
+                      onClick={() =>
+                        setFormData((prev) => ({
+                          ...prev,
+                          size: size,
+                        }))
+                      }
+                    >
+                      <Image
+                        src={
+                          "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/Screen+Shot+2026-05-16+at+2.45.40+PM.png" ||
+                          "/placeholder.png"
+                        } // Fixed the fallback logic string
+                        alt={"" || "Feature"}
+                        fill
+                        className="object-cover scale-110 transition-transform duration-500 ease-out group-hover:scale-100"
+                      />
+                      <div className="absolute top-0 left-0 m-3 text-lg">
+                        {size}
+                      </div>
+                    </div>
+                  ))}
                 </div>
-              </div>
-            )}
-          </Card>
-        </form>
+              )}
+            </Card>
+            <Card index={3}>
+              {step === 3 && (
+                <div className="flex gap-1">
+                  {["strawberry", "banana", "blueberry", "mango", "peach"].map(
+                    (fruit) => (
+                      <div
+                        className={`relative overflow-hidden rounded-lg border px-3 py-2 w-full aspect-square cursor-pointer ${
+                          formData.fruitAddOns === fruit
+                            ? "border-orange-300"
+                            : ""
+                        }`}
+                        onClick={() =>
+                          setFormData((prev) => ({
+                            ...prev,
+                            fruitAddOns: fruit,
+                          }))
+                        }
+                      >
+                        <Image
+                          src={
+                            "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/Screen+Shot+2026-05-16+at+2.45.40+PM.png" ||
+                            "/placeholder.png"
+                          } // Fixed the fallback logic string
+                          alt={"" || "Feature"}
+                          fill
+                          className="object-cover scale-110 transition-transform duration-500 ease-out group-hover:scale-100"
+                        />
+                        <div className="absolute top-0 left-0 m-3 text-lg">
+                          {fruit}
+                        </div>
+                      </div>
+                    )
+                  )}
+                </div>
+              )}
+            </Card>
+            <Card index={4}>
+              {step === 4 && (
+                <div className="flex gap-1">
+                  {["pick up", "delivery"].map((option) => (
+                    <div
+                      className={`relative overflow-hidden rounded-lg border px-3 py-2 w-full aspect-square cursor-pointer ${
+                        formData.delivery === option ? "border-orange-300" : ""
+                      }`}
+                      onClick={() =>
+                        setFormData((prev) => ({
+                          ...prev,
+                          delivery: option,
+                        }))
+                      }
+                    >
+                      <Image
+                        src={
+                          "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/Screen+Shot+2026-05-16+at+2.45.40+PM.png" ||
+                          "/placeholder.png"
+                        } // Fixed the fallback logic string
+                        alt={"" || "Feature"}
+                        fill
+                        className="object-cover scale-110 transition-transform duration-500 ease-out group-hover:scale-100"
+                      />
+                      <div className="absolute top-0 left-0 m-3 text-lg">
+                        {option}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </Card>
+            <Card index={5}>
+              {step === 5 && (
+                <div className="flex gap-1">
+                  {/* terms and agreements */}
+                  <div>
+                    <input type="checkbox" />
+                    terms and agreements
+                  </div>
+                </div>
+              )}
+            </Card>
+            <Card index={6}>
+              {step === 6 && (
+                <div className="flex gap-1">
+                  {/* return policy */}
+                  <div>
+                    <input type="checkbox" />
+                    return policy
+                  </div>
+                </div>
+              )}
+            </Card>
+          </form>
+        </div>
       </div>
     </div>
   );
