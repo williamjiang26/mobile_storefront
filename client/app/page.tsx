@@ -63,18 +63,18 @@ export default function Home() {
   const router = useRouter();
 
   return (
-    <div className="flex flex-col bg-slate-50">
+    <div className="flex flex-col bg-zinc-300">
       <Header />
       {/* scrollable */}
-      <div className="flex-1 mt-30 overflow-y-auto space-y-3 bg-zinc-50 scroll-smooth font-sans dark:bg-black">
+      <div className="flex-1 mt-30 overflow-y-auto space-y-3 bg-zinc-300 scroll-smooth font-sans dark:bg-black">
         {/* 1 - shop right away - popular products - glimpse of all categories */}
-        <div className="flex flex-col h-125  items-center justify-center bg-zinc-50 font-sans dark:bg-black pb-5">
+        <div className="flex flex-col h-125 rounded-lg items-center justify-center bg-zinc-300 font-sans dark:bg-black pb-5">
           <div className="basis-1/6 flex items-center justify-center">
             Shop popular products
           </div>
           <div className="basis-5/6 flex flex-row w-[80%] mx-auto justify-between overflow-x-auto">
             {data["popular products"].slice(0, 5).map((p) => (
-              <div className="flex flex-col p-1 w-59 justify-between shadow-lg m-1 rounded-lg ">
+              <div className="flex flex-col bg-zinc-50 p-1 w-59 justify-between shadow-lg m-1 rounded-lg ">
                 <div className="   flex-col rounded-md p-1">
                   <div className="rounded-lg relative aspect-square justify-center flex bg-zinc-50 p-1 overflow-hidden w-50">
                     {p.url && (
@@ -102,13 +102,13 @@ export default function Home() {
           </div>
         </div>
         {/* 1 - shop right away - products in stock - glimpse of all categories */}
-        <div className="flex flex-col h-125  items-center justify-center bg-zinc-50 font-sans dark:bg-black pb-5">
+        <div className="flex flex-col h-125 rounded-lg items-center justify-center bg-zinc-300 font-sans dark:bg-black pb-5">
           <div className="basis-1/6 flex items-center justify-center">
             Products in stock ~ ships in 2-3 weeks
           </div>
           <div className="basis-5/6 flex flex-row w-[80%] mx-auto justify-between overflow-x-auto">
             {data["products in stock"].slice(0, 5).map((p) => (
-              <div className="flex flex-col p-1 w-59 justify-between shadow-lg m-1 rounded-lg ">
+              <div className="flex flex-col bg-zinc-50 p-1 w-59 justify-between shadow-lg m-1 rounded-lg ">
                 <div className="   flex-col rounded-md p-1">
                   <div className="rounded-lg relative aspect-square justify-center flex bg-zinc-50 p-1 overflow-hidden w-50">
                     {p.url && (
@@ -137,7 +137,7 @@ export default function Home() {
           </div>
         </div>
         {/* 3 - video and explore button product catalog */}
-        <div className="flex flex-col w-[80%] mx-auto items-center justify-between bg-zinc-50 pb-20 font-sans dark:bg-black">
+        <div className="flex flex-col w-[80%] mx-auto items-center justify-between mb-10 font-sans dark:bg-black">
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -221,7 +221,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="flex h-125 w-[80%] mx-auto items-center justify-between bg-zinc-100 pb-20 font-sans dark:bg-black">
+        <div className="flex h-125 w-[80%] mx-auto rounded-lg items-center justify-between bg-zinc-100 pb-20 font-sans dark:bg-black">
           {/* 5 - FAQ */}
           <div className="p-8 text-xl w-full">FAQs</div>
           <div className="flex flex-col w-full">
@@ -229,8 +229,8 @@ export default function Home() {
               <AccordionItem f={f} />
             ))}
           </div>
-        </div>
-        <div className="flex flex-col h-125 w-[80%] mx-auto items-center justify-between bg-zinc-200 pb-20 font-sans dark:bg-black">
+        </div> {/* 6 - Process */}
+        <div className="flex flex-col h-125 w-[80%] mx-auto rounded-lg items-center justify-between bg-zinc-200 pb-20 font-sans dark:bg-black">
           {/* 5 - How to order */}
           <div className="basis-1/6 flex items-center justify-center">
             Process
@@ -260,8 +260,7 @@ export default function Home() {
             ))}
           </div>
         </div>
-        {/* 6 - Find a location near you */}
-        <div className="relative w-[80%] mx-auto overflow-hidden rounded-xl h-96 bg-zinc-200">
+        <div className="relative w-[80%] mx-auto  overflow-hidden rounded-xl h-96 bg-zinc-200">
           {/* Image starts scaled up, and zooms out to scale-100 when the group is hovered */}
           <Image
             src={
@@ -283,7 +282,7 @@ export default function Home() {
           </div>
         </div>
         {/* 6 - Find a location near you */}
-        <div className="flex w-[80%] mx-auto items-center justify-between gap-3">
+        <div className="flex w-[80%] mx-auto rounded-lg items-center justify-between gap-3">
           <div className="relative w-[80%] mx-auto overflow-hidden rounded-xl h-96 bg-zinc-200">
             {/* Image starts scaled up, and zooms out to scale-100 when the group is hovered */}
             <Image
@@ -346,11 +345,12 @@ export default function Home() {
         </div>
 
         {/* footer  */}
-        <div className="relative flex h-125 items-center justify-between w-[90%] mx-auto bg-zinc-500 font-sans dark:bg-black rounded-t-lg text-white">
+        <div className="relative flex h-125 pt-30 justify-between w-[90%] mx-auto bg-zinc-500 font-sans dark:bg-black rounded-t-lg text-white">
           <div className="absolute m-5 top-0 left-0">Logo</div>
-          <div className="flex flex-col border  mx-auto">
+          <div className="flex flex-col pl-10 w-full">
             {/* follow us */}
-            <div>tdcdoors.william@gmail.com</div>
+            <div className="font-semibold">Get in touch</div>
+            <div>Email us</div>
             <div>718-788-2888</div>
             <div className="font-semibold">Follow Us</div>
             <div>
@@ -360,20 +360,43 @@ export default function Home() {
               <FontAwesomeIcon icon={faYoutube} />
               <FontAwesomeIcon icon={faPinterest} />
             </div>
+          </div> 
+          <div className="flex flex-col w-full">
+            {/* Company */}
+            <div className="font-semibold">Company</div>
+            <div>Catalog</div>
+            <div>Blog</div>
+            <div>Locations</div>
           </div>
-          <div className="flex flex-col border w-full items-center">
+          <div className="flex flex-col w-full">
             {/* all product types */}
             <div className="font-semibold">Products</div>
             <div>avocado yogurt</div>
             <div>sous vide chicken breast</div>
             <div>coconut water</div>
+            <div>sour plum juice</div>
+            <div>dried steak chips</div>
+            <div>honey water</div>
           </div>
-          <div className="flex flex-col border w-full items-center">
+          <div className="flex flex-col w-full">
             {/* guides */}
-            <div className="font-semibold">Warranty and Policies</div>
+            <div className="font-semibold">Support</div>
+            <div>Contact</div>
+            <div>Guides</div>
             <div>Terms and conditions</div>
             <div>Refund Policy</div>
             <div>Warranty</div>
+            <div>FAQ</div>
+          </div>
+          <div className="flex flex-col w-full">
+            {/* guides */}
+            <div className="font-semibold">Payment Methods</div>
+            <div>VISA</div>
+            <div>Mastercard</div>
+            <div>Amex</div>
+            <div>Apple Pay</div>
+            <div>Cash App</div>
+            <div>Zelle</div>
           </div>
           {/* <div className="flex flex-col">warranty and policies</div>{" "}
           <div className="flex flex-col">payment methods</div> */}

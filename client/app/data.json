@@ -14,33 +14,13 @@
       "start price": "$5"
     },
     {
-      "name": "coconut water",
-      "url": "",
-      "start price": "$5"
-    },
-    {
-      "name": "chicken breast",
-      "url": "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/Screen+Shot+2026-05-16+at+2.45.40+PM.png",
-      "start price": "$5"
-    },
-    {
-      "name": "chocolate chip cookie",
-      "url": "",
-      "start price": "$5"
-    },
-    {
-      "name": "curry block",
-      "url": "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/images-1.jpg",
+      "name": "sour plum juice",
+      "url": "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/images.jpg",
       "start price": "$5"
     }
   ],
   "products in stock": [
     {
-      "name": "yogurt",
-      "url": "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/images.jpg",
-      "price": "$5"
-    },
-    {
       "name": "coconut water",
       "url": "",
       "price": "$5"
@@ -48,6 +28,11 @@
     {
       "name": "chicken breast",
       "url": "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/Screen+Shot+2026-05-16+at+2.45.40+PM.png",
+      "price": "$5"
+    },
+    {
+      "name": "soup dumplings",
+      "url": "",
       "price": "$5"
     },
     {

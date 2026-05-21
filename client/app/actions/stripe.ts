@@ -8,7 +8,7 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string);
 
 export async function fetchClientSecret(): Promise<string> {
   const origin = (await headers()).get("origin");
-
+   
   // Create Checkout Sessions from body params.
   const session = await stripe.checkout.sessions.create({
     ui_mode: "embedded_page",
