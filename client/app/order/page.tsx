@@ -49,7 +49,7 @@ const Page = () => {
     children: React.ReactNode;
   }) => {
     return (
-      <div className={`rounded-lg p-1 `}>
+      <div className={`rounded-lg p-1 border border-slate-300`}>
         <div className=""> {steps[index - 1].title}</div>
 
         {children}
@@ -110,7 +110,7 @@ const Page = () => {
                 }
                 alt=""
                 fill
-                className="object-cover rounded-lg"
+                className="object-cover   rounded-lg"
               />
             </div>
             <div className="font-semibold p-1">yogurt</div>
@@ -125,7 +125,7 @@ const Page = () => {
                 <div className="flex gap-1 justify-between ">
                   {["original", "avocado", "matcha"].map((flavor) => (
                     <div
-                      className={`relative overflow-hidden border rounded-lg px-3 py-2 w-full aspect-square cursor-pointer ${
+                      className={`relative overflow-hidden border group rounded-lg px-3 py-2 w-full aspect-square cursor-pointer ${
                         formData.yogurtFlavor === flavor
                           ? "border-orange-300"
                           : ""
@@ -159,7 +159,7 @@ const Page = () => {
                 <div className="flex gap-1 justify-between">
                   {["small", "medium", "large"].map((size) => (
                     <div
-                      className={`relative overflow-hidden rounded-lg border px-3 py-2 w-full aspect-square cursor-pointer ${
+                      className={`relative overflow-hidden rounded-lg border px-3 py-2 w-full aspect-square group cursor-pointer ${
                         formData.size === size ? "border-orange-300" : ""
                       }`}
                       onClick={() =>
@@ -192,7 +192,7 @@ const Page = () => {
                   {["strawberry", "banana", "blueberry", "mango", "peach"].map(
                     (fruit) => (
                       <div
-                        className={`relative overflow-hidden rounded-lg border px-3 py-2 w-full aspect-square cursor-pointer ${
+                        className={`relative overflow-hidden rounded-lg border px-3 py-2 w-full aspect-square group cursor-pointer ${
                           formData.fruitAddOns === fruit
                             ? "border-orange-300"
                             : ""
@@ -227,7 +227,7 @@ const Page = () => {
                 <div className="flex gap-1">
                   {["pick up", "delivery"].map((option) => (
                     <div
-                      className={`relative overflow-hidden rounded-lg border px-3 py-2 w-full aspect-square cursor-pointer ${
+                      className={`relative overflow-hidden rounded-lg border px-3 py-2 w-full aspect-square group cursor-pointer ${
                         formData.delivery === option ? "border-orange-300" : ""
                       }`}
                       onClick={() =>
@@ -258,7 +258,7 @@ const Page = () => {
               {step === 5 && (
                 <div className="flex gap-1">
                   {/* terms and agreements */}
-                  <div>
+                  <div className="flex gap-1">
                     <input type="checkbox" />
                     terms and agreements
                   </div>
@@ -269,7 +269,7 @@ const Page = () => {
               {step === 6 && (
                 <div className="flex gap-1">
                   {/* return policy */}
-                  <div>
+                  <div className="flex gap-1">
                     <input type="checkbox" />
                     return policy
                   </div>
