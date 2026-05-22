@@ -8,7 +8,7 @@ import {
   useMotionValueEvent,
   AnimatePresence,
 } from "motion/react";
-import { useState, useEffect } from "react"; 
+import { useState, useEffect } from "react";
 import Header from "./components/header";
 import Footer from "./components/footer";
 
@@ -200,10 +200,9 @@ export default function Home() {
         <div className="relative w-[80%] mx-auto overflow-hidden rounded-xl h-96 bg-zinc-200 items-center flex justify-center">
           <Image
             src={
-              "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/Screen+Shot+2026-05-16+at+2.45.40+PM.png" ||
-              "/placeholder.png"
+              "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/Screen+Shot+2026-05-16+at+2.45.40+PM.png"
             } // Fixed the fallback logic string
-            alt={"" || "Feature"}
+            alt={""}
             fill
             className="object-cover scale-110 transition-transform duration-500 ease-out group-hover:scale-100"
           />
@@ -260,10 +259,9 @@ export default function Home() {
           {/* Image starts scaled up, and zooms out to scale-100 when the group is hovered */}
           <Image
             src={
-              "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/Screen+Shot+2026-05-16+at+2.45.40+PM.png" ||
-              "/placeholder.png"
+              "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/Screen+Shot+2026-05-16+at+2.45.40+PM.png" 
             } // Fixed the fallback logic string
-            alt={"" || "Feature"}
+            alt={""}
             fill
             className="object-cover scale-110 transition-transform duration-500 ease-out group-hover:scale-100"
           />
@@ -273,8 +271,9 @@ export default function Home() {
 
           {/* Text forced to the bottom-left corner */}
           <div className="absolute bottom-0 m-5 bg-zinc-100 p-3 items-center font-semibold text-lg justify-center flex  rounded-md hover:border hover:border-zinc-200">
-            
-            <div className="" onClick={() => router.push("/locations")}>Find a showroom near you</div>
+            <div className="" onClick={() => router.push("/locations")}>
+              Find a showroom near you
+            </div>
           </div>
         </div>
         {/* 6 - Find a location near you */}
@@ -283,10 +282,9 @@ export default function Home() {
             {/* Image starts scaled up, and zooms out to scale-100 when the group is hovered */}
             <Image
               src={
-                "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/Screen+Shot+2026-05-16+at+2.45.40+PM.png" ||
-                "/placeholder.png"
+                "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/Screen+Shot+2026-05-16+at+2.45.40+PM.png"
               } // Fixed the fallback logic string
-              alt={"" || "Feature"}
+              alt={""}
               fill
               className="object-cover scale-110 transition-transform duration-500 ease-out group-hover:scale-100"
             />
@@ -302,10 +300,9 @@ export default function Home() {
           <div className="relative w-[80%] mx-auto overflow-hidden rounded-xl h-96 bg-zinc-200">
             <Image
               src={
-                "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/Screen+Shot+2026-05-16+at+2.45.40+PM.png" ||
-                "/placeholder.png"
+                "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/Screen+Shot+2026-05-16+at+2.45.40+PM.png"
               } // Fixed the fallback logic string
-              alt={"" || "Feature"}
+              alt={""}
               fill
               className="object-cover scale-110 transition-transform duration-500 ease-out group-hover:scale-100"
             />
@@ -320,10 +317,9 @@ export default function Home() {
             {/* Image starts scaled up, and zooms out to scale-100 when the group is hovered */}
             <Image
               src={
-                "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/Screen+Shot+2026-05-16+at+2.45.40+PM.png" ||
-                "/placeholder.png"
+                "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/Screen+Shot+2026-05-16+at+2.45.40+PM.png"
               } // Fixed the fallback logic string
-              alt={"" || "Feature"}
+              alt={""}
               fill
               className="object-cover scale-110 transition-transform duration-500 ease-out group-hover:scale-100"
             />
@@ -340,7 +336,7 @@ export default function Home() {
           </div>
         </div>
         {/* footer  */}
-         <Footer />
+        <Footer />
       </div>
     </div>
   );

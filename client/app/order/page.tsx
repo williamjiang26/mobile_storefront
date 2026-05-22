@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { Suspense, useState } from "react";
 import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
 import Header from "../components/header";
@@ -45,8 +45,7 @@ const Page = () => {
   const searchParams = useSearchParams();
   console.log("🚀 ~ Page ~ searchParams:", searchParams)
   const rawItems = searchParams.get("items");
-console.log("🚀 ~ Page ~ rawItems:", rawItems);
-  const handleCheckout = () => {
+   const handleCheckout = () => {
     
     router.push(`/checkout?items=${rawItems}`); // if (!response.ok)
     return;
@@ -150,11 +149,9 @@ console.log("🚀 ~ Page ~ rawItems:", rawItems);
                     >
                       <Image
                         src={
-                          "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/Screen+Shot+2026-05-16+at+2.45.40+PM.png" ||
-                          "/placeholder.png"
+                          "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/Screen+Shot+2026-05-16+at+2.45.40+PM.png"
                         } // Fixed the fallback logic string
-                        alt={"" || "Feature"}
-                        fill
+                        alt={""}                        fill
                         className="object-cover scale-110 transition-transform duration-500 ease-out group-hover:scale-100"
                       />
                       <div className="absolute top-0 left-0 m-3 text-lg">
@@ -182,11 +179,9 @@ console.log("🚀 ~ Page ~ rawItems:", rawItems);
                     >
                       <Image
                         src={
-                          "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/Screen+Shot+2026-05-16+at+2.45.40+PM.png" ||
-                          "/placeholder.png"
+                          "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/Screen+Shot+2026-05-16+at+2.45.40+PM.png"
                         } // Fixed the fallback logic string
-                        alt={"" || "Feature"}
-                        fill
+                        alt={""}                        fill
                         className="object-cover scale-110 transition-transform duration-500 ease-out group-hover:scale-100"
                       />
                       <div className="absolute top-0 left-0 m-3 text-lg">
@@ -217,11 +212,9 @@ console.log("🚀 ~ Page ~ rawItems:", rawItems);
                       >
                         <Image
                           src={
-                            "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/Screen+Shot+2026-05-16+at+2.45.40+PM.png" ||
-                            "/placeholder.png"
+                            "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/Screen+Shot+2026-05-16+at+2.45.40+PM.png"
                           } // Fixed the fallback logic string
-                          alt={"" || "Feature"}
-                          fill
+                          alt={""}                          fill
                           className="object-cover scale-110 transition-transform duration-500 ease-out group-hover:scale-100"
                         />
                         <div className="absolute top-0 left-0 m-3 text-lg">
@@ -250,10 +243,9 @@ console.log("🚀 ~ Page ~ rawItems:", rawItems);
                     >
                       <Image
                         src={
-                          "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/Screen+Shot+2026-05-16+at+2.45.40+PM.png" ||
-                          "/placeholder.png"
+                          "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/Screen+Shot+2026-05-16+at+2.45.40+PM.png"
                         } // Fixed the fallback logic string
-                        alt={"" || "Feature"}
+                        alt={""}
                         fill
                         className="object-cover scale-110 transition-transform duration-500 ease-out group-hover:scale-100"
                       />
@@ -293,4 +285,19 @@ console.log("🚀 ~ Page ~ rawItems:", rawItems);
     </div>
   );
 };
-export default Page;
+const Order = () => {
+  return (
+    <Suspense
+      fallback={
+        <div className="p-8 text-center text-zinc-500">
+          Loading checkout forms...
+        </div>
+      }
+    >
+      <Page />
+    </Suspense>
+  );
+};
+
+export default Order;
+
