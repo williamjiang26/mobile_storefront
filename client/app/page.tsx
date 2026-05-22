@@ -8,16 +8,9 @@ import {
   useMotionValueEvent,
   AnimatePresence,
 } from "motion/react";
-import { useState, useEffect } from "react";
-import { FontAwesomeIcon } from "@/node_modules/@fortawesome/react-fontawesome/dist/index";
-import {
-  faInstagram,
-  faTwitter,
-  faYoutube,
-  faPinterest,
-  faTiktok,
-} from "@fortawesome/free-brands-svg-icons";
+import { useState, useEffect } from "react"; 
 import Header from "./components/header";
+import Footer from "./components/footer";
 
 // import Image from "next/image";
 
@@ -280,8 +273,8 @@ export default function Home() {
 
           {/* Text forced to the bottom-left corner */}
           <div className="absolute bottom-0 m-5 bg-zinc-100 p-3 items-center font-semibold text-lg justify-center flex  rounded-md hover:border hover:border-zinc-200">
-            Find a showroom near you
-            <div className="" onClick={() => router.push("/catalog")}></div>
+            
+            <div className="" onClick={() => router.push("/locations")}>Find a showroom near you</div>
           </div>
         </div>
         {/* 6 - Find a location near you */}
@@ -301,7 +294,7 @@ export default function Home() {
             {/* Dark gradient overlay to ensure text is legible against light images */}
             <div className="absolute inset-0 bg-linear-to-t from-black/60 via-black/20 to-transparent" />
             <div className="absolute bottom-0 m-5 bg-zinc-100 p-3 items-center font-semibold text-lg justify-center flex  rounded-md hover:border hover:border-zinc-200">
-              <div className="" onClick={() => router.push("/catalog")}>
+              <div className="" onClick={() => router.push("/contact")}>
                 Contact or Get a quote
               </div>
             </div>
@@ -318,7 +311,7 @@ export default function Home() {
             />
             <div className="absolute inset-0 bg-linear-to-t from-black/60 via-black/20 to-transparent" />
             <div className="absolute bottom-0 m-5 bg-zinc-100 p-3 items-center font-semibold text-lg justify-center flex  rounded-md hover:border hover:border-zinc-200">
-              <div className="" onClick={() => router.push("/catalog")}>
+              <div className="" onClick={() => router.push("/guides")}>
                 Delivery Guide
               </div>
             </div>
@@ -340,72 +333,14 @@ export default function Home() {
 
             {/* Text forced to the bottom-left corner */}
             <div className="absolute bottom-0 m-5 bg-zinc-100 p-3 items-center font-semibold text-lg justify-center flex  rounded-md hover:border hover:border-zinc-200">
-              <div className="" onClick={() => router.push("/catalog")}>
+              <div className="" onClick={() => router.push("/guides")}>
                 Product Selection Guide
               </div>
             </div>
           </div>
         </div>
         {/* footer  */}
-        <div className="relative flex h-125 pt-30 justify-between w-[90%] mx-auto bg-zinc-500 font-sans dark:bg-black rounded-t-lg text-white">
-          <div className="absolute m-5 top-0 left-0">Logo</div>
-          <div className="flex flex-col pl-10 w-full">
-            {/* follow us */}
-            <div className="font-semibold">Get in touch</div>
-            <div>Email us</div>
-            <div>718-788-2888</div>
-            <div className="font-semibold">Follow Us</div>
-            <div>
-              <FontAwesomeIcon icon={faInstagram} />
-              <FontAwesomeIcon icon={faTwitter} />
-              <FontAwesomeIcon icon={faTiktok} />
-              <FontAwesomeIcon icon={faYoutube} />
-              <FontAwesomeIcon icon={faPinterest} />
-            </div>
-          </div>
-          <div className="flex flex-col w-full">
-            {/* Company */}
-            <div className="font-semibold">Company</div>
-            <div>Catalog</div>
-            <div>Blog</div>
-            <div>Locations</div>
-          </div>
-          <div className="flex flex-col w-full">
-            {/* all product types */}
-            <div className="font-semibold">Products</div>
-            <div>avocado yogurt</div>
-            <div>sous vide chicken breast</div>
-            <div>coconut water</div>
-            <div>sour plum juice</div>
-            <div>dried steak chips</div>
-            <div>honey water</div>
-          </div>
-          <div className="flex flex-col w-full">
-            {/* guides */}
-            <div className="font-semibold">Support</div>
-            <div>Contact</div>
-            <div>Guides</div>
-            <div>Terms and conditions</div>
-            <div>Refund Policy</div>
-            <div>Warranty</div>
-            <div>FAQ</div>
-          </div>
-          <div className="flex flex-col w-full">
-            {/* guides */}
-            <div className="font-semibold">Payment Methods</div>
-            <div>VISA</div>
-            <div>Mastercard</div>
-            <div>Amex</div>
-            <div>Apple Pay</div>
-            <div>Cash App</div>
-            <div>Zelle</div>
-          </div>
-          {/* <div className="flex flex-col">warranty and policies</div>{" "}
-          <div className="flex flex-col">payment methods</div> */}
-          <div className="absolute m-5 bottom-0 flex">
-            Copywright 2026 @ Brand.com
-          </div>
-        </div>
+         <Footer />
       </div>
     </div>
   );

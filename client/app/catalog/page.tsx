@@ -2,6 +2,7 @@
 import { useRouter } from "@/node_modules/next/navigation";
 import Image from "next/image";
 import { useState } from "react";
+import Footer from "../components/footer";
 import Header from "../components/header";
 import data from "../data.json";
 
@@ -112,6 +113,7 @@ const Catalog = () => {
             </div>
           ))}
       </div>
+      <Footer />
     </div>
   );
 };

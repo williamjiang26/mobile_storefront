@@ -8,7 +8,7 @@ const Page = () => {
       <Header />
       {/* scrollable */}
       <div className="flex-1 mt-30 overflow-y-auto space-y-3 bg-zinc-300 scroll-smooth font-sans dark:bg-black">
-        guide
+        locations
       </div>
       <Footer />
     </div>
