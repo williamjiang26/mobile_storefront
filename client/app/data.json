@@ -11,39 +11,40 @@
     {
       "name": "yogurt",
       "url": "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/images.jpg",
-      "start price": "$5"
-    },
-    {
-      "name": "sour plum juice",
-      "url": "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/images.jpg",
-      "start price": "$5"
-    } 
+      "price": "price_1TZyy605ICSAGFaRs7vAqujS",
+      "start amount": "$5"
+    }
   ],
   "products in stock": [
     {
       "name": "coconut water",
-      "url": "",
-      "price": "$5"
+      "url": "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/1518783__1psd.webp",
+      "amount": "$5",
+      "price": "price_1TZyze05ICSAGFaR0lEGR2WC"
     },
     {
       "name": "chicken breast",
       "url": "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/Screen+Shot+2026-05-16+at+2.45.40+PM.png",
-      "price": "$5"
+      "amount": "$5",
+      "price": "price_1TZz0O05ICSAGFaRsAxwvr2b"
     },
     {
-      "name": "soup dumplings",
-      "url": "",
-      "price": "$5"
+      "name": "sour plum juice",
+      "url": "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/download.jpg",
+      "amount": "$5",
+      "price": "price_1TZyzD05ICSAGFaRYdineTip"
     },
     {
-      "name": "chocolate chip cookie",
-      "url": "",
-      "price": "$5"
+      "name": "dried beef chips",
+      "url": "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/81lOIKfIDNL.jpg",
+      "amount": "$5",
+      "price": "price_1TZyys05ICSAGFaRZdJLmy8q"
     },
     {
-      "name": "curry block",
-      "url": "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/images-1.jpg",
-      "price": "$5"
+      "name": "orange juice",
+      "url": "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/fresh-squeezed-orange-juice-navel-oranges-1.jpg",
+      "amount": "$5",
+      "price": "price_1TZyyV05ICSAGFaRFBk97Ngo"
     }
   ],
   "features": [

@@ -1,9 +1,9 @@
 "use client";
 import React, { useState } from "react";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import Header from "../components/header";
-
+import data from "../data.json";
 const Page = () => {
   const router = useRouter();
   const steps = [
@@ -31,6 +31,7 @@ const Page = () => {
     },
   ];
   const [step, setStep] = useState(1);
+  const p = data["popular products"][0];
   const [formData, setFormData] = useState({
     yogurtFlavor: "",
     size: "",
@@ -40,6 +41,16 @@ const Page = () => {
 
   const nextStep = () => setStep((s) => Math.min(s + 1, steps.length));
   const prevStep = () => setStep((s) => Math.max(s - 1, 1));
+  //
+  const searchParams = useSearchParams();
+  console.log("🚀 ~ Page ~ searchParams:", searchParams)
+  const rawItems = searchParams.get("items");
+console.log("🚀 ~ Page ~ rawItems:", rawItems);
+  const handleCheckout = () => {
+    
+    router.push(`/checkout?items=${rawItems}`); // if (!response.ok)
+    return;
+  };
 
   const Card = ({
     index,
@@ -49,7 +60,7 @@ const Page = () => {
     children: React.ReactNode;
   }) => {
     return (
-      <div className={`rounded-lg p-1 border border-slate-300`}>
+      <div className={`rounded-lg p-3 bg-slate-50 `}>
         <div className=""> {steps[index - 1].title}</div>
 
         {children}
@@ -59,7 +70,7 @@ const Page = () => {
               type="button"
               onClick={prevStep}
               disabled={step === 1}
-              className="rounded-lg border border-neutral-300 px-5 py-3 text-sm font-medium text-neutral-700 disabled:cursor-not-allowed disabled:opacity-40"
+              className="rounded-lg bg-slate-50 hover:bg-slate-300/50 px-5 py-3 text-sm font-medium text-neutral-700 disabled:cursor-not-allowed disabled:opacity-40"
             >
               Back
             </button>
@@ -75,7 +86,7 @@ const Page = () => {
             ) : (
               <button
                 type="button"
-                onClick={() => router.push("/checkout")}
+                onClick={handleCheckout}
                 className="rounded-lg bg-orange-500 px-5 py-3 text-sm font-semibold text-white hover:bg-orange-600"
               >
                 Submit
@@ -88,38 +99,38 @@ const Page = () => {
   };
 
   return (
-    <div className="flex flex-col justify-between h-screen  w-full ">
+    <div className="flex flex-col justify-between h-screen bg-slate-200 w-full ">
       <Header />
-      <div className="mt-30 flex gap-1 w-[80%] mx-auto h-full">
-        <div className="rounded-lg ml-auto w-full">
-          {/* product image */}{" "}
+      <div className="mt-30 flex  w-[80%] mx-auto h-full  ">
+        <div className="rounded-l-lg ml-auto w-full bg-slate-50">
+          {/* product image */}
           <button
             type="button"
             onClick={() => {
               router.push("/catalog");
             }}
-            className="rounded-lg border px-5 py-3 m-1 text-sm font-medium   disabled:cursor-not-allowed disabled:opacity-40"
+            className="rounded-lg hover:bg-slate-100/90 px-5 py-3 m-1 text-sm font-medium disabled:cursor-not-allowed disabled:opacity-40"
           >
             Back
           </button>
           <div className="rounded-md p-1">
-            <div className="relative rounded-lg aspect-square bg-zinc-100 p-1">
+            <div className="relative rounded-lg aspect-square bg-zinc-100 p-1 overflow-hidden group cursor-pointer">
               <Image
                 src={
                   "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/images.jpg"
                 }
                 alt=""
                 fill
-                className="object-cover   rounded-lg"
+                className="object-cover scale-110 transition-transform duration-500 ease-out group-hover:scale-100 rounded-lg"
               />
             </div>
             <div className="font-semibold p-1">yogurt</div>
           </div>
         </div>
         {/* Form */}
-        <div className="rounded-l-lg mr-auto w-full p-1 bg-slate-100">
+        <div className="rounded-r-lg mr-auto w-full p-1 bg-slate-300">
           {/* multistep form */}
-          <form className="space-y-1 ">
+          <form className="space-y-1 p-1">
             <Card index={1}>
               {step === 1 && (
                 <div className="flex gap-1 justify-between ">

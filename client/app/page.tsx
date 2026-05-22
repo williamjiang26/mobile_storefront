@@ -87,7 +87,7 @@ export default function Home() {
                     )}
                   </div>
                   <div className="font-semibold p-1">{p["name"]}</div>
-                  <div className="p-1">from {p["start price"]}</div>
+                  <div className="p-1">from {p["start amount"]}</div>
                 </div>
                 <div className="justify-center flex p-3">
                   <div
@@ -122,7 +122,7 @@ export default function Home() {
                   </div>
                   <div className="font-semibold p-1">{p["name"]}</div>
                   {/* <div className=" p-1">{p["description"]}</div> */}
-                  <div className=" p-1">{p["price"]}</div>
+                  <div className=" p-1">{p["amount"]}</div>
                 </div>
                 <div className="justify-center flex p-3">
                   <div
@@ -163,7 +163,10 @@ export default function Home() {
                 transition={{ delay: 0.5, duration: 0.5 }}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="px-6 py-3 text-black font-semibold rounded-full shadow-md backdrop-blur-sm bg-white/90 hover:bg-white transition-all tracking-wide"
+                className="px-6 py-3 text-black font-semibold rounded-lg shadow-md backdrop-blur-sm bg-white/90 hover:bg-white transition-all tracking-wide"
+                onClick={() => {
+                  router.push("/catalog");
+                }}
               >
                 Explore
               </motion.button>
@@ -220,7 +223,6 @@ export default function Home() {
             </div>
           </div>
         </div>
-
         <div className="flex h-125 w-[80%] mx-auto rounded-lg items-center justify-between bg-zinc-100 pb-20 font-sans dark:bg-black">
           {/* 5 - FAQ */}
           <div className="p-8 text-xl w-full">FAQs</div>
@@ -229,7 +231,8 @@ export default function Home() {
               <AccordionItem f={f} />
             ))}
           </div>
-        </div> {/* 6 - Process */}
+        </div>{" "}
+        {/* 6 - Process */}
         <div className="flex flex-col h-125 w-[80%] mx-auto rounded-lg items-center justify-between bg-zinc-200 pb-20 font-sans dark:bg-black">
           {/* 5 - How to order */}
           <div className="basis-1/6 flex items-center justify-center">
@@ -343,7 +346,6 @@ export default function Home() {
             </div>
           </div>
         </div>
-
         {/* footer  */}
         <div className="relative flex h-125 pt-30 justify-between w-[90%] mx-auto bg-zinc-500 font-sans dark:bg-black rounded-t-lg text-white">
           <div className="absolute m-5 top-0 left-0">Logo</div>
@@ -360,7 +362,7 @@ export default function Home() {
               <FontAwesomeIcon icon={faYoutube} />
               <FontAwesomeIcon icon={faPinterest} />
             </div>
-          </div> 
+          </div>
           <div className="flex flex-col w-full">
             {/* Company */}
             <div className="font-semibold">Company</div>

@@ -4,10 +4,29 @@ import Image from "next/image";
 import { useState } from "react";
 import Header from "../components/header";
 import data from "../data.json";
+
+interface LineItem {
+  price: string;
+  quantity: number;
+}
 const Catalog = () => {
   const router = useRouter();
   const [productType, setType] = useState("made-to-order");
+  const [lineItems, setLineItems] = useState<LineItem[]>([]);
 
+  const handleAdd = (price: string) => {
+    console.log("🚀 ~ handleAdd ~ price:", price)
+    const newItems = [{ price, quantity: 1 }];
+    const serializedItems = encodeURIComponent(JSON.stringify(newItems));
+    router.push(`/order?items=${serializedItems}`); // if (!response.ok)
+    return;
+  };
+  const handleCheckout = (price: string) => {
+    const newItems = [{ price, quantity: 1 }];
+    const serializedItems = encodeURIComponent(JSON.stringify(newItems));
+    router.push(`/checkout?items=${serializedItems}`); // if (!response.ok)
+    return;
+  };
   return (
     <div className="flex flex-col ">
       <Header />
@@ -40,9 +59,7 @@ const Catalog = () => {
               <div className="group rounded-lg cursor-pointer">
                 <div className="relative overflow-hidden rounded-lg h-96 w-60 bg-zinc-200">
                   <Image
-                    src={
-                      "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/images.jpg"
-                    }
+                    src={p["url"]}
                     alt=""
                     fill
                     className="object-cover scale-110 transition-transform duration-500 ease-out group-hover:scale-100"
@@ -51,13 +68,13 @@ const Catalog = () => {
                 </div>
                 <div className="px-1 mt-3">
                   <div className="font-semibold">{p["name"]}</div>
-                  <div className="">Starting at $5</div>
+                  <div className="">Starting at {p["start amount"]}</div>
                 </div>
               </div>
               <div className="flex mt-25 mb-3 justify-center w-[80%] mx-auto ">
                 <div
                   className="border border-zinc-300 hover:bg-zinc-100/90 hover:shadow-md w-full h-full justify-center flex px-3 py-1 items-center text-center rounded-lg"
-                  onClick={() => router.push("/order")}
+                  onClick={() => handleAdd(p["price"])}
                 >
                   Add
                 </div>
@@ -72,9 +89,7 @@ const Catalog = () => {
               <div className="group rounded-lg  cursor-pointer">
                 <div className="relative overflow-hidden rounded-lg h-96 w-60  ">
                   <Image
-                    src={
-                      "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/images.jpg"
-                    }
+                    src={p["url"]}
                     alt=""
                     fill
                     className="object-cover scale-110 transition-transform duration-500 ease-out group-hover:scale-100"
@@ -82,56 +97,21 @@ const Catalog = () => {
                   <div className="absolute inset-0 bg-linear-to-t from-black/60 via-black/20 to-transparent" />
                 </div>
                 <div className="p-1">
-                  <div className="font-semibold ">yogurt</div>
-                  <div>original</div>
-                  <div>strawberry</div>
-                  <div>Large</div>
-                  <div>$7</div>
+                  <div className="font-semibold ">{p["name"]}</div>
+                  <div>{p["amount"]}</div>
                 </div>
               </div>
               <div className="justify-center flex">
                 <div
                   className="w-[80%] mx-auto h-9 bg-zinc-50 hover:shadow-md rounded-lg flex items-center justify-center hover:bg-zinc-100 border border-zinc-300"
-                  onClick={() => router.push("/checkout")}
+                  onClick={() => handleCheckout(p["price"])}
                 >
-                  Add
-                </div>
-              </div>
-            </div>
-          ))}  {productType === "stock" &&
-          data["products in stock"].map((p) => (
-            <div className="flex flex-col pb-1  justify-between bg-zinc-50 shadow-md rounded-lg space-y-3">
-              <div className="group rounded-lg  cursor-pointer">
-                <div className="relative overflow-hidden rounded-lg h-96 w-60  ">
-                  <Image
-                    src={
-                      "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/images.jpg"
-                    }
-                    alt=""
-                    fill
-                    className="object-cover scale-110 transition-transform duration-500 ease-out group-hover:scale-100"
-                  />
-                  <div className="absolute inset-0 bg-linear-to-t from-black/60 via-black/20 to-transparent" />
-                </div>
-                <div className="p-1">
-                  <div className="font-semibold ">yogurt</div>
-                  <div>original</div>
-                  <div>strawberry</div>
-                  <div>Large</div>
-                  <div>$7</div>
-                </div>
-              </div>
-              <div className="justify-center flex">
-                <div
-                  className="w-[80%] mx-auto h-9 bg-zinc-50 hover:shadow-md rounded-lg flex items-center justify-center hover:bg-zinc-100 border border-zinc-300"
-                  onClick={() => router.push("/checkout")}
-                >
-                  Add
+                  Checkout
                 </div>
               </div>
             </div>
           ))}
-      </div>   
+      </div>
     </div>
   );
 };

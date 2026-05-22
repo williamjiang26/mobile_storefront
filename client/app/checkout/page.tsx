@@ -5,7 +5,7 @@ import {
   EmbeddedCheckoutProvider,
 } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
-
+import { useSearchParams } from "next/navigation";
 import { fetchClientSecret } from "../actions/stripe";
 
 import Header from "../components/header";
@@ -15,10 +15,17 @@ const stripePromise = loadStripe(
 );
 
 const Checkout = () => {
+  const searchParams = useSearchParams();
+  const rawItems = searchParams.get("items");
+
+   const lineItems = rawItems ? JSON.parse(decodeURIComponent(rawItems)) : [];
   return (
     <EmbeddedCheckoutProvider
       stripe={stripePromise}
-      options={{ fetchClientSecret }}
+      options={{
+        // Automatically triggers your server action with the right parameters
+        fetchClientSecret: () => fetchClientSecret({ lineItems }),
+      }}
     >
       <div className="flex flex-col h-screen">
         <Header />

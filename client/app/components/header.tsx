@@ -37,6 +37,7 @@ const Header = () => {
         logo
       </div>
       <div className="flex justify-between">
+        {/* about */}
         <div
           className="relative p-3"
           onMouseEnter={() => setOpen("about")}
@@ -64,6 +65,7 @@ const Header = () => {
             )}
           </AnimatePresence>
         </div>
+        {/* links */}
         <div
           className="relative p-3"
           onMouseEnter={() => setOpen("links")}
@@ -93,6 +95,7 @@ const Header = () => {
             )}
           </AnimatePresence>
         </div>
+        {/* guides */}
         <div
           className="relative p-3"
           onMouseEnter={() => setOpen("guides")}
@@ -120,12 +123,20 @@ const Header = () => {
             )}
           </AnimatePresence>
         </div>
+        {/* blog */}
         <div className="relative p-3">
-          <div className="hover:bg-zinc-200 hover:rounded-lg p-3">Blog</div>
+          <div
+            className="hover:bg-zinc-200 hover:rounded-lg p-3"
+            onClick={() => router.push("/blog")}
+          >
+            Blog
+          </div>
         </div>
+        {/* log in  */}
         <div className="relative p-3">
           <div className="hover:bg-zinc-200 hover:rounded-lg p-3">Log in</div>
         </div>
+        {/* sign up */}
         <div className="relative p-3">
           <div className="hover:bg-zinc-200 hover:rounded-lg p-3">Sign up</div>
         </div>
