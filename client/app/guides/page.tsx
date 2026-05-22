@@ -10,7 +10,9 @@ const Page = () => {
       possible part of the user experience is the app that comes along with it,
       it is not just another store that delivers the product to you, then why
       would you want to purchase from this company specially designed packaging
-      is important as well this is a fitness, healthy lifestyle brand
+      is important as well this is a fitness, healthy lifestyle brand - write a guide
+
+
     </div>
   );
 };
