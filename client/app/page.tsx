@@ -13,7 +13,7 @@ import { useState, useEffect, useRef } from "react";
 import Header from "./components/header";
 import Footer from "./components/footer";
 import ScrollHorizontal from "./components/features";
-
+import ScrollHorizontal2 from "./components/process";
 // import Image from "next/image";
 
 function AccordionItem({ f }: { f: Record<string, any> }) {
@@ -56,16 +56,6 @@ function AccordionItem({ f }: { f: Record<string, any> }) {
 }
 export default function Home() {
   const router = useRouter();
-  const containerRef = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"],
-  });
-  const ITEM_WIDTH = 400;
-  const GAP = 30;
-  // Move from first item centered to last item centered
-  const totalDistance = (data["features"].length - 1) * (ITEM_WIDTH + GAP);
-  const x = useTransform(scrollYProgress, [0, 1], [0, -totalDistance]);
   const handleAdd = (price: string, url: string) => {
     console.log("🚀 ~ handleAdd ~ price:", price);
     const newItems = [{ price, url, quantity: 1 }];
@@ -207,34 +197,8 @@ export default function Home() {
           <ScrollHorizontal />
         </div>
         {/* 5 - Process */}
-        <div className="flex flex-col h-screen items-center justify-between font-sans dark:bg-black">
-          <div className="basis-1/6 flex items-center justify-center text-5xl text-white uppercase font-bold">
-            Process
-          </div>
-          <div className="basis-5/6 flex flex-row  w-[90%] mx-auto justify-between overflow-x-auto">
-            {data["process"].slice(0, 5).map((f) => (
-              <div className="group flex flex-col p-1 w-80 cursor-pointer">
-                {/* The main image container controls the rounding and hides the expanding/shrinking image */}
-                <div className="relative overflow-hidden rounded-xl h-96 bg-zinc-200">
-                  {/* Image starts scaled up, and zooms out to scale-100 when the group is hovered */}
-                  <Image
-                    src={f["url"] || "/placeholder.png"} // Fixed the fallback logic string
-                    alt={f["name"] || "Feature"}
-                    fill
-                    className="object-cover scale-110 transition-transform duration-500 ease-out group-hover:scale-100"
-                  />
-
-                  {/* Dark gradient overlay to ensure text is legible against light images */}
-                  <div className="absolute inset-0 bg-linear-to-t from-black/60 via-black/20 to-transparent" />
-
-                  {/* Text forced to the bottom-left corner */}
-                  <div className="absolute bottom-0 left-0 p-3 text-white font-semibold text-lg  ">
-                    {f["name"]}
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
+        <div className=" ">
+          <ScrollHorizontal2 />
         </div>
         {/* 6 - Reviews */}
         <div className="h-screen">
