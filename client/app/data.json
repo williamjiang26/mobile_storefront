@@ -13,6 +13,12 @@
       "url": "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/images.jpg",
       "price": "price_1TZyy605ICSAGFaRs7vAqujS",
       "start amount": "$5"
+    },
+    {
+      "name": "honey water",
+      "url": "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/550px-nowatermark-Make-Honey-Water-Step-4-Version-2.jpg",
+      "start amount": "$5",
+      "price": "price_1Ta2E005ICSAGFaRwxfawyN3"
     }
   ],
   "products in stock": [
@@ -49,30 +55,36 @@
   ],
   "features": [
     {
-      "name": "high quality",
-      "url": "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/Screen+Shot+2026-05-16+at+2.45.40+PM.png"
+      "id": 1,
+      "name": "quality, healthy, organic",
+      "url": "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/Screen+Shot+2026-05-16+at+2.45.40+PM.png",
+      "description": "get the sugars and protein your body needs without added mysterious ingredients"
     },
     {
-      "name": "healthy",
-      "url": "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/Screen+Shot+2026-05-16+at+2.45.40+PM.png"
-    },
-    {
+      "id": 2,
       "name": "convenient",
-      "url": "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/Screen+Shot+2026-05-16+at+2.45.40+PM.png"
-    }
+      "url": "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/Screen+Shot+2026-05-16+at+2.45.40+PM.png",
+      "description": "conveniently packaged and located, ready to eat to get the most - instantly "
+    },
+    {
+      "id": 3,
+      "name": "energized",
+      "url": "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/Screen+Shot+2026-05-16+at+2.45.40+PM.png",
+      "description": "leaves your body feeling energetic, feeling good and feeling light for active activities"
+    } 
   ],
   "frequently asked questions": [
     {
       "question": "high quality",
-      "answer": "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/Screen+Shot+2026-05-16+at+2.45.40+PM.png"
+      "answer": ""
     },
     {
       "question": "healthy",
-      "answer": "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/Screen+Shot+2026-05-16+at+2.45.40+PM.png"
+      "answer": ""
     },
     {
       "question": "convenient",
-      "answer": "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/Screen+Shot+2026-05-16+at+2.45.40+PM.png"
+      "answer": ""
     }
   ],
   "process": [

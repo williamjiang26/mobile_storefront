@@ -43,10 +43,13 @@ const Page = () => {
   const prevStep = () => setStep((s) => Math.max(s - 1, 1));
   //
   const searchParams = useSearchParams();
-  console.log("🚀 ~ Page ~ searchParams:", searchParams)
+
   const rawItems = searchParams.get("items");
-   const handleCheckout = () => {
-    
+  const lineItems = rawItems ? JSON.parse(decodeURIComponent(rawItems)) : [];
+  console.log("🚀 ~ Page ~ lineItems:", lineItems);
+  const photo = lineItems[0]["url"];
+  console.log("🚀 ~ Page ~ photo:", photo)
+  const handleCheckout = () => {
     router.push(`/checkout?items=${rawItems}`); // if (!response.ok)
     return;
   };
@@ -115,9 +118,7 @@ const Page = () => {
           <div className="rounded-md p-1">
             <div className="relative rounded-lg aspect-square bg-zinc-100 p-1 overflow-hidden group cursor-pointer">
               <Image
-                src={
-                  "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/images.jpg"
-                }
+                src={photo}
                 alt=""
                 fill
                 className="object-cover scale-110 transition-transform duration-500 ease-out group-hover:scale-100 rounded-lg"
@@ -151,7 +152,8 @@ const Page = () => {
                         src={
                           "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/Screen+Shot+2026-05-16+at+2.45.40+PM.png"
                         } // Fixed the fallback logic string
-                        alt={""}                        fill
+                        alt={""}
+                        fill
                         className="object-cover scale-110 transition-transform duration-500 ease-out group-hover:scale-100"
                       />
                       <div className="absolute top-0 left-0 m-3 text-lg">
@@ -181,7 +183,8 @@ const Page = () => {
                         src={
                           "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/Screen+Shot+2026-05-16+at+2.45.40+PM.png"
                         } // Fixed the fallback logic string
-                        alt={""}                        fill
+                        alt={""}
+                        fill
                         className="object-cover scale-110 transition-transform duration-500 ease-out group-hover:scale-100"
                       />
                       <div className="absolute top-0 left-0 m-3 text-lg">
@@ -214,7 +217,8 @@ const Page = () => {
                           src={
                             "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/Screen+Shot+2026-05-16+at+2.45.40+PM.png"
                           } // Fixed the fallback logic string
-                          alt={""}                          fill
+                          alt={""}
+                          fill
                           className="object-cover scale-110 transition-transform duration-500 ease-out group-hover:scale-100"
                         />
                         <div className="absolute top-0 left-0 m-3 text-lg">
@@ -300,4 +304,3 @@ const Order = () => {
 };
 
 export default Order;
-

@@ -27,8 +27,7 @@ const CheckoutForm = () => {
     >
       <div className="flex flex-col h-screen">
         <Header />
-        {/* Changed mt-50 to an arbitrary layout value if 50 isn't in your config */}
-        <div className="mt-[200px]">
+        <div className="mt-[150px]">
           <EmbeddedCheckout />
         </div>
       </div>
@@ -36,7 +35,6 @@ const CheckoutForm = () => {
   );
 };
 
-// 2. This outer wrapper handles the Suspense boundary, satisfying Next.js static rendering
 const Checkout = () => {
   return (
     <Suspense

@@ -12,7 +12,7 @@ import { useRouter } from "@/node_modules/next/navigation";
 const Footer = () => {
   const router = useRouter();
   return (
-    <div className="relative flex h-125 pt-30 justify-between w-[90%] mx-auto bg-zinc-500 font-sans dark:bg-black rounded-t-lg text-white">
+    <div className="relative flex h-125 pt-30 justify-between w-[90%] mx-auto bg-zinc-100 font-sans dark:bg-black rounded-t-lg text-black/50">
       <div className="absolute m-5 top-0 left-0">Logo</div>
       <div className="flex flex-col pl-10 w-full">
         {/* follow us */}
