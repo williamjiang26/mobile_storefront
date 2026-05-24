@@ -54,7 +54,7 @@ export default function ScrollHorizontal() {
 
                 {/* Item Content Overlay */}
                 <div className="absolute bottom-7.5 left-7.5 right-7.5 z-20">
-                  <span className="block text-[15px] text-neutral-500 font-['Azeret_Mono',monospace] mb-2 tracking-wider">
+                  <span className="block text-[15px] text-neutral-100 font-['Azeret_Mono',monospace] mb-2 tracking-wider">
                     0{feature.id}
                   </span>
                   <h2 className="text-[28px] font-semibold text-white m-0 leading-tight">
