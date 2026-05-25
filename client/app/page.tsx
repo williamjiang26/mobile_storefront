@@ -16,7 +16,7 @@ import ScrollHorizontal from "./components/features";
 import ScrollHorizontal2 from "./components/process";
 import VerticalTicker from "./components/reviews";
 import Button from "./components/slideButton";
-import VideoBackground from "./youtubeVideo";
+import VideoBackground from "./components/youtubeVideo";
 // import Image from "next/image";
 
 function AccordionItem({ f }: { f: Record<string, any> }) {
@@ -79,7 +79,7 @@ export default function Home() {
         {/* 1 - checkout */}
         <div className="h-screen group flex flex-col cursor-pointer">
           {/* The main image container controls the rounding and hides the expanding/shrinking image */}
-          <div className="relative overflow-hidden bg-zinc-200">
+          <div className="relative overflow-hidden">
             {/* Image starts scaled up, and zooms out to scale-100 when the group is hovered */}
             {/* <Image
               src={
@@ -93,7 +93,7 @@ export default function Home() {
             {/* <div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/80 to-transparent" /> */}
             {/* 1 - shop right away - popular products - glimpse of all categories */}
             <div className="relative flex mt-30 flex-col md:h-125 rounded-lg items-center justify-center bg-transparent font-sans dark:bg-black pb-5">
-              <div className="basis-1/6 flex items-center justify-center font-bold text-3xl  text-white/60">
+              <div className="basis-1/6 flex items-center justify-center font-bold text-3xl  text-white/90">
                 Shop popular products
               </div>
               <div className="basis-5/6 flex flex-row w-[80%] mx-auto justify-between overflow-x-auto ">
@@ -130,7 +130,7 @@ export default function Home() {
             </div>
             {/* 2 - shop right away - products in stock - glimpse of all categories */}
             <div className="relative flex flex-col h-125 rounded-lg items-center justify-center bg-transparent font-sans dark:bg-black pb-5">
-              <div className="basis-1/6 flex items-center justify-center text-3xl  text-white/60">
+              <div className="basis-1/6 flex items-center justify-center text-3xl text-white/90">
                 Products in stock ~ ships in 2-3 weeks
               </div>
               <div className="basis-5/6 flex flex-row w-[80%] mx-auto justify-between overflow-x-auto">
@@ -180,23 +180,25 @@ export default function Home() {
             <VideoBackground />
 
             <div className="absolute inset-0 bg-black/30 transition-colors duration-300 group-hover:bg-black/40" />
-            <div className="absolute bottom-0 left-0 p-30">
-              <motion.button
-                initial={{ y: 20, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 0.5, duration: 0.5 }}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="relative overflow-hidden z-10 bg-white px-5 py-3 rounded-lg text-black font-semibold uppercase tracking-wider  transition-colors duration-300 ease-in-out hover:text-white
+            <div className="w-[90%] mx-auto">
+              <div className=" absolute bottom-0 left-0 p-30">
+                <motion.button
+                  initial={{ y: 20, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ delay: 0.5, duration: 0.5 }}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="relative overflow-hidden z-10 bg-white px-5 py-3 rounded-lg text-black font-semibold uppercase tracking-wider  transition-colors duration-300 ease-in-out hover:text-white
                 before:absolute before:top-0 before:left-0 before:h-full before:w-full before:-z-10 before:bg-slate-500 before:scale-x-0
                  before:origin-left before:duration-200 before:ease-in-out before:transition-transform hover:before:scale-x-100
                 "
-                onClick={() => {
-                  router.push("/catalog");
-                }}
-              >
-                Explore
-              </motion.button>
+                  onClick={() => {
+                    router.push("/catalog");
+                  }}
+                >
+                  Explore
+                </motion.button>
+              </div>
             </div>
           </motion.div>
         </div>
@@ -232,8 +234,10 @@ export default function Home() {
             {/* Dark gradient overlay to ensure text is legible against light images */}
             <div className="absolute inset-0 bg-linear-to-t from-black/60 via-black/20 to-transparent" />
             {/* Text forced to the bottom-left corner */}
-            <div className="absolute bottom-0 m-5   ">
-              <Button onClick={() => router.push("/contact")}>Contact</Button>
+            <div className="w-[90%] mx-auto">
+              <div className="absolute bottom-0 mb-5">
+                <Button onClick={() => router.push("/contact")}>Contact</Button>
+              </div>
             </div>
           </div>
         </div>
