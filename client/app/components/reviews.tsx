@@ -81,7 +81,15 @@ export default function MotionReviewTicker() {
         {/* Title */}
         <div className="text-center max-w-lg mt-3 mx-auto mb-16">
           <div
-            className="bg-white rounded-lg text-3xl font-black tracking-tight text-black/50 dark:text-white sm:text-5xl"
+            className="relative overflow-hidden z-10 bg-white
+            px-5 py-3 rounded-lg  
+            text-slate-300 font-semibold uppercase tracking-wider
+            transition-colors duration-300 ease-in-out hover:text-white  
+            
+            before:absolute before:top-0 before:left-0 before:h-full before:w-full before:-z-10
+            before:bg-slate-300 before:scale-x-0 before:origin-left
+            before:transition-transform before:duration-300 before:ease-in-out
+            hover:before:scale-x-100"
             onClick={() => router.push("review")}
           >
             Leave a review

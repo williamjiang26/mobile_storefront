@@ -15,7 +15,7 @@ import Footer from "./components/footer";
 import ScrollHorizontal from "./components/features";
 import ScrollHorizontal2 from "./components/process";
 import VerticalTicker from "./components/reviews";
-import Button from "./slideButton";
+import Button from "./components/slideButton";
 // import Image from "next/image";
 
 function AccordionItem({ f }: { f: Record<string, any> }) {
@@ -114,7 +114,10 @@ export default function Home() {
                     </div>
                     <div className="justify-center flex p-3">
                       <div
-                        className="w-[80%] mx-auto  h-9 bg-zinc-50 rounded-lg hover:shadow-md flex items-center justify-center border border-zinc-200"
+                        className="w-[80%] mx-auto flex justify-center items-center relative h-9 overflow-hidden z-10  rounded-lg text-black tracking-wider border-slate-300 border transition-colors duration-300 ease-in-out hover:text-white
+                        before:absolute before:top-0 before:left-0 before:h-full before:w-full before:-z-10 before:bg-slate-300 before:scale-x-0
+                         before:origin-left before:duration-200 before:ease-in-out before:transition-transform hover:before:scale-x-100
+                        "
                         onClick={() => handleAdd(p["price"], p["url"])}
                       >
                         Add
@@ -147,13 +150,12 @@ export default function Home() {
                       {/* <div className=" p-1">{p["description"]}</div> */}
                       <div className=" p-1">{p["amount"]}</div>
                     </div>
-                    <div className="justify-center flex p-3">
-                      <div
-                        className="w-[80%] mx-auto h-9 bg-zinc-50 rounded-lg hover:shadow-lg flex items-center justify-center border border-zinc-200"
-                        onClick={() => handleCheckout(p["price"])}
-                      >
-                        Checkout
-                      </div>
+
+                    <div
+                      className="w-[80%] mx-auto flex justify-center items-center relative h-9 overflow-hidden z-10 border-slate-300 border rounded-lg text-black tracking-wider  transition-colors duration-500 ease-in-out hover:text-white before:absolute before:top-0 before:left-0 before:h-full before:w-full before:-z-10 before:bg-slate-300 before:scale-x-0 before:origin-left before:duration-200 before:ease-in-out before:transition-transform hover:before:scale-x-100 border-zinc-200"
+                      onClick={() => handleCheckout(p["price"])}
+                    >
+                      Checkout
                     </div>
                   </div>
                 ))}
@@ -183,7 +185,10 @@ export default function Home() {
                 transition={{ delay: 0.5, duration: 0.5 }}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="px-6 py-3 text-black font-semibold rounded-lg shadow-md backdrop-blur-sm bg-white/90 hover:bg-white transition-all tracking-wide"
+                className="relative overflow-hidden z-10 bg-white px-5 py-3 rounded-lg text-black font-semibold uppercase tracking-wider  transition-colors duration-300 ease-in-out hover:text-white
+                before:absolute before:top-0 before:left-0 before:h-full before:w-full before:-z-10 before:bg-slate-500 before:scale-x-0
+                 before:origin-left before:duration-200 before:ease-in-out before:transition-transform hover:before:scale-x-100
+                "
                 onClick={() => {
                   router.push("/catalog");
                 }}
@@ -207,7 +212,7 @@ export default function Home() {
         </div>
         {/* 7 - contact */}
         <div className="w-full h-screen">
-          <div className="  bg-zinc-100 p-3 items-center font-semibold text-lg justify-center flex  rounded-md hover:border hover:border-zinc-200">
+          <div className="  bg-zinc-100 p-3 items-center font-semibold text-lg justify-center flex    hover:border hover:border-zinc-200">
             <div className="">
               Our team is available 9-5 7x/week, contact or get a quote
             </div>
@@ -225,11 +230,8 @@ export default function Home() {
             {/* Dark gradient overlay to ensure text is legible against light images */}
             <div className="absolute inset-0 bg-linear-to-t from-black/60 via-black/20 to-transparent" />
             {/* Text forced to the bottom-left corner */}
-            <div className="absolute bottom-0 m-5 items-center font-semibold text-lg justify-center flex    ">
-              <div className="flex space-x-1">
-                <Button onClick={() => router.push("/contact")}>Contact</Button>
-              
-              </div>
+            <div className="absolute bottom-0 m-5   ">
+              <Button onClick={() => router.push("/contact")}>Contact</Button>
             </div>
           </div>
         </div>
@@ -249,10 +251,11 @@ export default function Home() {
 
             {/* Dark gradient overlay to ensure text is legible against light images */}
             <div className="absolute inset-0 bg-linear-to-t from-black/60 via-black/20 to-transparent" />
-            <div className="absolute bottom-0 m-5 bg-zinc-100 p-3 items-center font-semibold text-lg justify-center flex  rounded-md hover:border hover:border-zinc-200">
-              <div className="" onClick={() => router.push("/locations")}>
+
+            <div className="absolute bottom-0 p-5">
+              <Button onClick={() => router.push("/locations")}>
                 Find a showroom near you
-              </div>
+              </Button>
             </div>
           </div>
           <div className="relative group overflow-hidden w-full md:aspect-square rounded-lg  bg-zinc-200">
@@ -265,21 +268,24 @@ export default function Home() {
               className="object-cover scale-110 transition-transform duration-500 ease-out group-hover:scale-100"
             />
             <div className="absolute inset-0 bg-linear-to-t from-black/60 via-black/20 to-transparent" />
-            <div className="absolute bottom-0 m-5 bg-zinc-100 p-3 items-center font-semibold text-lg justify-center flex  rounded-md hover:border hover:border-zinc-200">
-              <div className="" onClick={() => router.push("/guides")}>
-                Delivery Guide
-              </div>
+            <div className="absolute bottom-0 m-5     ">
+              <Button onClick={() => router.push("/guides")}>
+                Delivery guide
+              </Button>
             </div>
           </div>
           <div className="relative w-full md:aspect-square rounded-lg bg-zinc-200">
             {/* 5 - FAQ */}
-            <div className="font-semibold text-xl w-full">FAQs</div>
+            <div className="m-5">
+              <div className="font-semibold text-xl w-full">FAQs</div>
             <div className="flex flex-col w-full">
               {data["frequently asked questions"].map((f) => (
                 <AccordionItem f={f} />
               ))}
             </div>
           </div>
+            </div>
+            
         </div>
         {/* footer  */}
         <Footer />
