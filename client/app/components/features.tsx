@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image"; // Cleaned up your node_modules import path
+import Image from "next/image"; 
 import { motion, useScroll, useTransform } from "motion/react";
 import { useRef } from "react";
 import data from "../data.json";

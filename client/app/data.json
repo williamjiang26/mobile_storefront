@@ -71,7 +71,7 @@
       "name": "energized",
       "url": "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/Screen+Shot+2026-05-16+at+2.45.40+PM.png",
       "description": "leaves your body feeling energetic, feeling good and feeling light for active activities"
-    } 
+    }
   ],
   "frequently asked questions": [
     {
@@ -107,6 +107,53 @@
     {
       "name": "5. convenient",
       "url": "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/Screen+Shot+2026-05-16+at+2.45.40+PM.png"
+    }
+  ],
+  "reviews": [
+    {
+      "id": 1,
+      "name": "ben",
+      "review": "great food",
+      "date": "march 2025 ",
+      "stars": " ",
+      "location": " ",
+      "attachedPhotos": " "
+    },
+    {
+      "id": 2,
+      "name": "emilio",
+      "review": "tastes great",
+      "date": "sep 2026 ",
+      "stars": " ",
+      "location": " ",
+      "attachedPhotos": " "
+    },
+    {
+      "id": 3,
+      "name": "jz",
+      "review": "great protein",
+      "date": " ",
+      "stars": " ",
+      "location": "brooklyn, ny",
+      "attachedPhotos": " "
+    },
+    {
+      "id": 4,
+      "name": "jfu",
+      "review": "helps me run",
+      "date": " ",
+      "stars": " ",
+      "location": "san francisco, ca",
+      "attachedPhotos": " "
+    },
+    {
+      "id": 5,
+      "name": "kevin",
+      "review": "helps me bulk",
+      "date": " ",
+      "stars": " ",
+      "location": " ",
+      "attachedPhotos": " "
     }
   ]
 }
