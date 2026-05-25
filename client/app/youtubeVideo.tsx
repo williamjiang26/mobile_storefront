@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import YouTube from "react-youtube";
 
 export default function ContinuousVideoBackground() {
-  const playerRef = useRef(null);
+  const playerRef = useRef<any>(null);
 
   // Set your timestamps (in seconds)
   const YOUTUBE_VIDEO_ID = "2wpxz1SLwYc"; // Replace with your YouTube Video ID
@@ -24,14 +24,14 @@ export default function ContinuousVideoBackground() {
   };
 
   // 2. Capture the player instance when it is ready
-  const onReady = (event) => {
+  const onReady = (event: any) => {
     playerRef.current = event.target;
-    playerRef.current.mute(); // Extra insurance for browser autoplay policies
+    playerRef.current?.mute(); // Extra insurance for browser autoplay policies
     playerRef.current.playVideo();
   };
 
   // 3. Monitor state changes (The Loop Engine)
-  const onStateChange = (event) => {
+  const onStateChange = (event: any) => {
     // YouTube state '0' means the video ended or hit its specified 'end' parameter
     if (event.data === 0) {
       if (playerRef.current) {

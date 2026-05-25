@@ -1,27 +1,49 @@
 import React from "react";
 import { motion } from "motion/react";
 import data from "../data.json";
+import { useRouter } from "@/node_modules/next/navigation";
 // Split Media Review Card Component
-const Card = ({ name, date, rating, location, review, photos }) => (
+interface CardProps {
+  name: string;
+  date: string;
+  stars: string;
+  location: string;
+  review: string;
+  attachedPhotos: string;
+}
+const Card = ({
+  name,
+  date,
+  stars,
+  location,
+  review,
+  attachedPhotos,
+}: CardProps) => (
   <div className="flex flex-col justify-between  overflow-hidden bg-white   border border-slate-10  rounded-2xl shadow-sm hover:shadow-md transition-shadow duration-300 group min-h-[220px]">
     {/* top */}
     <div className="flex justify-between">
       <div className="flex-1 flex-col">
         <div>{name}</div>
         <div>{date}</div>
-        <div>{rating}</div>
+        <div>{stars}</div>
       </div>
       <div className="flex-1 ">{location}</div>
     </div>
     {/* middle */}
     <div className=" ">{review}</div>
     {/* bottom */}
-    <div className=" ">{photos}</div>
+    <div className=" ">{attachedPhotos}</div>
   </div>
 );
 
 // Ticker Column powered by Framer Motion
-const MotionTickerColumn = ({ reviews, reverse = false }) => {
+const MotionTickerColumn = ({
+  reviews,
+  reverse = false,
+}: {
+  reviews: CardProps[];
+  reverse: boolean;
+}) => {
   // Double items to create a seamless infinite wrapping loop
   const duplicatedReviews = [...reviews, ...reviews];
 
@@ -54,10 +76,10 @@ const MotionTickerColumn = ({ reviews, reverse = false }) => {
 
 export default function MotionReviewTicker() {
   const datasets = data["reviews"];
-
   const columnLeft = [datasets[0], datasets[2]];
   const columnCenter = [datasets[0], datasets[2]];
   const columnRight = [datasets[0], datasets[2]];
+  const router = useRouter();
 
   return (
     <div className="w-full   py-20 px-3 sm:px-6 lg:px-8">

@@ -1,6 +1,14 @@
 import React from "react";
 
-const Button = ({ children, className = "", ...props }) => {
+const Button = ({
+  children,
+  className = "",
+  ...props
+}: {
+  children: React.ReactNode;
+  className?: string;
+  [x: string]: any;
+}) => {
   return (
     <div
       {...props}
