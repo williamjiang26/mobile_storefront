@@ -16,6 +16,7 @@ import ScrollHorizontal from "./components/features";
 import ScrollHorizontal2 from "./components/process";
 import VerticalTicker from "./components/reviews";
 import Button from "./components/slideButton";
+import VideoBackground from "./youtubeVideo";
 // import Image from "next/image";
 
 function AccordionItem({ f }: { f: Record<string, any> }) {
@@ -166,7 +167,7 @@ export default function Home() {
         {/* 3 - video and explore button product catalog */}
         <div className="flex flex-col items-center justify-between space-y-0 font-sans">
           <motion.div className="relative w-full overflow-hidden group">
-            <video
+            {/* <video
               autoPlay
               muted
               loop
@@ -174,10 +175,11 @@ export default function Home() {
               className="w-full h-screen object-cover"
             >
               <source src="/video.mov" type="video/mp4" />
-            </video>
+            </video> */}
+            {/* youtube video */}
+            <VideoBackground />
 
             <div className="absolute inset-0 bg-black/30 transition-colors duration-300 group-hover:bg-black/40" />
-
             <div className="absolute bottom-0 left-0 p-30">
               <motion.button
                 initial={{ y: 20, opacity: 0 }}
@@ -278,14 +280,13 @@ export default function Home() {
             {/* 5 - FAQ */}
             <div className="m-5">
               <div className="font-semibold text-xl w-full">FAQs</div>
-            <div className="flex flex-col w-full">
-              {data["frequently asked questions"].map((f) => (
-                <AccordionItem f={f} />
-              ))}
+              <div className="flex flex-col w-full">
+                {data["frequently asked questions"].map((f) => (
+                  <AccordionItem f={f} />
+                ))}
+              </div>
             </div>
           </div>
-            </div>
-            
         </div>
         {/* footer  */}
         <Footer />
