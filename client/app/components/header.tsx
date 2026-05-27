@@ -34,7 +34,7 @@ const Header = () => {
         className="hover:bg-zinc-200 p-6 hover:rounded-lg"
         onClick={() => router.push("/")}
       >
-        logo
+       Get Active Foods
       </div>
       <div className="flex justify-between">
         {/* about */}

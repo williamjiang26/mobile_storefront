@@ -13,7 +13,7 @@ const Footer = () => {
   const router = useRouter();
   return (
     <div className="relative flex h-125 pt-30 justify-between w-[90%] mx-auto bg-zinc-100 font-sans dark:bg-black rounded-t-lg text-black/50">
-      <div className="absolute m-5 top-0 left-0">Logo</div>
+      <div className="absolute m-5 top-0 left-0">Get Active Foods</div>
       <div className="flex flex-col pl-10 w-full">
         {/* follow us */}
         <div className="font-semibold">Get in touch</div>
@@ -68,7 +68,7 @@ const Footer = () => {
       {/* <div className="flex flex-col">warranty and policies</div>{" "}
           <div className="flex flex-col">payment methods</div> */}
       <div className="absolute m-5 bottom-0 flex">
-        Copywright 2026 @ Brand.com
+        Copywright 2026 @ getactivefoods.com
       </div>
     </div>
   );
