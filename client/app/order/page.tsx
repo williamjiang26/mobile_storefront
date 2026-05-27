@@ -48,7 +48,7 @@ const Page = () => {
   const lineItems = rawItems ? JSON.parse(decodeURIComponent(rawItems)) : [];
   console.log("🚀 ~ Page ~ lineItems:", lineItems);
   const photo = lineItems[0]["url"];
-  console.log("🚀 ~ Page ~ photo:", photo)
+  console.log("🚀 ~ Page ~ photo:", photo);
   const handleCheckout = () => {
     router.push(`/checkout?items=${rawItems}`); // if (!response.ok)
     return;
@@ -72,7 +72,7 @@ const Page = () => {
               type="button"
               onClick={prevStep}
               disabled={step === 1}
-              className="rounded-lg bg-slate-50 hover:bg-slate-300/50 px-5 py-3 text-sm font-medium text-neutral-700 disabled:cursor-not-allowed disabled:opacity-40"
+              className="rounded-lg bg-slate-50 border hover:bg-slate-300/50 px-5 py-3 text-sm font-medium text-neutral-700 disabled:cursor-not-allowed disabled:opacity-40"
             >
               Back
             </button>
@@ -103,20 +103,18 @@ const Page = () => {
   return (
     <div className="flex flex-col justify-between h-screen bg-slate-200 w-full ">
       <Header />
-      <div className="mt-30 flex  w-[80%] mx-auto h-full  ">
-        <div className="rounded-l-lg ml-auto w-full bg-slate-50">
+      <div className="mt-30 flex w-[80%] mx-auto h-full ">
+        <div className="rounded-lg ml-auto w-full bg-slate-50 mb-5">
           {/* product image */}
           <button
             type="button"
-            onClick={() => {
-              router.push("/catalog");
-            }}
-            className="rounded-lg hover:bg-slate-100/90 px-5 py-3 m-1 text-sm font-medium disabled:cursor-not-allowed disabled:opacity-40"
+            onClick={() => router.push(`/catalog`)}
+            className="rounded-lg bg-slate-50 border hover:bg-slate-300/50 px-5 py-3 m-1 text-sm font-medium text-neutral-700 disabled:cursor-not-allowed disabled:opacity-40"
           >
             Back
           </button>
-          <div className="rounded-md p-1">
-            <div className="relative rounded-lg aspect-square bg-zinc-100 p-1 overflow-hidden group cursor-pointer">
+          <div className="rounded-md  px-1">
+            <div className="relative rounded-lg aspect-square   overflow-hidden group cursor-pointer">
               <Image
                 src={photo}
                 alt=""
@@ -124,13 +122,13 @@ const Page = () => {
                 className="object-cover scale-110 transition-transform duration-500 ease-out group-hover:scale-100 rounded-lg"
               />
             </div>
-            <div className="font-semibold p-1">yogurt</div>
           </div>
+          <div className="font-semibold px-1">yogurt</div>
         </div>
         {/* Form */}
-        <div className="rounded-r-lg mr-auto w-full p-1 bg-slate-300">
+        <div className="rounded-r-lg mr-auto w-full  ">
           {/* multistep form */}
-          <form className="space-y-1 p-1">
+          <form className="space-y-1 px-1">
             <Card index={1}>
               {step === 1 && (
                 <div className="flex gap-1 justify-between ">

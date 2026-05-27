@@ -19,6 +19,11 @@
       "url": "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/550px-nowatermark-Make-Honey-Water-Step-4-Version-2.jpg",
       "start amount": "$5",
       "price": "price_1Ta2E005ICSAGFaRwxfawyN3"
+    },   {
+      "name": "green juice",
+      "url": "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/550px-nowatermark-Make-Honey-Water-Step-4-Version-2.jpg",
+      "start amount": "$5",
+      "price": "price_1Ta2E005ICSAGFaRwxfawyN3"
     }
   ],
   "products in stock": [
@@ -51,6 +56,11 @@
       "url": "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/fresh-squeezed-orange-juice-navel-oranges-1.jpg",
       "amount": "$5",
       "price": "price_1TZyyV05ICSAGFaRFBk97Ngo"
+    }, {
+      "name": "ginger shot",
+      "url": "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/1518783__1psd.webp",
+      "amount": "$3",
+      "price": "price_1TZyze05ICSAGFaR0lEGR2WC"
     }
   ],
   "features": [
@@ -71,7 +81,7 @@
       "name": "energized",
       "url": "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/Screen+Shot+2026-05-16+at+2.45.40+PM.png",
       "description": "leaves your body feeling energetic, feeling good and feeling light for active activities"
-    }
+    } 
   ],
   "frequently asked questions": [
     {
@@ -112,7 +122,7 @@
   "reviews": [
     {
       "id": 1,
-      "name": "ben",
+      "name": "chet",
       "review": "great food",
       "date": "march 2025 ",
       "stars": " ",
@@ -121,7 +131,7 @@
     },
     {
       "id": 2,
-      "name": "emilio",
+      "name": "jdub",
       "review": "tastes great",
       "date": "sep 2026 ",
       "stars": " ",
@@ -130,7 +140,7 @@
     },
     {
       "id": 3,
-      "name": "jz",
+      "name": "shai",
       "review": "great protein",
       "date": " ",
       "stars": " ",
@@ -139,7 +149,7 @@
     },
     {
       "id": 4,
-      "name": "jfu",
+      "name": "jared",
       "review": "helps me run",
       "date": " ",
       "stars": " ",
@@ -148,7 +158,7 @@
     },
     {
       "id": 5,
-      "name": "kevin",
+      "name": "jaden",
       "review": "helps me bulk",
       "date": " ",
       "stars": " ",

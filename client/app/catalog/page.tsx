@@ -5,7 +5,13 @@ import { useState } from "react";
 import Footer from "../components/footer";
 import Header from "../components/header";
 import data from "../data.json";
-
+import {
+  motion,
+  useScroll,
+  useMotionValueEvent,
+  useTransform,
+  AnimatePresence,
+} from "motion/react";
 interface LineItem {
   price: string;
   quantity: number;
@@ -16,7 +22,7 @@ const Catalog = () => {
   const [lineItems, setLineItems] = useState<LineItem[]>([]);
 
   const handleAdd = (price: string) => {
-    console.log("🚀 ~ handleAdd ~ price:", price)
+    console.log("🚀 ~ handleAdd ~ price:", price);
     const newItems = [{ price, quantity: 1 }];
     const serializedItems = encodeURIComponent(JSON.stringify(newItems));
     router.push(`/order?items=${serializedItems}`); // if (!response.ok)
@@ -32,85 +38,117 @@ const Catalog = () => {
     <div className="flex flex-col ">
       <Header />
       {/* toggle */}
-      <div className="mt-30 flex flex-row p-1  gap-10 items-center justify-center bg-zinc-100 font-sans dark:bg-black">
+      <div className="mt-30 flex flex-row p-1  gap-10 items-center justify-center   font-sans dark:bg-black">
         {/* fixed - two options */}
         <div
           className={`   rounded-lg px-5 py-3 flex ${
-            productType === "made-to-order" ? "underline " : "hover:bg-zinc-200"
-          }   hover:underline`}
+            productType === "made-to-order"
+              ? "underline underline-offset-3"
+              : "hover:bg-zinc-200"
+          }   hover:underline hover:underline-offset-3`}
           onClick={() => setType("made-to-order")}
         >
           Made-To-Order
         </div>
         <div
           className={`   rounded-lg px-5 py-3 flex ${
-            productType === "stock" ? "underline " : "hover:bg-zinc-200"
-          }  hover:underline`}
+            productType === "stock"
+              ? "underline underline-offset-3"
+              : "hover:bg-zinc-200"
+          }  hover:underline hover:underline-offset-3`}
           onClick={() => setType("stock")}
         >
           Stock
         </div>
       </div>
       {/* catalog */}
-      <div className="flex-1 grid w-full grid-cols-6 h-300 overflow-y-auto bg-zinc-200 p-5 scroll-smooth font-sans dark:bg-black gap-10">
+      <div className="flex-1 grid w-full h-screen sm:grid-cols-1 lg:grid-cols-3 xl:grid-cols-5 overflow-y-auto p-5 scroll-smooth font-sans dark:bg-black gap-10">
         {/* made to order */}
         {productType === "made-to-order" &&
           data["popular products"].map((p) => (
-            <div className="col-span-1 flex flex-col shadow-md pb-1 bg-zinc-50 rounded-lg">
-              <div className="group rounded-lg cursor-pointer">
-                <div className="relative overflow-hidden rounded-lg h-96 w-60 bg-zinc-200">
-                  <Image
-                    src={p["url"]}
-                    alt=""
-                    fill
-                    className="object-cover scale-110 transition-transform duration-500 ease-out group-hover:scale-100"
-                  />
-                  <div className="absolute inset-0 bg-linear-to-t from-black/60 via-black/20 to-transparent" />
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.9 }}
+            >
+              <div className="flex flex-col pb-1 h-125 w-75   justify-between bg-zinc-50 shadow-md rounded-lg space-y-3">
+                <div className="group rounded-lg  cursor-pointer h-full w-full">
+                  <div className="relative overflow-hidden rounded-lg h-full w-full ">
+                    <Image
+                      src={p["url"]}
+                      alt=""
+                      fill
+                      className="object-cover scale-110 transition-transform duration-500 ease-out group-hover:scale-100"
+                    />
+                    <div className="absolute inset-0 bg-linear-to-t from-black/60 via-black/20 to-transparent" />
+                  </div>
                 </div>
-                <div className="px-1 mt-3">
-                  <div className="font-semibold">{p["name"]}</div>
-                  <div className="">Starting at {p["start amount"]}</div>
+                <div className="justify-center flex flex-col">
+                  <div className="p-1">
+                    <div className="font-semibold ">{p["name"]}</div>
+                    <div>Starting at {p["start amount"]}</div>
+                  </div>
+                  <div
+                    className="w-[80%] mx-auto flex items-center justify-center  relative overflow-hidden z-10 bg-zinc-50
+                  h-9 rounded-lg border border-zinc-300 
+                  text-black tracking-wider
+                  transition-colors duration-300 ease-in-out hover:text-black  
+                  
+                  before:absolute before:top-0 before:left-0 before:h-full before:w-full before:-z-10
+                  before:bg-zinc-100 before:scale-x-0 before:origin-left
+                  before:transition-transform before:duration-300 before:ease-in-out
+                  hover:before:scale-x-100 "
+                    onClick={() => handleAdd(p["price"])}
+                  >
+                    Add
+                  </div>
                 </div>
               </div>
-              <div className="flex mt-25 mb-3 justify-center w-[80%] mx-auto ">
-                <div
-                  className="border border-zinc-300 hover:bg-zinc-100/90 hover:shadow-md w-full h-full justify-center flex px-3 py-1 items-center text-center rounded-lg"
-                  onClick={() => handleAdd(p["price"])}
-                >
-                  Add
-                </div>
-              </div>
-            </div>
+            </motion.div>
           ))}
 
         {/* stock */}
         {productType === "stock" &&
           data["products in stock"].map((p) => (
-            <div className="flex flex-col pb-1  justify-between bg-zinc-50 shadow-md rounded-lg space-y-3">
-              <div className="group rounded-lg  cursor-pointer">
-                <div className="relative overflow-hidden rounded-lg h-96 w-60  ">
-                  <Image
-                    src={p["url"]}
-                    alt=""
-                    fill
-                    className="object-cover scale-110 transition-transform duration-500 ease-out group-hover:scale-100"
-                  />
-                  <div className="absolute inset-0 bg-linear-to-t from-black/60 via-black/20 to-transparent" />
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.9 }}
+            >
+              <div className="flex flex-col pb-1 h-125 w-75   justify-between bg-zinc-50 shadow-md rounded-lg space-y-3">
+                <div className="group rounded-lg  cursor-pointer h-full w-full">
+                  <div className="relative overflow-hidden rounded-lg h-full w-full ">
+                    <Image
+                      src={p["url"]}
+                      alt=""
+                      fill
+                      className="object-cover scale-110 transition-transform duration-500 ease-out group-hover:scale-100"
+                    />
+                    <div className="absolute inset-0 bg-linear-to-t from-black/60 via-black/20 to-transparent" />
+                  </div>
                 </div>
-                <div className="p-1">
-                  <div className="font-semibold ">{p["name"]}</div>
-                  <div>{p["amount"]}</div>
+                <div className="justify-center flex flex-col">
+                  <div className="p-1">
+                    <div className="font-semibold ">{p["name"]}</div>
+                    <div>{p["amount"]}</div>
+                  </div>
+                  <div
+                    className="w-[80%] mx-auto flex items-center justify-center  relative overflow-hidden z-10 bg-zinc-50
+                  h-9 rounded-lg border border-zinc-300 
+                  text-black tracking-wider
+                  transition-colors duration-300 ease-in-out hover:text-black  
+                  
+                  before:absolute before:top-0 before:left-0 before:h-full before:w-full before:-z-10
+                  before:bg-zinc-100 before:scale-x-0 before:origin-left
+                  before:transition-transform before:duration-300 before:ease-in-out
+                  hover:before:scale-x-100 "
+                    onClick={() => handleCheckout(p["price"])}
+                  >
+                    Checkout
+                  </div>
                 </div>
               </div>
-              <div className="justify-center flex">
-                <div
-                  className="w-[80%] mx-auto h-9 bg-zinc-50 hover:shadow-md rounded-lg flex items-center justify-center hover:bg-zinc-100 border border-zinc-300"
-                  onClick={() => handleCheckout(p["price"])}
-                >
-                  Checkout
-                </div>
-              </div>
-            </div>
+            </motion.div>
           ))}
       </div>
       <Footer />

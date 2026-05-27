@@ -60,37 +60,6 @@ const Header = () => {
                 >
                   Catalog
                 </div>
-                <div className="p-3 hover:bg-zinc-100"> </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </div>
-        {/* links */}
-        <div
-          className="relative p-3"
-          onMouseEnter={() => setOpen("links")}
-          onMouseLeave={() => setOpen("")}
-        >
-          <div className="hover:bg-zinc-200 hover:rounded-lg p-3">
-            other links
-          </div>
-
-          <AnimatePresence>
-            {open === "links" && (
-              <motion.div
-                initial={{ opacity: 0, y: 10, scale: 0.98 }}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                exit={{ opacity: 0, y: 10, scale: 0.98 }}
-                transition={{ duration: 0.18, ease: "easeOut" }}
-                className="absolute left-0 top-full mt-2 w-56 rounded-lg border bg-white shadow-lg"
-              >
-                <div className="p-3 hover:bg-zinc-100 rounded-lg">
-                  refund policy
-                </div>
-                <div className="p-3 hover:bg-zinc-100">warranty</div>
-                <div className="p-3 hover:bg-zinc-100 rounded-lg">
-                  terms and agreements
-                </div>
               </motion.div>
             )}
           </AnimatePresence>
@@ -101,7 +70,7 @@ const Header = () => {
           onMouseEnter={() => setOpen("guides")}
           onMouseLeave={() => setOpen("")}
         >
-          <div className="hover:bg-zinc-200 hover:rounded-lg p-3">guides</div>
+          <div className="hover:bg-zinc-200 hover:rounded-lg p-3">Guides</div>
 
           <AnimatePresence>
             {open === "guides" && (
@@ -131,6 +100,34 @@ const Header = () => {
           >
             Blog
           </div>
+        </div>
+        {/* links */}
+        <div
+          className="relative p-3"
+          onMouseEnter={() => setOpen("links")}
+          onMouseLeave={() => setOpen("")}
+        >
+          <div className="hover:bg-zinc-200 hover:rounded-lg p-3">Docs</div>
+
+          <AnimatePresence>
+            {open === "links" && (
+              <motion.div
+                initial={{ opacity: 0, y: 10, scale: 0.98 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: 10, scale: 0.98 }}
+                transition={{ duration: 0.18, ease: "easeOut" }}
+                className="absolute left-0 top-full mt-2 w-56 rounded-lg border bg-white shadow-lg"
+              >
+                <div className="p-3 hover:bg-zinc-100 rounded-lg">
+                  refund policy
+                </div>
+                <div className="p-3 hover:bg-zinc-100">warranty</div>
+                <div className="p-3 hover:bg-zinc-100 rounded-lg">
+                  terms and agreements
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
         {/* log in  */}
         <div className="relative p-3">

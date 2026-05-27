@@ -27,7 +27,7 @@ const CheckoutForm = () => {
     >
       <div className="flex flex-col h-screen">
         <Header />
-        <div className="mt-[150px]">
+        <div className="mt-37.5">
           <EmbeddedCheckout />
         </div>
       </div>

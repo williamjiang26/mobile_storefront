@@ -71,17 +71,34 @@ export default function Home() {
     router.push(`/checkout?items=${serializedItems}`); // if (!response.ok)
     return;
   };
+  const containerVariants = {
+    hidden: { opactiy: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.5,
+        staggerChildren: 0.2,
+      },
+    },
+  };
+
   return (
     <div className="flex flex-col bg-zinc-300">
       <Header />
-
       <div className="flex-1   bg-zinc-300 scroll-smooth font-sans dark:bg-black">
         {/* 1 - checkout */}
-        <div className="h-screen group flex flex-col cursor-pointer">
-          {/* The main image container controls the rounding and hides the expanding/shrinking image */}
-          <div className="relative overflow-hidden">
-            {/* Image starts scaled up, and zooms out to scale-100 when the group is hovered */}
-            {/* <Image
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1 }}
+        >
+          <div className="h-screen group flex flex-col cursor-pointer">
+            {/* The main image container controls the rounding and hides the expanding/shrinking image */}
+
+            <div className="relative overflow-hidden bg-zinc-200">
+              {/* Image starts scaled up, and zooms out to scale-100 when the group is hovered */}
+              {/* <Image
               src={
                 // "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/Family_mart.webp"
               } // Fixed the fallback logic string
@@ -89,81 +106,90 @@ export default function Home() {
               fill
               className="object-cover scale-110 transition-transform duration-500 ease-out group-hover:scale-100"
             /> */}
-            {/* Dark gradient overlay to ensure text is legible against light images */}
-            {/* <div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/80 to-transparent" /> */}
-            {/* 1 - shop right away - popular products - glimpse of all categories */}
-            <div className="relative flex mt-30 flex-col md:h-125 rounded-lg items-center justify-center bg-transparent font-sans dark:bg-black pb-5">
-              <div className="basis-1/6 flex items-center justify-center font-bold text-3xl  text-white/90">
-                Shop popular products
-              </div>
-              <div className="basis-5/6 flex flex-row w-[80%] mx-auto justify-between overflow-x-auto ">
-                {data["popular products"].slice(0, 5).map((p) => (
-                  <div className="flex flex-col bg-zinc-50 p-1 w-59 justify-between shadow-lg m-1 rounded-lg ">
-                    <div className="   flex-col rounded-md p-1">
-                      <div className="rounded-lg relative  h-59  bg-zinc-50 p-1 overflow-hidden  ">
-                        {p.url && (
-                          <Image
-                            src={p.url || "/placeholder.png"}
-                            alt=""
-                            fill
-                            className="object-cover "
-                          />
-                        )}
+              {/* Dark gradient overlay to ensure text is legible against light images */}
+              {/* <div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/80 to-transparent" /> */}
+              {/* 1 - shop right away - popular products - glimpse of all categories */}
+              <div className="relative flex mt-30 flex-col md:h-125 rounded-lg items-center justify-center bg-transparent font-sans dark:bg-black pb-5">
+                <div className="basis-1/6 flex items-center justify-center font-bold text-3xl  text-white/90">
+                  Shop popular products
+                </div>
+
+                <div className="basis-5/6 flex flex-row w-[80%] mx-auto justify-between overflow-x-auto ">
+                  {data["popular products"].slice(0, 5).map((p) => (
+                    <div className="flex flex-col bg-zinc-50 p-1 w-59 justify-between shadow-lg m-1 rounded-lg ">
+                      <div className="   flex-col rounded-md p-1">
+                        <div className="rounded-lg relative  h-59  bg-zinc-50 p-1 overflow-hidden  ">
+                          {p.url && (
+                            <Image
+                              src={p.url || "/placeholder.png"}
+                              alt=""
+                              fill
+                              className="object-cover "
+                            />
+                          )}
+                        </div>
+                        <div className="font-semibold p-1">{p["name"]}</div>
+                        <div className="p-1">from {p["start amount"]}</div>
                       </div>
-                      <div className="font-semibold p-1">{p["name"]}</div>
-                      <div className="p-1">from {p["start amount"]}</div>
-                    </div>
-                    <div className="justify-center flex p-3">
-                      <div
-                        className="w-[80%] mx-auto flex justify-center items-center relative h-9 overflow-hidden z-10  rounded-lg text-black tracking-wider border-slate-300 border transition-colors duration-300 ease-in-out hover:text-white
+                      <div className="justify-center flex p-3">
+                        <div
+                          className="w-[80%] mx-auto flex justify-center items-center relative h-9 overflow-hidden z-10  rounded-lg text-black tracking-wider border-slate-300 border transition-colors duration-300 ease-in-out hover:text-white
                         before:absolute before:top-0 before:left-0 before:h-full before:w-full before:-z-10 before:bg-slate-300 before:scale-x-0
                          before:origin-left before:duration-200 before:ease-in-out before:transition-transform hover:before:scale-x-100
                         "
-                        onClick={() => handleAdd(p["price"], p["url"])}
-                      >
-                        Add
+                          onClick={() => handleAdd(p["price"], p["url"])}
+                        >
+                          Add
+                        </div>
                       </div>
                     </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
+              </div>
+              {/* 2 - shop right away - products in stock - glimpse of all categories */}
+              <div className="relative flex flex-col h-125 rounded-lg items-center justify-center bg-transparent font-sans dark:bg-black pb-5">
+                <div className="basis-1/6 flex items-center justify-center font-bold text-3xl text-white/90">
+                  Products in stock ~ ships in 2-3 weeks
+                </div>
+                <div className="basis-5/6 flex flex-row w-[80%] mx-auto justify-between overflow-x-auto">
+                  {data["products in stock"].slice(0, 5).map((p) => (
+                    <div className="flex flex-col bg-zinc-50 p-1 w-59   shadow-lg m-1 rounded-lg ">
+                      <div className="w-full mx-auto  flex-col rounded-md p-1">
+                        <div className="rounded-lg relative     bg-zinc-50 p-1 overflow-hidden h-59">
+                          {p.url && (
+                            <Image
+                              src={p.url || "/placeholder.png"}
+                              alt=""
+                              fill
+                              className="object-cover"
+                            />
+                          )}
+                        </div>
+                        <div className="font-semibold p-1">{p["name"]}</div>
+                        {/* <div className=" p-1">{p["description"]}</div> */}
+                        <div className=" p-1">{p["amount"]}</div>
+                      </div>
+
+                      <div
+                        className="w-[80%] mx-auto flex justify-center items-center relative h-9 overflow-hidden z-10 border-slate-300 border rounded-lg text-black tracking-wider  transition-colors duration-500 ease-in-out hover:text-white before:absolute before:top-0 before:left-0 before:h-full before:w-full before:-z-10 before:bg-slate-300 before:scale-x-0 before:origin-left before:duration-200 before:ease-in-out before:transition-transform hover:before:scale-x-100 border-zinc-200"
+                        onClick={() => handleCheckout(p["price"])}
+                      >
+                        Checkout
+                      </div>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
-            {/* 2 - shop right away - products in stock - glimpse of all categories */}
-            <div className="relative flex flex-col h-125 rounded-lg items-center justify-center bg-transparent font-sans dark:bg-black pb-5">
-              <div className="basis-1/6 flex items-center justify-center text-3xl text-white/90">
-                Products in stock ~ ships in 2-3 weeks
-              </div>
-              <div className="basis-5/6 flex flex-row w-[80%] mx-auto justify-between overflow-x-auto">
-                {data["products in stock"].slice(0, 5).map((p) => (
-                  <div className="flex flex-col bg-zinc-50 p-1 w-59   shadow-lg m-1 rounded-lg ">
-                    <div className="w-full mx-auto  flex-col rounded-md p-1">
-                      <div className="rounded-lg relative     bg-zinc-50 p-1 overflow-hidden h-59">
-                        {p.url && (
-                          <Image
-                            src={p.url || "/placeholder.png"}
-                            alt=""
-                            fill
-                            className="object-cover"
-                          />
-                        )}
-                      </div>
-                      <div className="font-semibold p-1">{p["name"]}</div>
-                      {/* <div className=" p-1">{p["description"]}</div> */}
-                      <div className=" p-1">{p["amount"]}</div>
-                    </div>
-
-                    <div
-                      className="w-[80%] mx-auto flex justify-center items-center relative h-9 overflow-hidden z-10 border-slate-300 border rounded-lg text-black tracking-wider  transition-colors duration-500 ease-in-out hover:text-white before:absolute before:top-0 before:left-0 before:h-full before:w-full before:-z-10 before:bg-slate-300 before:scale-x-0 before:origin-left before:duration-200 before:ease-in-out before:transition-transform hover:before:scale-x-100 border-zinc-200"
-                      onClick={() => handleCheckout(p["price"])}
-                    >
-                      Checkout
-                    </div>
-                  </div>
-                ))}
+            <div className="relative overflow-hidden flex w-full items-center justify-center font-bold text-3xl text-white/90">
+              <div className=" flex items-center justify-center font-bold text-3xl text-white/90">
+                "Conveniently placed healthy foods that will help you stay fit.
+                Organic sugars and protein - no added ingredients." - brand
+                motto
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
         {/* 3 - video and explore button product catalog */}
         <div className="flex flex-col items-center justify-between space-y-0 font-sans">
           <motion.div className="relative w-full overflow-hidden group">
@@ -183,9 +209,10 @@ export default function Home() {
             <div className="w-[90%] mx-auto">
               <div className=" absolute bottom-0 left-0 p-30">
                 <motion.button
-                  initial={{ y: 20, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  transition={{ delay: 0.5, duration: 0.5 }}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true }}
+                  variants={containerVariants}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   className="relative overflow-hidden z-10 bg-white px-5 py-3 rounded-lg text-black font-semibold uppercase tracking-wider  transition-colors duration-300 ease-in-out hover:text-white
@@ -203,23 +230,45 @@ export default function Home() {
           </motion.div>
         </div>
         {/* 4 - best features - animated scroll*/}
-        <div className=" ">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={containerVariants}
+        >
           <ScrollHorizontal />
-        </div>
+        </motion.div>
         {/* 5 - Reviews */}
-        <div className="h-screen ">
-          <VerticalTicker />
-        </div>
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={containerVariants}
+        >
+          <div className="h-screen ">
+            <VerticalTicker />
+          </div>
+        </motion.div>
         {/* 6 - Process */}
-        <div className=" ">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={containerVariants}
+        >
           <ScrollHorizontal2 />
-        </div>
+        </motion.div>
         {/* 7 - contact */}
         <div className="w-full h-screen">
           <div className="  bg-zinc-100 p-3 items-center font-semibold text-lg justify-center flex    hover:border hover:border-zinc-200">
-            <div className="">
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={containerVariants}
+            >
               Our team is available 9-5 7x/week, contact or get a quote
-            </div>
+            </motion.div>
           </div>
           <div className="relative   sm:w-full md:mx-auto overflow-hidden   h-250 bg-zinc-200">
             {/* Image starts scaled up, and zooms out to scale-100 when the group is hovered */}
@@ -233,65 +282,84 @@ export default function Home() {
             />
             {/* Dark gradient overlay to ensure text is legible against light images */}
             <div className="absolute inset-0 bg-linear-to-t from-black/60 via-black/20 to-transparent" />
-            {/* Text forced to the bottom-left corner */}
-            <div className="w-[90%] mx-auto">
-              <div className="absolute bottom-0 mb-5">
-                <Button onClick={() => router.push("/contact")}>Contact</Button>
+            {/* Text forced to the bottom-left corner */}{" "}
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={containerVariants}
+            >
+              <div className="w-[90%] mx-auto">
+                <div className="absolute bottom-0 mb-5">
+                  <Button onClick={() => router.push("/contact")}>
+                    Contact
+                  </Button>
+                </div>
               </div>
-            </div>
+            </motion.div>
           </div>
         </div>
         {/* 8 - guides */}
-        <div className="flex flex-col md:flex-row w-[90%] mx-auto rounded-lg h-screen items-center justify-between gap-3">
-          {/* mobile screen rectangle */}
-          <div className="relative group overflow-hidden w-full md:aspect-square rounded-lg bg-zinc-200">
-            {/* Image starts scaled up, and zooms out to scale-100 when the group is hovered */}
-            <Image
-              src={
-                "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/Screen+Shot+2026-05-16+at+2.45.40+PM.png"
-              } // Fixed the fallback logic string
-              alt={""}
-              fill
-              className="object-cover scale-110 transition-transform duration-500 ease-out group-hover:scale-100"
-            />
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={containerVariants}
+        >
+          <div className="flex flex-col md:flex-row w-[90%] mx-auto rounded-lg h-screen items-center justify-between gap-3">
+            {/* mobile screen rectangle */}
 
-            {/* Dark gradient overlay to ensure text is legible against light images */}
-            <div className="absolute inset-0 bg-linear-to-t from-black/60 via-black/20 to-transparent" />
+            <div className="relative group overflow-hidden w-full md:aspect-square rounded-lg bg-zinc-200">
+              {/* Image starts scaled up, and zooms out to scale-100 when the group is hovered */}
+              <Image
+                src={
+                  "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/Screen+Shot+2026-05-16+at+2.45.40+PM.png"
+                } // Fixed the fallback logic string
+                alt={""}
+                fill
+                className="object-cover scale-110 transition-transform duration-500 ease-out group-hover:scale-100"
+              />
 
-            <div className="absolute bottom-0 p-5">
-              <Button onClick={() => router.push("/locations")}>
-                Find a showroom near you
-              </Button>
+              {/* Dark gradient overlay to ensure text is legible against light images */}
+              <div className="absolute inset-0 bg-linear-to-t from-black/60 via-black/20 to-transparent" />
+
+              <div className="absolute bottom-0 p-5">
+                <Button onClick={() => router.push("/locations")}>
+                  Find a showroom near you
+                </Button>
+              </div>
             </div>
-          </div>
-          <div className="relative group overflow-hidden w-full md:aspect-square rounded-lg  bg-zinc-200">
-            <Image
-              src={
-                "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/Screen+Shot+2026-05-16+at+2.45.40+PM.png"
-              } // Fixed the fallback logic string
-              alt={""}
-              fill
-              className="object-cover scale-110 transition-transform duration-500 ease-out group-hover:scale-100"
-            />
-            <div className="absolute inset-0 bg-linear-to-t from-black/60 via-black/20 to-transparent" />
-            <div className="absolute bottom-0 m-5     ">
-              <Button onClick={() => router.push("/guides")}>
-                Delivery guide
-              </Button>
+
+            <div className="relative group overflow-hidden w-full md:aspect-square rounded-lg  bg-zinc-200">
+              <Image
+                src={
+                  "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/Screen+Shot+2026-05-16+at+2.45.40+PM.png"
+                } // Fixed the fallback logic string
+                alt={""}
+                fill
+                className="object-cover scale-110 transition-transform duration-500 ease-out group-hover:scale-100"
+              />
+              <div className="absolute inset-0 bg-linear-to-t from-black/60 via-black/20 to-transparent" />
+              <div className="absolute bottom-0 m-5     ">
+                <Button onClick={() => router.push("/guides")}>
+                  Delivery guide
+                </Button>
+              </div>
             </div>
-          </div>
-          <div className="relative w-full md:aspect-square rounded-lg bg-zinc-200">
-            {/* 5 - FAQ */}
-            <div className="m-5">
-              <div className="font-semibold text-xl w-full">FAQs</div>
-              <div className="flex flex-col w-full">
-                {data["frequently asked questions"].map((f) => (
-                  <AccordionItem f={f} />
-                ))}
+
+            <div className="relative w-full md:aspect-square rounded-lg bg-zinc-200">
+              {/* 5 - FAQ */}
+              <div className="m-5">
+                <div className="font-semibold text-xl w-full">FAQs</div>
+                <div className="flex flex-col w-full">
+                  {data["frequently asked questions"].map((f) => (
+                    <AccordionItem f={f} />
+                  ))}
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
         {/* footer  */}
         <Footer />
       </div>
