@@ -84,9 +84,9 @@ export default function Home() {
   };
 
   return (
-    <div className="flex flex-col bg-zinc-300">
+    <div className="flex flex-col bg-green-300">
       <Header />
-      <div className="flex-1   bg-zinc-300 scroll-smooth font-sans dark:bg-black">
+      <div className="flex-1   scroll-smooth font-sans dark:bg-black">
         {/* 1 - checkout */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -96,7 +96,7 @@ export default function Home() {
           <div className="h-screen group flex flex-col cursor-pointer">
             {/* The main image container controls the rounding and hides the expanding/shrinking image */}
 
-            <div className="relative overflow-hidden bg-zinc-200">
+            <div className="relative overflow-hidden">
               {/* Image starts scaled up, and zooms out to scale-100 when the group is hovered */}
               {/* <Image
               src={
@@ -182,7 +182,7 @@ export default function Home() {
               </div>
             </div>
             <div className="relative overflow-hidden flex w-full items-center justify-center font-bold text-3xl text-white/90">
-              <div className=" flex items-center justify-center font-bold text-3xl text-white/90">
+              <div className=" flex items-center justify-center font-bold text-3xl text-white/90 bg-blue-300">
                 "Conveniently placed healthy foods that will help you stay fit.
                 Organic sugars and protein - no added ingredients." - brand
                 motto
@@ -191,19 +191,19 @@ export default function Home() {
           </div>
         </motion.div>
         {/* 3 - video and explore button product catalog */}
-        <div className="flex flex-col items-center justify-between space-y-0 font-sans">
+        <div className="flex flex-col items-center justify-between space-y-0 font-sans bg-yellow-300">
           <motion.div className="relative w-full overflow-hidden group">
-            {/* <video
+            <video
               autoPlay
               muted
               loop
               playsInline
               className="w-full h-screen object-cover"
             >
-              <source src="/video.mov" type="video/mp4" />
-            </video> */}
+              {/* <source src="/video.mov" type="video/mp4" /> */}
+            </video>
             {/* youtube video */}
-            <VideoBackground />
+            {/* <VideoBackground /> */}
 
             <div className="absolute inset-0 bg-black/30 transition-colors duration-300 group-hover:bg-black/40" />
             <div className="w-[90%] mx-auto">
@@ -325,7 +325,7 @@ export default function Home() {
 
               <div className="absolute bottom-0 p-5">
                 <Button onClick={() => router.push("/locations")}>
-                  Find a showroom near you
+                  Find a outlet near you
                 </Button>
               </div>
             </div>
