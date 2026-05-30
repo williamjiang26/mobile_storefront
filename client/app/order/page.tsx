@@ -62,7 +62,7 @@ const Page = () => {
     children: React.ReactNode;
   }) => {
     return (
-      <div className={`rounded-lg p-3 bg-slate-50 `}>
+      <div className={`rounded-lg p-3 border`}>
         <div className=""> {steps[index - 1].title}</div>
 
         {children}
@@ -81,7 +81,7 @@ const Page = () => {
               <button
                 type="button"
                 onClick={nextStep}
-                className="rounded-lg bg-orange-500 px-5 py-3 text-sm font-semibold text-white hover:bg-orange-600"
+                className="rounded-lg bg-yellow-500 px-5 py-3 text-sm font-semibold text-white hover:bg-yellow-600"
               >
                 Continue
               </button>
@@ -89,7 +89,7 @@ const Page = () => {
               <button
                 type="button"
                 onClick={handleCheckout}
-                className="rounded-lg bg-orange-500 px-5 py-3 text-sm font-semibold text-white hover:bg-orange-600"
+                className="rounded-lg bg-yellow-500 px-5 py-3 text-sm font-semibold text-white hover:bg-yellow-600"
               >
                 Submit
               </button>
@@ -101,20 +101,14 @@ const Page = () => {
   };
 
   return (
-    <div className="flex flex-col justify-between h-screen bg-slate-200 w-full ">
+    <div className="flex flex-col justify-between h-screen w-full ">
       <Header />
-      <div className="mt-30 flex w-[80%] mx-auto h-full ">
-        <div className="rounded-lg ml-auto w-full bg-slate-50 mb-5">
+      <div className="mt-50 flex w-[80%] mx-auto h-full ">
+        {/* <div className="absolute top-0 left-0 ">back</div> */}
+        <div className="rounded-lg ml-auto w-full mb-5 h-110">
           {/* product image */}
-          <button
-            type="button"
-            onClick={() => router.push(`/catalog`)}
-            className="rounded-lg bg-slate-50 border hover:bg-slate-300/50 px-5 py-3 m-1 text-sm font-medium text-neutral-700 disabled:cursor-not-allowed disabled:opacity-40"
-          >
-            Back
-          </button>
-          <div className="rounded-md  px-1">
-            <div className="relative rounded-lg aspect-square   overflow-hidden group cursor-pointer">
+          <div className="rounded-md px-1 flex h-full justify-center items-center">
+            <div className="relative rounded-lg aspect-square h-50 overflow-hidden group cursor-pointer">
               <Image
                 src={photo}
                 alt=""
@@ -123,7 +117,16 @@ const Page = () => {
               />
             </div>
           </div>
-          <div className="font-semibold px-1">yogurt</div>
+          <div className=" flex flex-col space-y-1">
+            <div className="text-xl">green juice</div>
+            <div className="font-semibold text-xl">$7</div>
+            <div className=" ">med, to-go, cold</div>
+            <div className=" ">fresh up to one week</div>
+            <div className="text-sm ">
+              filled w natural ingredients, great for detox, awakens the pallete
+              and body with nutrients and antioxidants
+            </div>
+          </div>
         </div>
         {/* Form */}
         <div className="rounded-r-lg mr-auto w-full  ">

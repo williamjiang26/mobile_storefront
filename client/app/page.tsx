@@ -17,6 +17,7 @@ import ScrollHorizontal2 from "./components/process";
 import VerticalTicker from "./components/reviews";
 import Button from "./components/slideButton";
 import VideoBackground from "./components/youtubeVideo";
+import { BADQUERY } from "dns";
 // import Image from "next/image";
 
 function AccordionItem({ f }: { f: Record<string, any> }) {
@@ -84,18 +85,18 @@ export default function Home() {
   };
 
   return (
-    <div className="flex flex-col bg-green-300">
+    <div className="flex flex-col bg-slate-100/95">
       <Header />
-      <div className="flex-1   scroll-smooth font-sans dark:bg-black">
+      <div className="flex-1 scroll-smooth font-sans ">
         {/* 1 - checkout */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1 }}
-        >
-          <div className="h-screen group flex flex-col cursor-pointer">
-            {/* The main image container controls the rounding and hides the expanding/shrinking image */}
 
+        <div className="group flex flex-col cursor-pointer">
+          {/* The main image container controls the rounding and hides the expanding/shrinking image */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1 }}
+          >
             <div className="relative overflow-hidden">
               {/* Image starts scaled up, and zooms out to scale-100 when the group is hovered */}
               {/* <Image
@@ -182,14 +183,15 @@ export default function Home() {
               </div>
             </div>
             <div className="relative overflow-hidden flex w-full items-center justify-center font-bold text-3xl text-white/90">
-              <div className=" flex items-center justify-center font-bold text-3xl text-white/90 bg-blue-300">
+              <div className="flex items-center justify-center w-full font-bold text-3xl text-white/90 bg-blue-300">
                 "Conveniently placed healthy foods that will help you stay fit.
                 Organic sugars and protein - no added ingredients." - brand
                 motto
               </div>
-            </div>
-          </div>
-        </motion.div>
+            </div>{" "}
+          </motion.div>
+        </div>
+
         {/* 3 - video and explore button product catalog */}
         <div className="flex flex-col items-center justify-between space-y-0 font-sans bg-yellow-300">
           <motion.div className="relative w-full overflow-hidden group">
@@ -260,16 +262,19 @@ export default function Home() {
         </motion.div>
         {/* 7 - contact */}
         <div className="w-full h-screen">
-          <div className="  bg-zinc-100 p-3 items-center font-semibold text-lg justify-center flex    hover:border hover:border-zinc-200">
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={containerVariants}
-            >
-              Our team is available 9-5 7x/week, contact or get a quote
-            </motion.div>
-          </div>
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={containerVariants}
+          >
+            <div className="p-3 items-center font-semibold text-lg flex justify-center">
+              <div className="flex space-x-3 items-center">
+                <div> Our team is available 9-5 7x/week, contact or get a quote</div>
+                <Button className="h-10 flex items-center" onClick={()=>{router.push("/contact")}}>Contact</Button>
+              </div>
+            </div>
+          </motion.div>
           <div className="relative   sm:w-full md:mx-auto overflow-hidden   h-250 bg-zinc-200">
             {/* Image starts scaled up, and zooms out to scale-100 when the group is hovered */}
             <Image

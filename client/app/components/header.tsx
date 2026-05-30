@@ -28,13 +28,13 @@ const Header = () => {
         opacity: hidden ? 0 : 1,
       }}
       transition={{ duration: 0.25, ease: "easeOut" }}
-      className="flex fixed top-10 inset-x-0 z-50 mx-auto sm:w-[80%] rounded-lg border bg-yellow-300 backdrop-blur justify-between"
+      className="flex fixed top-10 inset-x-0 z-50 mx-auto sm:w-[80%] rounded-lg border backdrop-blur justify-between"
     >
       <div
         className="hover:bg-zinc-200 p-6 hover:rounded-lg"
         onClick={() => router.push("/")}
       >
-       Get Active Foods
+        Get Active Foods
       </div>
       <div className="flex justify-between">
         {/* about */}
@@ -59,6 +59,12 @@ const Header = () => {
                   onClick={() => router.push("/catalog")}
                 >
                   Catalog
+                </div> 
+                <div
+                  className="p-3 hover:bg-zinc-100 rounded-lg"
+                  onClick={() => router.push("/about")}
+                >
+                 What is getActiveFoods ?
                 </div>
               </motion.div>
             )}
