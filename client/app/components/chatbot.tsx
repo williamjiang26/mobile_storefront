@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-
+import Markdown from "react-markdown";
 export default function ChatSupport() {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([
@@ -9,30 +9,56 @@ export default function ChatSupport() {
       content:
         "Hi I'm the customer support assistant. You can message directly here and customer service will be with you shortly. You can also call us at , or email us at .",
     },
-    {
-      role: "user",
-      content: "Hi  ",
-    },
   ]);
   const [message, setMessage] = useState("");
   // send message function
-  const sendMessage = () => {
+  const sendMessage = async () => {
     setMessage("");
     setMessages((prev) => [
       ...prev,
       { role: "user", content: message },
       { role: "assistant", content: "" },
     ]);
-    // return null;
+    try {
+      const res = await fetch("http://localhost:8000/api/chat/stream", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          messages: [...messages, { role: "user", content: message }],
+        }),
+      });
+      const reader = res.body?.getReader();
+      if (!reader) throw new Error("No stream reader");
+
+      const decoder = new TextDecoder();
+
+      while (true) {
+        const { done, value } = await reader.read();
+        console.log("🚀 ~ sendMessage ~ value:", value);
+        if (done) break;
+
+        const text = decoder.decode(value, { stream: true });
+
+        setMessages((prev) => {
+          const last = prev[prev.length - 1];
+          return [
+            ...prev.slice(0, -1),
+            { ...last, content: last.content + text },
+          ];
+        });
+      }
+    } catch (error) {
+      console.error("Stream error:", error);
+    }
   };
   return (
     <>
       {/* Floating Trigger Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed bottom-6 right-6 z-50"
+        className="fixed bottom-6 right-6 z-50 rounded-full bg-white p-5"
       >
-        Chat
+        {isOpen ? "X" : "Chat"}
       </button>
 
       {/* Floating Chat Window */}
@@ -43,13 +69,17 @@ export default function ChatSupport() {
             {messages.map((m, index) => (
               <div
                 key={index}
-                className={`p-2.5 rounded-2xl max-w-[80%] text-sm shadow-sm break-words ${
+                className={`p-2.5 rounded-2xl max-w-[80%] w-fit text-sm shadow-sm ${
                   m.role === "assistant"
                     ? "bg-blue-100 text-blue-950 mr-auto rounded-tl-none border border-blue-200"
                     : "bg-green-100 text-green-950 ml-auto rounded-tr-none border border-green-200"
                 }`}
               >
-                {m.content}
+                {m.role === "assistant" ? (
+                  <Markdown>{m.content}</Markdown>
+                ) : (
+                  m.content
+                )}
               </div>
             ))}
           </div>
@@ -61,14 +91,14 @@ export default function ChatSupport() {
             }}
             className=" "
           >
-            <div className="border w-full bottom-0 rounded-b-lg flex h-10">
+            <div className=" w-full bottom-0 rounded-b-lg flex h-10">
               <input
                 type="text"
-                className="w-full border"
-                // value={message}
-                // onChange={setMessage}
+                className="w-full hover:border hover:rounded-bl-lg"
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
               />
-              <button className="w-full border" type="submit">
+              <button className="w-7 hover:text-green-300" type="submit">
                 {">"}
               </button>
             </div>
