@@ -9,7 +9,7 @@
   ],
   "popular products": [
     {
-      "id": "1",
+      "id": 11,
       "name": "yogurt",
       "url": "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/images.jpg",
       "price": "price_1TZyy605ICSAGFaRs7vAqujS",
@@ -18,7 +18,7 @@
       "storage instructions": " "
     },
     {
-      "id": "2",
+      "id": 12,
       "name": "honey water",
       "url": "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/550px-nowatermark-Make-Honey-Water-Step-4-Version-2.jpg",
       "start amount": "$5",
@@ -27,47 +27,53 @@
       "price": "price_1Ta2E005ICSAGFaRwxfawyN3"
     },
     {
-      "id": "3",
+      "id": 13,
       "name": "green juice",
       "url": "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/download-1.jpg",
       "start amount": "$5",
-      "description": " ",
-      "storage instructions": " ",
+      "description": "filled w natural ingredients, great for detox, awakens the pallete and body with nutrients and antioxidants",
+      "storage instructions": "fresh up to one week",
       "price": "price_1Ta2E005ICSAGFaRwxfawyN3"
     }
   ],
   "products in stock": [
     {
+      "id": 21,
       "name": "coconut water",
       "url": "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/1518783__1psd.webp",
       "amount": "$5",
       "price": "price_1TZyze05ICSAGFaR0lEGR2WC"
     },
     {
+      "id": 22,
       "name": "chicken breast",
       "url": "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/Screen+Shot+2026-05-16+at+2.45.40+PM.png",
       "amount": "$5",
       "price": "price_1TZz0O05ICSAGFaRsAxwvr2b"
     },
     {
+      "id": 23,
       "name": "sour plum juice",
       "url": "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/download.jpg",
       "amount": "$5",
       "price": "price_1TZyzD05ICSAGFaRYdineTip"
     },
     {
+      "id": 24,
       "name": "dried beef chips",
       "url": "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/81lOIKfIDNL.jpg",
       "amount": "$5",
       "price": "price_1TZyys05ICSAGFaRZdJLmy8q"
     },
     {
+      "id": 25,
       "name": "orange juice",
       "url": "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/fresh-squeezed-orange-juice-navel-oranges-1.jpg",
       "amount": "$5",
       "price": "price_1TZyyV05ICSAGFaRFBk97Ngo"
     },
     {
+      "id": 26,
       "name": "ginger shot",
       "url": "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/1518783__1psd.webp",
       "amount": "$3",

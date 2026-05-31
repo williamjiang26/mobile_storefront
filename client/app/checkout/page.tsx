@@ -6,7 +6,7 @@ import { loadStripe } from "@stripe/stripe-js";
 import { EmbeddedCheckoutProvider, EmbeddedCheckout } from "@stripe/react-stripe-js";
 import { fetchClientSecret } from "../actions/stripe";
 import Header from "../components/header";
-
+import data from "../data.json"
 const stripePromise = loadStripe(
   process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY as string
 );
@@ -14,9 +14,17 @@ const stripePromise = loadStripe(
 // 1. This inner component handles the search parameters and Stripe logic safely
 const CheckoutForm = () => {
   const searchParams = useSearchParams();
-  const rawItems = searchParams.get("items");
-
-  const lineItems = rawItems ? JSON.parse(decodeURIComponent(rawItems)) : [];
+  const id = searchParams.get("id");
+   const index = id % 10
+  let type = "popular products" as string
+  if (Math.floor(Math.abs(id) / 10) % 10 === 2) {
+    type = "products in stock"
+  }
+    
+  const product = data[type][index - 1];
+  const price = product.price
+  const quantity = 1
+  const lineItems = [{price, quantity}];
 
   return (
     <EmbeddedCheckoutProvider

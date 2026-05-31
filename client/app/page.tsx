@@ -60,16 +60,14 @@ function AccordionItem({ f }: { f: Record<string, any> }) {
 }
 export default function Home() {
   const router = useRouter();
-  const handleAdd = (price: string, url: string) => {
-    const newItems = [{ price, url, quantity: 1 }];
-    const serializedItems = encodeURIComponent(JSON.stringify(newItems));
-    router.push(`/order?items=${serializedItems}`); // if (!response.ok)
+  const handleAdd = (id: number) => {
+    const serializedId = encodeURIComponent(JSON.stringify(id));
+    router.push(`/order?id=${serializedId}`); // if (!response.ok)
     return;
   };
-  const handleCheckout = (price: string) => {
-    const newItems = [{ price, quantity: 1 }];
-    const serializedItems = encodeURIComponent(JSON.stringify(newItems));
-    router.push(`/checkout?items=${serializedItems}`); // if (!response.ok)
+  const handleCheckout = (id: number) => {
+    const serializedId = encodeURIComponent(JSON.stringify(id));
+    router.push(`/checkout?id=${serializedId}`); // if (!response.ok)
     return;
   };
   const containerVariants = {
@@ -89,7 +87,6 @@ export default function Home() {
       <Header />
       <div className="flex-1 scroll-smooth font-sans ">
         {/* 1 - checkout */}
-
         <div className="group flex flex-col cursor-pointer">
           {/* The main image container controls the rounding and hides the expanding/shrinking image */}
           <motion.div
@@ -138,7 +135,7 @@ export default function Home() {
                         before:absolute before:top-0 before:left-0 before:h-full before:w-full before:-z-10 before:bg-slate-300 before:scale-x-0
                          before:origin-left before:duration-200 before:ease-in-out before:transition-transform hover:before:scale-x-100
                         "
-                          onClick={() => handleAdd(p["price"], p["url"])}
+                          onClick={() => handleAdd(p["id"])}
                         >
                           Add
                         </div>
@@ -173,7 +170,7 @@ export default function Home() {
 
                       <div
                         className="w-[80%] mx-auto flex justify-center items-center relative h-9 overflow-hidden z-10 border-slate-300 border rounded-lg text-black tracking-wider  transition-colors duration-500 ease-in-out hover:text-white before:absolute before:top-0 before:left-0 before:h-full before:w-full before:-z-10 before:bg-slate-300 before:scale-x-0 before:origin-left before:duration-200 before:ease-in-out before:transition-transform hover:before:scale-x-100 border-zinc-200"
-                        onClick={() => handleCheckout(p["price"])}
+                        onClick={() => handleCheckout(p["id"])}
                       >
                         Checkout
                       </div>
@@ -191,7 +188,6 @@ export default function Home() {
             </div>{" "}
           </motion.div>
         </div>
-
         {/* 3 - video and explore button product catalog */}
         <div className="flex flex-col items-center justify-between space-y-0 font-sans bg-yellow-300">
           <motion.div className="relative w-full overflow-hidden group">

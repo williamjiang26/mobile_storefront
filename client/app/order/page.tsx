@@ -44,13 +44,13 @@ const Page = () => {
   //
   const searchParams = useSearchParams();
 
-  const rawItems = searchParams.get("items");
-  const lineItems = rawItems ? JSON.parse(decodeURIComponent(rawItems)) : [];
-  console.log("🚀 ~ Page ~ lineItems:", lineItems);
-  const photo = lineItems[0]["url"];
-  console.log("🚀 ~ Page ~ photo:", photo);
+  const id = searchParams.get("id");
+  const index = id % 10;
+  // search item function from database
+  const product = data["popular products"][index - 1];
+  console.log("🚀 ~ Page ~ product:", product);
   const handleCheckout = () => {
-    router.push(`/checkout?items=${rawItems}`); // if (!response.ok)
+    router.push(`/checkout?id=${id}`); // if (!response.ok)
     return;
   };
 
@@ -110,7 +110,7 @@ const Page = () => {
           <div className="rounded-md px-1 flex h-full justify-center items-center">
             <div className="relative rounded-lg aspect-square h-50 overflow-hidden group cursor-pointer">
               <Image
-                src={photo}
+                src={product.url}
                 alt=""
                 fill
                 className="object-cover scale-110 transition-transform duration-500 ease-out group-hover:scale-100 rounded-lg"
@@ -118,18 +118,17 @@ const Page = () => {
             </div>
           </div>
           <div className=" flex flex-col space-y-1">
-            <div className="text-xl">green juice</div>
-            <div className="font-semibold text-xl">$7</div>
-            <div className=" ">med, to-go, cold</div>
-            <div className=" ">fresh up to one week</div>
-            <div className="text-sm ">
-              filled w natural ingredients, great for detox, awakens the pallete
-              and body with nutrients and antioxidants
+            <div className="text-xl">{product.name}</div>
+            <div className="font-semibold text-xl">
+              {product["start amount"]}
             </div>
+            <div className=" ">med, to-go, cold</div>
+            <div className=" ">{product["storage instructions"]}</div>
+            <div className="text-sm ">{product.description}</div>
           </div>
         </div>
         {/* Form */}
-        <div className="rounded-r-lg mr-auto w-full  ">
+        <div className="rounded-r-lg mr-auto w-full">
           {/* multistep form */}
           <form className="space-y-1 px-1">
             <Card index={1}>
