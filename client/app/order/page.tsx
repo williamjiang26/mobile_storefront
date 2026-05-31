@@ -44,7 +44,8 @@ const Page = () => {
   //
   const searchParams = useSearchParams();
 
-  const id = searchParams.get("id");
+  const idParam = searchParams.get("id"); 
+  const id = idParam ? Number(idParam) : 0; 
   const index = id % 10;
   // search item function from database
   const product = data["popular products"][index - 1];
