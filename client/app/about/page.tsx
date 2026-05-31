@@ -12,9 +12,9 @@ const Page = () => {
       <div className="flex flex-col justify-center h-screen items-center ">
         <Header />
         <div className="flex flex-col w-[90%] mx-auto space-y-1">
-          <div>{blog["date"]}</div>
+          {/* <div>{blog["date"]}</div>
           <div className="text-lg ">{blog["title"]}</div>
-          <div>{blog["article"]}</div>
+          <div>{blog["article"]}</div> */}
         </div>
       </div>
       <Footer />
