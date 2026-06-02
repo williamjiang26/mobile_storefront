@@ -35,7 +35,7 @@ const Catalog = () => {
     return;
   };
   return (
-    <div className="flex flex-col ">
+    <div className="flex flex-col h-screen overflow-y-auto">
       <Header />
       {/* toggle */}
       <div className="mt-30 flex flex-row p-1  gap-10 items-center justify-center   font-sans dark:bg-black">
@@ -62,7 +62,7 @@ const Catalog = () => {
         </div>
       </div>
       {/* catalog */}
-      <div className="flex-1 grid w-full h-screen sm:grid-cols-1 lg:grid-cols-3 xl:grid-cols-5 overflow-y-auto p-5 scroll-smooth font-sans dark:bg-black gap-10">
+      <div className="grid w-full h-screen sm:grid-cols-1 lg:grid-cols-3 xl:grid-cols-5  p-5 scroll-smooth font-sans dark:bg-black gap-10">
         {/* made to order */}
         {productType === "made-to-order" &&
           data["popular products"].map((p) => (
