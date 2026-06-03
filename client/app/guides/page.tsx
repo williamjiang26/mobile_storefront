@@ -5,12 +5,13 @@ import Footer from "../components/footer";
 import Header from "../components/header";
 
 const Page = () => {
-  const [products, setProducts] = useState([]);
+  const [product, setProduct] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
       const data = await getProducts();
-      setProducts(data);
+      console.log("🚀 ~ fetchData ~ data:", data)
+      setProduct(data);
     };
     fetchData();
   }, []);
@@ -20,7 +21,8 @@ const Page = () => {
       <Header />
       {/* scrollable */}
       <div className="flex-1 mt-30 overflow-y-auto space-y-3 bg-zinc-300 scroll-smooth font-sans dark:bg-black">
-        {products.id}
+        {product[0].id}
+        {product[0].name}
       </div>
       <Footer />
     </div>
