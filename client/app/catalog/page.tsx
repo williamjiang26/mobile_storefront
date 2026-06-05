@@ -20,9 +20,7 @@ const Catalog = () => {
   const router = useRouter();
   const [productType, setType] = useState("made-to-order");
   const [lineItems, setLineItems] = useState<LineItem[]>([]);
-
   const handleAdd = (price: string) => {
-    console.log("🚀 ~ handleAdd ~ price:", price);
     const newItems = [{ price, quantity: 1 }];
     const serializedItems = encodeURIComponent(JSON.stringify(newItems));
     router.push(`/order?items=${serializedItems}`); // if (!response.ok)
@@ -38,7 +36,7 @@ const Catalog = () => {
     <div className="flex flex-col h-screen overflow-y-auto">
       <Header />
       {/* toggle */}
-      <div className="mt-30 flex flex-row p-1  gap-10 items-center justify-center   font-sans dark:bg-black">
+      <div className="mt-30 flex flex-row p-1 gap-10 items-center justify-center font-sans dark:bg-black">
         {/* fixed - two options */}
         <div
           className={`   rounded-lg px-5 py-3 flex ${
@@ -62,7 +60,7 @@ const Catalog = () => {
         </div>
       </div>
       {/* catalog */}
-      <div className="grid w-full h-screen sm:grid-cols-1 lg:grid-cols-3 xl:grid-cols-5  p-5 scroll-smooth font-sans dark:bg-black gap-10">
+      <div className="grid w-full h-screen sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-5 3xl:grid-cols-7 p-5 scroll-smooth font-sans dark:bg-black gap-10">
         {/* made to order */}
         {productType === "made-to-order" &&
           data["popular products"].map((p) => (

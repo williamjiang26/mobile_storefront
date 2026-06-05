@@ -15,7 +15,7 @@
 
 export async function getProducts() {
   try {
-    const res = await fetch("http://127.0.0.1:8000/graphql", {
+    const res = await fetch("http://127.0.0.1:8001/graphql", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

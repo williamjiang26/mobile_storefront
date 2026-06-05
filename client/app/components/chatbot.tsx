@@ -1,6 +1,7 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Markdown from "react-markdown";
+import { connectMessageStream, send, startChatApp } from "../actions/chats";
 export default function ChatSupport() {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([
@@ -12,45 +13,69 @@ export default function ChatSupport() {
   ]);
   const [message, setMessage] = useState("");
   // send message function
+  // const sendMessage = async () => {
+  //   setMessage("");
+  //   setMessages((prev) => [
+  //     ...prev,
+  //     { role: "user", content: message },
+  //     { role: "assistant", content: "" },
+  //   ]);
+  //   try {
+  //     const res = await fetch("http://localhost:8000/api/chat/stream", {
+  //       method: "POST",
+  //       headers: { "Content-Type": "application/json" },
+  //       body: JSON.stringify({
+  //         messages: [...messages, { role: "user", content: message }],
+  //       }),
+  //     });
+  //     const reader = res.body?.getReader();
+  //     if (!reader) throw new Error("No stream reader");
+
+  //     const decoder = new TextDecoder();
+
+  //     while (true) {
+  //       const { done, value } = await reader.read();
+  //       console.log("🚀 ~ sendMessage ~ value:", value);
+  //       if (done) break;
+
+  //       const text = decoder.decode(value, { stream: true });
+
+  //       setMessages((prev) => {
+  //         const last = prev[prev.length - 1];
+  //         return [
+  //           ...prev.slice(0, -1),
+  //           { ...last, content: last.content + text },
+  //         ];
+  //       });
+  //     }
+  //   } catch (error) {
+  //     console.error("Stream error:", error);
+  //   }
+  // };
+
+  // send message to chat regular
   const sendMessage = async () => {
-    setMessage("");
-    setMessages((prev) => [
-      ...prev,
-      { role: "user", content: message },
-      { role: "assistant", content: "" },
-    ]);
-    try {
-      const res = await fetch("http://localhost:8000/api/chat/stream", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          messages: [...messages, { role: "user", content: message }],
-        }),
-      });
-      const reader = res.body?.getReader();
-      if (!reader) throw new Error("No stream reader");
-
-      const decoder = new TextDecoder();
-
-      while (true) {
-        const { done, value } = await reader.read();
-        console.log("🚀 ~ sendMessage ~ value:", value);
-        if (done) break;
-
-        const text = decoder.decode(value, { stream: true });
-
-        setMessages((prev) => {
-          const last = prev[prev.length - 1];
-          return [
-            ...prev.slice(0, -1),
-            { ...last, content: last.content + text },
-          ];
-        });
-      }
-    } catch (error) {
-      console.error("Stream error:", error);
-    }
+    await send("user", message);
   };
+  // listen to messages and update messages
+  useEffect(() => {
+    // Start the WebSocket listener
+    const stopStream = connectMessageStream((incomingMessage) => {
+      
+      // Update the messages array dynamically
+      setMessages((prevMessages) => [
+        ...prevMessages,
+        {
+          // If the backend sender is "user", map it to "user", otherwise "assistant"
+          role: incomingMessage.sender === "user" ? "user" : "assistant",
+          content: incomingMessage.text
+        }
+      ]);
+    });
+  
+    // Clean up connection on unmount to trigger the Python finally block
+    return () => stopStream();
+  }, []);
   return (
     <>
       {/* Floating Trigger Button */}
