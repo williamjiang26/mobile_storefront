@@ -31,12 +31,12 @@ const Header = () => {
       className="flex fixed top-10 inset-x-0 z-50 mx-auto sm:w-[80%] rounded-lg border backdrop-blur justify-between"
     >
       <div
-        className="hover:bg-zinc-200 p-6 hover:rounded-lg"
+        className="hover:bg-zinc-200 sm:p-6 hover:rounded-lg"
         onClick={() => router.push("/")}
       >
         Get Active Foods
       </div>
-      <div className="flex justify-between">
+      <div className="flex justify-between items-center">
         {/* about */}
         <div
           className="relative p-3"
@@ -99,7 +99,7 @@ const Header = () => {
           </AnimatePresence>
         </div>
         {/* blog */}
-        <div className="relative p-3">
+        <div className="relative sm:p-3">
           <div
             className="hover:bg-zinc-200 hover:rounded-lg p-3"
             onClick={() => router.push("/blog")}
@@ -136,11 +136,11 @@ const Header = () => {
           </AnimatePresence>
         </div>
         {/* log in  */}
-        <div className="relative p-3">
+        <div className="relative sm:p-3">
           <div className="hover:bg-zinc-200 hover:rounded-lg p-3">Log in</div>
         </div>
         {/* sign up */}
-        <div className="relative p-3">
+        <div className="relative sm:p-3">
           <div className="hover:bg-zinc-200 hover:rounded-lg p-3">Sign up</div>
         </div>
       </div>

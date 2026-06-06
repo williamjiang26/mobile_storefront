@@ -146,7 +146,7 @@ export default function Home() {
               </div>
               {/* 2 - shop right away - products in stock - glimpse of all categories */}
               <div className="relative flex flex-col h-125 rounded-lg items-center justify-center bg-transparent font-sans dark:bg-black pb-5">
-                <div className="basis-1/6 flex items-center justify-center font-bold text-3xl text-white/90">
+                <div className="basis-1/6 flex items-center justify-center text-center font-bold text-3xl text-white/90">
                   Products in stock ~ ships in 2-3 weeks
                 </div>
                 <div className="basis-5/6 flex flex-row w-[80%] mx-auto justify-between overflow-x-auto">
@@ -180,7 +180,7 @@ export default function Home() {
               </div>
             </div>
             <div className="relative overflow-hidden flex w-full items-center justify-center font-bold text-3xl text-white/90">
-              <div className="flex items-center justify-center w-full font-bold text-3xl text-white/90 bg-blue-300">
+              <div className="flex items-center justify-center text-center w-full font-bold text-3xl text-white/90 bg-blue-300">
                 "Conveniently placed healthy foods that will help you stay fit.
                 Organic sugars and protein - no added ingredients." - brand
                 motto
@@ -307,9 +307,8 @@ export default function Home() {
           viewport={{ once: true }}
           variants={containerVariants}
         >
-          <div className="flex flex-col md:flex-row w-full md:w-[90%] mx-auto rounded-lg md:h-screen h-full items-center justify-between gap-3">
+          <div className="flex flex-col md:flex-row sm:space-y-1 w-full md:w-[90%] mx-auto rounded-lg md:h-screen h-full items-center justify-between gap-3">
             {/* mobile screen rectangle */}
-
             <div className="relative group overflow-hidden w-full md:aspect-square aspect-video rounded-lg bg-zinc-200">
               {/* Image starts scaled up, and zooms out to scale-100 when the group is hovered */}
               <Image
@@ -330,8 +329,7 @@ export default function Home() {
                 </Button>
               </div>
             </div>
-
-            <div className="relative group overflow-hidden w-full md:aspect-square aspect-video rounded-lg  bg-zinc-200">
+            <div className="relative group overflow-hidden w-full md:aspect-square aspect-video rounded-lg bg-zinc-200">
               <Image
                 src={
                   "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/Screen+Shot+2026-05-16+at+2.45.40+PM.png"
@@ -347,7 +345,6 @@ export default function Home() {
                 </Button>
               </div>
             </div>
-
             <div className="relative w-full md:aspect-square rounded-lg bg-zinc-200">
               {/* 5 - FAQ */}
               <div className="m-5">
