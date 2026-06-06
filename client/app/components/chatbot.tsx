@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import Markdown from "react-markdown";
-import { connectMessageStream, send, startChatApp } from "../actions/chats";
+import { connectMessageStream, send } from "../actions/chats";
 export default function ChatSupport() {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([

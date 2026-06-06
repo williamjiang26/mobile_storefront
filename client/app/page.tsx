@@ -114,7 +114,7 @@ export default function Home() {
 
                 <div className="basis-5/6 flex flex-row w-[80%] mx-auto justify-between overflow-x-auto ">
                   {data["popular products"].slice(0, 5).map((p) => (
-                    <div className="flex flex-col bg-zinc-50 p-1 w-59 justify-between shadow-lg m-1 rounded-lg ">
+                    <div className="flex flex-col bg-zinc-50 p-1 min-w-59 justify-between shadow-lg m-1 rounded-lg ">
                       <div className="   flex-col rounded-md p-1">
                         <div className="rounded-lg relative  h-59  bg-zinc-50 p-1 overflow-hidden  ">
                           {p.url && (
@@ -151,7 +151,7 @@ export default function Home() {
                 </div>
                 <div className="basis-5/6 flex flex-row w-[80%] mx-auto justify-between overflow-x-auto">
                   {data["products in stock"].slice(0, 5).map((p) => (
-                    <div className="flex flex-col bg-zinc-50 p-1 w-59   shadow-lg m-1 rounded-lg ">
+                    <div className="flex flex-col bg-zinc-50 p-1 min-w-59 shadow-lg m-1 rounded-lg ">
                       <div className="w-full mx-auto  flex-col rounded-md p-1">
                         <div className="rounded-lg relative     bg-zinc-50 p-1 overflow-hidden h-59">
                           {p.url && (
@@ -185,7 +185,7 @@ export default function Home() {
                 Organic sugars and protein - no added ingredients." - brand
                 motto
               </div>
-            </div>{" "}
+            </div> 
           </motion.div>
         </div>
         {/* 3 - video and explore button product catalog */}
@@ -265,7 +265,7 @@ export default function Home() {
             variants={containerVariants}
           >
             <div className="p-3 items-center font-semibold text-lg flex justify-center">
-              <div className="flex space-x-3 items-center">
+              <div className="flex md:space-x-3 items-center">
                 <div> Our team is available 9-5 7x/week, contact or get a quote</div>
                 <Button className="h-10 flex items-center" onClick={()=>{router.push("/contact")}}>Contact</Button>
               </div>
