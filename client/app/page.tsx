@@ -264,14 +264,14 @@ export default function Home() {
             viewport={{ once: true }}
             variants={containerVariants}
           >
-            <div className="p-3 items-center font-semibold text-lg flex justify-center">
-              <div className="flex md:space-x-3 items-center">
+            <div className="m-1 items-center font-semibold text-lg flex justify-center">
+              <div className="flex items-center md:space-x-3">
                 <div> Our team is available 9-5 7x/week, contact or get a quote</div>
                 <Button className="h-10 flex items-center" onClick={()=>{router.push("/contact")}}>Contact</Button>
               </div>
             </div>
           </motion.div>
-          <div className="relative   sm:w-full md:mx-auto overflow-hidden   h-250 bg-zinc-200">
+          <div className="relative w-full md:w-[90%] md:mx-auto overflow-hidden   h-250 bg-zinc-200">
             {/* Image starts scaled up, and zooms out to scale-100 when the group is hovered */}
             <Image
               src={
@@ -290,7 +290,7 @@ export default function Home() {
               viewport={{ once: true }}
               variants={containerVariants}
             >
-              <div className="w-[90%] mx-auto">
+              <div className="w-full md:w-[90%] mx-auto">
                 <div className="absolute bottom-0 mb-5">
                   <Button onClick={() => router.push("/contact")}>
                     Contact
@@ -307,10 +307,10 @@ export default function Home() {
           viewport={{ once: true }}
           variants={containerVariants}
         >
-          <div className="flex flex-col md:flex-row w-[90%] mx-auto rounded-lg h-screen items-center justify-between gap-3">
+          <div className="flex flex-col md:flex-row w-full md:w-[90%] mx-auto rounded-lg md:h-screen h-full items-center justify-between gap-3">
             {/* mobile screen rectangle */}
 
-            <div className="relative group overflow-hidden w-full md:aspect-square rounded-lg bg-zinc-200">
+            <div className="relative group overflow-hidden w-full md:aspect-square aspect-video rounded-lg bg-zinc-200">
               {/* Image starts scaled up, and zooms out to scale-100 when the group is hovered */}
               <Image
                 src={
@@ -331,7 +331,7 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="relative group overflow-hidden w-full md:aspect-square rounded-lg  bg-zinc-200">
+            <div className="relative group overflow-hidden w-full md:aspect-square aspect-video rounded-lg  bg-zinc-200">
               <Image
                 src={
                   "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/Screen+Shot+2026-05-16+at+2.45.40+PM.png"
