@@ -1,7 +1,14 @@
 "use client";
 import { useEffect, useState } from "react";
 import Markdown from "react-markdown";
-import { connectMessageStream, send } from "../actions/chats";
+
+import { handleUserSendMessage, subscription } from "../actions/chats";
+import { ApolloClient, InMemoryCache, HttpLink, split } from "@apollo/client";
+import { GraphQLWsLink } from "@apollo/client/link/subscriptions";
+import { createClient } from "graphql-ws";
+
+import { getMainDefinition } from "@apollo/client/utilities";
+import { gql } from "@apollo/client";
 export default function ChatSupport() {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([
@@ -54,27 +61,85 @@ export default function ChatSupport() {
   // };
 
   // send message to chat regular
-  const sendMessage = async () => {
-    await send("user", message);
+  const sendMessage = () => {
+    handleUserSendMessage("user", message);
+    setMessage("")
   };
-  // listen to messages and update messages
+  const httpLink = new HttpLink({
+    uri: "http://localhost:8000/graphql",
+  });
+
+  // 2. WebSocket Link for real-time Subscriptions
+  const wsLink = new GraphQLWsLink(
+    createClient({
+      url: "ws://localhost:8000/graphql",
+    })
+  );
+
+  // 3. Split traffic: Send mutations to HTTP, send subscriptions to WS
+  const splitLink = split(
+    ({ query }) => {
+      const definition = getMainDefinition(query);
+      return (
+        definition.kind === "OperationDefinition" &&
+        definition.operation === "subscription"
+      );
+    },
+    wsLink,
+    httpLink
+  );
+
+  // 4. Instantiate the managed client
+  const client = new ApolloClient({
+    link: splitLink,
+    cache: new InMemoryCache(),
+  });
+
+  const LISTEN_MESSAGES_SUBSCRIPTION = gql`
+    subscription OnNewMessage {
+      listenMessages {
+        id
+        senderName
+        senderType
+        text
+      }
+    }
+  `;
   useEffect(() => {
-    // Start the WebSocket listener
-    const stopStream = connectMessageStream((incomingMessage) => {
-      
-      // Update the messages array dynamically
-      setMessages((prevMessages) => [
-        ...prevMessages,
-        {
-          // If the backend sender is "user", map it to "user", otherwise "assistant"
-          role: incomingMessage.sender === "user" ? "user" : "assistant",
-          content: incomingMessage.text
-        }
-      ]);
-    });
-  
-    // Clean up connection on unmount to trigger the Python finally block
-    return () => stopStream();
+    // 1. Establish the subscription listener inside the lifecycle hook
+    const subscription = client
+      .subscribe({ query: LISTEN_MESSAGES_SUBSCRIPTION })
+      .subscribe({
+        next(response) {
+          const newMessage = response.data.listenMessages;
+          console.log(
+            `✨ Real-time update from ${newMessage.senderName}:`,
+            newMessage.text
+          );
+
+          // 2. FIX: Use functional state updates to guarantee access to the latest history array
+          setMessages((prevMessages) => [
+            ...prevMessages,
+            {
+              // Mapping your backend GraphQL structure to your React UI's role/content layout
+              role: newMessage.senderType === "user" ? "user" : "assistant",
+              content: newMessage.text,
+              id: newMessage.id, // useful for unique React loop keys
+            },
+          ]);
+        },
+        error(err) {
+          console.error("Subscription pipeline broken:", err);
+        },
+        complete() {
+          console.log("Subscription connection closed cleanly.");
+        },
+      });
+
+    // 3. CLEANUP: Return an un-subscription hook to tear down the WebSocket when the user leaves the page
+    return () => {
+      subscription.unsubscribe();
+    };
   }, []);
   return (
     <>

@@ -9,6 +9,7 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@apollo/client": "^4.2.2",
     "@fortawesome/fontawesome-svg-core": "^7.2.0",
     "@fortawesome/free-brands-svg-icons": "^7.2.0",
     "@fortawesome/react-fontawesome": "^3.3.1",
@@ -16,6 +17,7 @@
     "@stripe/stripe-js": "^9.5.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "graphql": "^16.14.1",
     "graphql-ws": "^6.0.8",
     "lucide-react": "^1.17.0",
     "motion": "^12.39.0",
@@ -26,6 +28,7 @@
     "react-markdown": "^10.1.0",
     "react-youtube": "^10.1.0",
     "remark-gfm": "^4.0.1",
+    "rxjs": "^7.8.2",
     "shadcn": "^4.8.2",
     "stripe": "^22.1.1",
     "tailwind-merge": "^3.6.0",
