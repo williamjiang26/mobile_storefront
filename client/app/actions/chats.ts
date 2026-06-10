@@ -7,13 +7,15 @@ import { gql } from "@apollo/client";
 import { projectHmrEvents } from "@/node_modules/next/dist/build/swc/generated-native";
 // 1. HTTP Link for standard Queries and Mutations
 const httpLink = new HttpLink({
-  uri: "http://localhost:8000/graphql",
+  uri: "http://localhost:8003/graphql",
 });
+
+
 
 // 2. WebSocket Link for real-time Subscriptions
 const wsLink = new GraphQLWsLink(
   createClient({
-    url: "ws://localhost:8000/graphql",
+    url: "ws://localhost:8003/graphql",
   })
 );
 
@@ -30,13 +32,14 @@ const splitLink = split(
   httpLink
 );
 
-// 4. Instantiate the managed client
+
+
 export const client = new ApolloClient({
   link: splitLink,
   cache: new InMemoryCache(),
 });
 
-const LISTEN_MESSAGES_SUBSCRIPTION = gql`
+export const LISTEN_MESSAGES_SUBSCRIPTION = gql`
   subscription OnNewMessage {
     listenMessages {
       id
@@ -68,6 +71,7 @@ const LISTEN_MESSAGES_SUBSCRIPTION = gql`
 //     },
 //   });
 
+
 const SEND_MESSAGE_MUTATION = gql`
   mutation PublishMessage(
     $senderType: String!
@@ -82,12 +86,12 @@ const SEND_MESSAGE_MUTATION = gql`
 `;
 
 // Helper function to fire off user chat actions
-export async function handleUserSendMessage(name, typedText) {
+export async function handleUserSendMessage(name, typedText, senderType) {
   try {
     const result = await client.mutate({
       mutation: SEND_MESSAGE_MUTATION,
       variables: {
-        senderType: "user",
+        senderType: senderType,
         senderName: name,
         text: typedText,
       },
@@ -102,5 +106,4 @@ export async function handleUserSendMessage(name, typedText) {
   }
 }
 
-// Example usage:
-// handleUserSendMessage("Dave", "Hey team! Is this working?");
+ 

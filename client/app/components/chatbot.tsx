@@ -2,23 +2,29 @@
 import { useEffect, useState } from "react";
 import Markdown from "react-markdown";
 
-import { handleUserSendMessage, subscription } from "../actions/chats";
-import { ApolloClient, InMemoryCache, HttpLink, split } from "@apollo/client";
-import { GraphQLWsLink } from "@apollo/client/link/subscriptions";
-import { createClient } from "graphql-ws";
+import {
+  handleUserSendMessage,
+  client,
+  LISTEN_MESSAGES_SUBSCRIPTION,
+} from "../actions/chats";
 
-import { getMainDefinition } from "@apollo/client/utilities";
-import { gql } from "@apollo/client";
 export default function ChatSupport() {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([
     {
+      id: "welcome-message",
       role: "assistant",
       content:
         "Hi I'm the customer support assistant. You can message directly here and customer service will be with you shortly. You can also call us at , or email us at .",
     },
+    {
+      id: "welcome-message",
+      role: "button",
+      content: "Click to speak to live sales representative",
+    },
   ]);
   const [message, setMessage] = useState("");
+  const [isSalesRep, setSalesRep] = useState(false);
   // send message function
   // const sendMessage = async () => {
   //   setMessage("");
@@ -62,71 +68,83 @@ export default function ChatSupport() {
 
   // send message to chat regular
   const sendMessage = () => {
-    handleUserSendMessage("user", message);
-    setMessage("")
+    handleUserSendMessage("user", message, "user");
+    setMessage("");
   };
-  const httpLink = new HttpLink({
-    uri: "http://localhost:8000/graphql",
-  });
 
-  // 2. WebSocket Link for real-time Subscriptions
-  const wsLink = new GraphQLWsLink(
-    createClient({
-      url: "ws://localhost:8000/graphql",
-    })
-  );
+  const sendAgentMessage = async () => {
+    if (!message.trim()) return; // Prevent sending empty messages
 
-  // 3. Split traffic: Send mutations to HTTP, send subscriptions to WS
-  const splitLink = split(
-    ({ query }) => {
-      const definition = getMainDefinition(query);
-      return (
-        definition.kind === "OperationDefinition" &&
-        definition.operation === "subscription"
-      );
-    },
-    wsLink,
-    httpLink
-  );
+    // 1. Clear the input box right away
+    const currentInput = message;
+    setMessage("");
 
-  // 4. Instantiate the managed client
-  const client = new ApolloClient({
-    link: splitLink,
-    cache: new InMemoryCache(),
-  });
+    // 2. Create the exact updated state payload upfront
+    const updatedMessages = [
+      ...messages,
+      {id:"", role: "user", content: currentInput },
+    ];
 
-  const LISTEN_MESSAGES_SUBSCRIPTION = gql`
-    subscription OnNewMessage {
-      listenMessages {
-        id
-        senderName
-        senderType
-        text
-      }
+    // 3. Update the UI state with the user message and an empty assistant placeholder for streaming
+    setMessages([...updatedMessages, { id: "", role: "assistant", content: "" }]);
+
+    try {
+      await fetch("http://localhost:8003/api/chat", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(updatedMessages),
+      });
+    } catch (error) {
+      console.error("Error fetching agent stream:", error);
     }
-  `;
+  };
+  const handleSalesRep = () => {
+    // remove the button from the conversation
+    setMessages((prevMessages) =>
+      prevMessages.filter((_, index) => index !== 1)
+    ); // switch the route to sales rep
+    setSalesRep(true);
+  };
   useEffect(() => {
-    // 1. Establish the subscription listener inside the lifecycle hook
     const subscription = client
       .subscribe({ query: LISTEN_MESSAGES_SUBSCRIPTION })
       .subscribe({
         next(response) {
           const newMessage = response.data.listenMessages;
           console.log(
-            `✨ Real-time update from ${newMessage.senderName}:`,
+            `✨ Real-time chunk received for ID [${newMessage.id}]:`,
             newMessage.text
           );
 
-          // 2. FIX: Use functional state updates to guarantee access to the latest history array
-          setMessages((prevMessages) => [
-            ...prevMessages,
-            {
-              // Mapping your backend GraphQL structure to your React UI's role/content layout
-              role: newMessage.senderType === "user" ? "user" : "assistant",
-              content: newMessage.text,
-              id: newMessage.id, // useful for unique React loop keys
-            },
-          ]);
+          setMessages((prevMessages) => {
+            // 1. Scan your current chat state to see if this message ID already exists
+            const existingMsgIndex = prevMessages.findIndex(
+              (msg) => msg.id === newMessage.id
+            );
+
+            if (existingMsgIndex > -1) {
+              // 2. APPEND LOGIC: The ID exists! Copy the list and append the new token to the text body
+              const updatedMessages = [...prevMessages];
+              updatedMessages[existingMsgIndex] = {
+                ...updatedMessages[existingMsgIndex],
+                content:
+                  updatedMessages[existingMsgIndex].content + newMessage.text,
+              };
+              return updatedMessages;
+            } else {
+              // 3. NEW BUBBLE LOGIC: First time seeing this ID? Create a fresh entry in the conversation array
+              return [
+                ...prevMessages,
+                {
+                  id: newMessage.id,
+                  role: newMessage.senderType === "user" ? "user" : "assistant",
+                  content: newMessage.text, // Populates with the first token/chunk
+                },
+              ];
+            }
+          });
         },
         error(err) {
           console.error("Subscription pipeline broken:", err);
@@ -136,11 +154,12 @@ export default function ChatSupport() {
         },
       });
 
-    // 3. CLEANUP: Return an un-subscription hook to tear down the WebSocket when the user leaves the page
+    // 4. CLEANUP: Correctly tear down the WebSocket hook when the user leaves the page
     return () => {
       subscription.unsubscribe();
     };
   }, []);
+
   return (
     <>
       {/* Floating Trigger Button */}
@@ -160,13 +179,15 @@ export default function ChatSupport() {
               <div
                 key={index}
                 className={`p-2.5 rounded-2xl max-w-[80%] w-fit text-sm shadow-sm ${
-                  m.role === "assistant"
+                  m.role === "assistant" || m.role === "button"
                     ? "bg-blue-100 text-blue-950 mr-auto rounded-tl-none border border-blue-200"
                     : "bg-green-100 text-green-950 ml-auto rounded-tr-none border border-green-200"
                 }`}
               >
                 {m.role === "assistant" ? (
                   <Markdown>{m.content}</Markdown>
+                ) : m.role === "button" ? (
+                  <button onClick={handleSalesRep}>{m.content}</button>
                 ) : (
                   m.content
                 )}
@@ -177,7 +198,9 @@ export default function ChatSupport() {
           <form
             onSubmit={(e) => {
               e.preventDefault();
-              sendMessage();
+              {
+                isSalesRep ? sendMessage() : sendAgentMessage();
+              }
             }}
             className=" "
           >
