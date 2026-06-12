@@ -193,43 +193,36 @@ export default function Home() {
           </motion.div>
         </div>
         {/* 3 - video and explore button product catalog */}
-        <div className="flex flex-col items-center justify-between space-y-0 font-sans bg-yellow-300">
-          <motion.div className="relative w-full overflow-hidden group">
-            <video
-              autoPlay
-              muted
-              loop
-              playsInline
-              className="w-full h-screen object-cover"
-            >
-              {/* <source src="/video.mov" type="video/mp4" /> */}
-            </video>
-            {/* youtube video */}
-            {/* <VideoBackground /> */}
+        <div className="relative w-full h-screen overflow-hidden group font-sans bg-green-200">
+          {/* Video Element */}
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="w-full h-full object-cover"
+          >
+            <source src="/video.mp4" type="video/mp4" />
+          </video>
 
-            <div className="absolute inset-0 bg-black/30 transition-colors duration-300 group-hover:bg-black/40" />
-            <div className="w-[90%] mx-auto">
-              <div className=" absolute bottom-0 left-0 p-30">
-                <motion.button
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true }}
-                  variants={containerVariants}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="relative overflow-hidden z-10 bg-white px-5 py-3 rounded-lg text-black font-semibold uppercase tracking-wider  transition-colors duration-300 ease-in-out hover:text-white
-                before:absolute before:top-0 before:left-0 before:h-full before:w-full before:-z-10 before:bg-slate-500 before:scale-x-0
-                 before:origin-left before:duration-200 before:ease-in-out before:transition-transform hover:before:scale-x-100
-                "
-                  onClick={() => {
-                    router.push("/catalog");
-                  }}
-                >
-                  Explore
-                </motion.button>
-              </div>
-            </div>
-          </motion.div>
+          {/* Black Overlay */}
+          <div className="absolute inset-0 bg-black/10 group-hover:bg-black/30 transition-colors duration-300" />
+
+          {/* Button Wrapper Container */}
+          <div className="absolute bottom-12 left-[5%] z-10">
+            <motion.button
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={containerVariants}
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              onClick={() => router.push("/catalog")}
+              className="relative overflow-hidden px-6 py-3.5 rounded-lg bg-white text-black font-semibold uppercase tracking-wider transition-colors duration-300 hover:text-white before:absolute before:inset-0 before:-z-10 before:bg-slate-600 before:scale-x-0 before:origin-left before:transition-transform before:duration-300 hover:before:scale-x-100"
+            >
+              Explore
+            </motion.button>
+          </div>
         </div>
         {/* 4 - best features - animated scroll*/}
         <motion.div

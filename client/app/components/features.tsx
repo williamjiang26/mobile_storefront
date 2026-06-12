@@ -5,7 +5,7 @@ import { motion, useScroll, useTransform } from "motion/react";
 import { useRef } from "react";
 import data from "../data.json";
 
-export default function ScrollHorizontal({listName}) {
+export default function ScrollHorizontal({ listName }) {
   const containerRef = useRef(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -15,7 +15,7 @@ export default function ScrollHorizontal({listName}) {
   const ITEM_WIDTH = 500;
   const GAP = 30;
 
-  const totalDistance = (data["features"].length - 1) * (ITEM_WIDTH + GAP);
+  const totalDistance = (data[listName].length - 1) * (ITEM_WIDTH + GAP);
   const x = useTransform(scrollYProgress, [0, 1], [0, -totalDistance]);
 
   return (
@@ -29,7 +29,9 @@ export default function ScrollHorizontal({listName}) {
         <div className="sticky top-0 h-screen w-full flex flex-col items-center justify-center gap-[8vh] overflow-hidden motion-reduce:relative motion-reduce:h-auto motion-reduce:py-12">
           {/* 1. Header - Centers horizontally automatically */}
           <h1 className="text-center text-[clamp(32px,5vh,72px)] text-white m-0 uppercase font-bold tracking-tight z-10">
-          {listName}
+            <span className="[text-shadow:1px_1px_1px_rgba(0,0,0,0.1)] tracking-wide">
+              {listName}
+            </span>
           </h1>
           {/* 2. Gallery Track Container - Vertically balanced by the parent flex layout */}
           <div className="w-full flex justify-start pl-[calc(50vw-200px)] pr-[50vw] max-[600px]:pl-[calc(50vw-150px)]">
@@ -67,7 +69,7 @@ export default function ScrollHorizontal({listName}) {
                 </div>
               ))}
             </motion.div>
-          </div> 
+          </div>
         </div>
       </div>
     </div>
