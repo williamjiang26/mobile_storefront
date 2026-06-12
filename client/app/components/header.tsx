@@ -135,12 +135,12 @@ const Header = () => {
             )}
           </AnimatePresence>
         </div>
-        <div
-          onMouseEnter={() => setOpen("user-portal")}
-          onMouseLeave={() => setOpen("")}
-        >
+        <div>
           <Show when="signed-in">
-            <UserAvatar />
+            <UserAvatar
+              onMouseEnter={() => setOpen("user-portal")}
+              onMouseLeave={() => setOpen("")}
+            />
           </Show>
           <Show when="signed-out">
             <SignInButton />

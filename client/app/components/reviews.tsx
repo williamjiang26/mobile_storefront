@@ -6,7 +6,7 @@ import { useRouter } from "@/node_modules/next/navigation";
 interface CardProps {
   name: string;
   date: string;
-  stars: string;
+  stars: number;
   location: string;
   review: string;
   attachedPhotos: string;
@@ -19,18 +19,21 @@ const Card = ({
   review,
   attachedPhotos,
 }: CardProps) => (
-  <div className="flex flex-col justify-between  overflow-hidden bg-white   border border-slate-10  rounded-2xl shadow-sm hover:shadow-md transition-shadow duration-300 group min-h-[220px]">
+  <div className="flex flex-col justify-between overflow-hidden bg-white border border-slate-10 p-2 rounded-2xl shadow-sm hover:shadow-md transition-shadow duration-300 group *:**:">
     {/* top */}
     <div className="flex justify-between">
-      <div className="flex-1 flex-col">
-        <div>{name}</div>
-        <div>{date}</div>
-        <div>{stars}</div>
+      <div className="flex flex-col">
+        <div className=" "> {"⭐".repeat(stars)}</div>
+        <div className=" ">{review}</div>
+        <div className=" "> - {name}</div>
       </div>
-      <div className="flex-1 ">{location}</div>
+      <div className="flex flex-col ">
+        <div>{location}</div>
+        <div className="flex justify-end">{date}</div>
+      </div>
     </div>
     {/* middle */}
-    <div className=" ">{review}</div>
+
     {/* bottom */}
     <div className=" ">{attachedPhotos}</div>
   </div>
@@ -38,7 +41,7 @@ const Card = ({
 
 export default function MotionReviewTicker() {
   const datasets = data["reviews"];
- 
+
   const router = useRouter();
 
   return (
@@ -62,7 +65,7 @@ export default function MotionReviewTicker() {
               repeatType: "reverse",
             }}
           >
-            {data['reviews'].map((review, i) => (
+            {data["reviews"].map((review, i) => (
               <Card key={i} {...review} />
             ))}
           </motion.div>

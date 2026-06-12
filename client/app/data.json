@@ -147,25 +147,25 @@
       "name": "chet",
       "review": "great food",
       "date": "march 2025 ",
-      "stars": " ",
-      "location": " ",
+      "stars": 5,
+      "location": "san francisco, ca",
       "attachedPhotos": " "
     },
     {
       "id": 2,
       "name": "jdub",
       "review": "tastes great",
-      "date": "sep 2026 ",
-      "stars": " ",
-      "location": " ",
+      "date": "sep 2026",
+      "stars": 5,
+      "location": "san francisco, ca",
       "attachedPhotos": " "
     },
     {
       "id": 3,
       "name": "shai",
       "review": "great protein",
-      "date": " ",
-      "stars": " ",
+      "date": "sep 2026",
+      "stars": 5,
       "location": "brooklyn, ny",
       "attachedPhotos": " "
     },
@@ -173,8 +173,8 @@
       "id": 4,
       "name": "jared",
       "review": "helps me run",
-      "date": " ",
-      "stars": " ",
+      "date": "sep 2026",
+      "stars": 5,
       "location": "san francisco, ca",
       "attachedPhotos": " "
     },
@@ -182,9 +182,9 @@
       "id": 5,
       "name": "jaden",
       "review": "helps me bulk",
-      "date": " ",
-      "stars": " ",
-      "location": " ",
+      "date": "sep 2026",
+      "stars": 5,
+      "location": "san francisco, ca",
       "attachedPhotos": " "
     }
   ]
