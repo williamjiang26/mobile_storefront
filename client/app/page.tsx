@@ -290,7 +290,7 @@ export default function Home() {
           viewport={{ once: true }}
           variants={containerVariants}
         >
-          <div className="flex flex-col md:flex-row sm:space-y-1 w-full md:w-[90%] mx-auto rounded-lg md:h-screen h-full items-center justify-between gap-3 mb-3 px-3">
+          <div className="flex flex-col md:flex-row sm:space-y-1 w-full md:w-[90%] mx-auto rounded-lg md:h-screen h-full items-center justify-between gap-3 mb-3 px-1">
             {/* mobile screen rectangle */}
             <div className="relative group overflow-hidden w-full md:aspect-square aspect-video rounded-lg bg-zinc-200">
               {/* Image starts scaled up, and zooms out to scale-100 when the group is hovered */}
