@@ -18,7 +18,7 @@ interface LineItem {
 }
 const Catalog = () => {
   const router = useRouter();
-  const [productType, setType] = useState("made-to-order");
+  const [productType, setType] = useState("Made-To-Order");
   const [lineItems, setLineItems] = useState<LineItem[]>([]);
   const handleAdd = (price: string) => {
     const newItems = [{ price, quantity: 1 }];

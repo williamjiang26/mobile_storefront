@@ -1,3 +1,4 @@
+import {ClerkProvider} from "@clerk/nextjs";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Inter } from "next/font/google";
 import "./globals.css";
@@ -37,8 +38,10 @@ export default function RootLayout({
     >
       <TooltipProvider>
         <body className="min-h-full flex flex-col">
-          {children}
-          <Chatbot />
+          <ClerkProvider>
+            {children}
+            <Chatbot />
+          </ClerkProvider>
         </body>
       </TooltipProvider>
     </html>

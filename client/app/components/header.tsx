@@ -7,7 +7,14 @@ import {
 } from "motion/react";
 import { useState } from "react";
 import { useRouter } from "@/node_modules/next/navigation";
-
+import {
+  ClerkProvider,
+  Show,
+  SignInButton,
+  SignOutButton,
+  UserAvatar,
+  UserButton,
+} from "@clerk/nextjs";
 const Header = () => {
   const router = useRouter();
   const { scrollY } = useScroll();
@@ -69,7 +76,7 @@ const Header = () => {
           </AnimatePresence>
         </div>
         <div
-           onMouseEnter={() => setOpen("guides")}
+          onMouseEnter={() => setOpen("guides")}
           onMouseLeave={() => setOpen("")}
         >
           <div className="hover:bg-zinc-200 hover:rounded-lg">Guides</div>
@@ -103,7 +110,7 @@ const Header = () => {
           </div>
         </div>
         <div
-           onMouseEnter={() => setOpen("links")}
+          onMouseEnter={() => setOpen("links")}
           onMouseLeave={() => setOpen("")}
         >
           <div className="hover:bg-zinc-200 hover:rounded-lg ">Docs</div>
@@ -128,8 +135,37 @@ const Header = () => {
             )}
           </AnimatePresence>
         </div>
-        <div>
-          <div className="hover:bg-zinc-200 hover:rounded-lg ">Log in</div>
+        <div
+          onMouseEnter={() => setOpen("user-portal")}
+          onMouseLeave={() => setOpen("")}
+        >
+          <Show when="signed-in">
+            <UserAvatar />
+          </Show>
+          <Show when="signed-out">
+            <SignInButton />
+          </Show>
+          <AnimatePresence>
+            {open === "user-portal" && (
+              <motion.div
+                initial={{ opacity: 0, y: 10, scale: 0.98 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: 10, scale: 0.98 }}
+                transition={{ duration: 0.18, ease: "easeOut" }}
+                className="absolute top-full mt-2 w-56 rounded-lg border bg-white shadow-lg"
+              >
+                <div
+                  className="p-3 hover:bg-zinc-100 rounded-lg"
+                  onClick={() => router.push("/customer")}
+                >
+                  my account
+                </div>
+                <div className="p-3 hover:bg-zinc-100">
+                  <SignOutButton />
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
       </div>
     </motion.header>
