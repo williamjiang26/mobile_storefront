@@ -12,7 +12,7 @@ const httpLink = new HttpLink({
 // 2. WebSocket Link for real-time Subscriptions
 const wsLink = new GraphQLWsLink(
   createClient({
-    url: process.env.NEXT_WEBSOCKET_CHATS_API_URL,
+    url: process.env.NEXT_WEBSOCKET_CHATS_API_URL as string,
   })
 );
 
