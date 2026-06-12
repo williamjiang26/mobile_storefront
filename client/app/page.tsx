@@ -108,8 +108,10 @@ export default function Home() {
               {/* <div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/80 to-transparent" /> */}
               {/* 1 - shop right away - popular products - glimpse of all categories */}
               <div className="relative flex mt-30 flex-col md:h-125 rounded-lg items-center justify-center bg-transparent font-sans dark:bg-black pb-5">
-                <div className="basis-1/6 flex items-center justify-center font-bold text-3xl  text-white/90">
-                  Shop popular products
+                <div className="basis-1/6 flex items-center justify-center font-bold text-3xl text-white/90">
+                  <span className="[text-shadow:1px_1px_5px_rgba(0,0,0,0.3)] tracking-wide">
+                    Shop popular products
+                  </span>
                 </div>
 
                 <div className="basis-5/6 flex flex-row w-[80%] mx-auto justify-between overflow-x-auto ">
@@ -146,8 +148,10 @@ export default function Home() {
               </div>
               {/* 2 - shop right away - products in stock - glimpse of all categories */}
               <div className="relative flex flex-col h-125 rounded-lg items-center justify-center bg-transparent font-sans dark:bg-black pb-5">
-                <div className="basis-1/6 flex items-center justify-center text-center font-bold text-3xl text-white/90">
-                  Products in stock ~ ships in 2-3 weeks
+                <div className="basis-1/6 flex items-center justify-center font-bold text-3xl text-white/90 text-center">
+                  <span className="[text-shadow:1px_1px_5px_rgba(0,0,0,0.3)] tracking-wide">
+                    Products in stock ~ ships in 2-3 weeks
+                  </span>
                 </div>
                 <div className="basis-5/6 flex flex-row w-[80%] mx-auto justify-between overflow-x-auto">
                   {data["products in stock"].slice(0, 5).map((p) => (
