@@ -14,8 +14,9 @@
 // }
 
 export async function getProducts() {
+  const url = process.env.NEXT_PUBLIC_PRODUCTS_API_URL as string
   try {
-    const res = await fetch("http://127.0.0.1:8001/graphql", {
+    const res = await fetch(url, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

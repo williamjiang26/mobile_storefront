@@ -6,13 +6,13 @@ import { getMainDefinition } from "@apollo/client/utilities";
 import { gql } from "@apollo/client";
 // 1. HTTP Link for standard Queries and Mutations
 const httpLink = new HttpLink({
-  uri: "http://localhost:8003/graphql",
+  uri: process.env.NEXT_PUBLIC_CHATS_API_URL,
 });
 
 // 2. WebSocket Link for real-time Subscriptions
 const wsLink = new GraphQLWsLink(
   createClient({
-    url: "ws://localhost:8003/graphql",
+    url: process.env.NEXT_WEBSOCKET_CHATS_API_URL,
   })
 );
 
