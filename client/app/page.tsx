@@ -185,7 +185,7 @@ export default function Home() {
                 Organic sugars and protein - no added ingredients." - brand
                 motto
               </div>
-            </div> 
+            </div>
           </motion.div>
         </div>
         {/* 3 - video and explore button product catalog */}
@@ -234,7 +234,7 @@ export default function Home() {
           viewport={{ once: true }}
           variants={containerVariants}
         >
-          <ScrollHorizontal />
+          <ScrollHorizontal listName={"features"} />
         </motion.div>
         {/* 5 - Reviews */}
         <motion.div
@@ -254,7 +254,7 @@ export default function Home() {
           viewport={{ once: true }}
           variants={containerVariants}
         >
-          <ScrollHorizontal2 />
+          <ScrollHorizontal listName={"process"} />
         </motion.div>
         {/* 7 - contact */}
         <div className="w-full h-screen">
@@ -266,8 +266,18 @@ export default function Home() {
           >
             <div className="m-1 items-center font-semibold text-lg flex justify-center">
               <div className="flex items-center md:space-x-3">
-                <div> Our team is available 9-5 7x/week, contact or get a quote</div>
-                <Button className="h-10 flex items-center" onClick={()=>{router.push("/contact")}}>Contact</Button>
+                <div>
+                  {" "}
+                  Our team is available 9-5 7x/week, contact or get a quote
+                </div>
+                <Button
+                  className="h-10 flex items-center"
+                  onClick={() => {
+                    router.push("/contact");
+                  }}
+                >
+                  Contact
+                </Button>
               </div>
             </div>
           </motion.div>

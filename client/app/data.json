@@ -116,23 +116,28 @@
   ],
   "process": [
     {
-      "name": "1. high quality",
+      "id": 1,
+      "name": "high quality",
       "url": "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/Screen+Shot+2026-05-16+at+2.45.40+PM.png"
     },
     {
-      "name": "2. fresh",
+      "id": 2,
+      "name": "fresh",
       "url": "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/Screen+Shot+2026-05-16+at+2.45.40+PM.png"
     },
     {
-      "name": "3. healthy",
+      "id": 3,
+      "name": "healthy",
       "url": "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/Screen+Shot+2026-05-16+at+2.45.40+PM.png"
     },
     {
-      "name": "4. convenient",
+      "id": 4,
+      "name": "convenient",
       "url": "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/Screen+Shot+2026-05-16+at+2.45.40+PM.png"
     },
     {
-      "name": "5. convenient",
+      "id": 5,
+      "name": "convenient",
       "url": "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/Screen+Shot+2026-05-16+at+2.45.40+PM.png"
     }
   ],
