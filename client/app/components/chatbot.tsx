@@ -78,16 +78,12 @@ export default function ChatSupport() {
     // 1. Clear the input box right away
     const currentInput = message;
     setMessage("");
-
-    // 2. Create the exact updated state payload upfront
     const updatedMessages = [
       ...messages,
       {id:"", role: "user", content: currentInput },
     ];
-
-    // 3. Update the UI state with the user message and an empty assistant placeholder for streaming
-    setMessages([...updatedMessages, { id: "", role: "assistant", content: "" }]);
-
+    // setMessages([...updatedMessages, { id: "", role: "assistant", content: "" }]);
+    // const updatedMessages =  messages
     try {
       await fetch("http://localhost:8003/api/chat", {
         method: "POST",
@@ -119,13 +115,10 @@ export default function ChatSupport() {
           );
 
           setMessages((prevMessages) => {
-            // 1. Scan your current chat state to see if this message ID already exists
             const existingMsgIndex = prevMessages.findIndex(
               (msg) => msg.id === newMessage.id
             );
-
             if (existingMsgIndex > -1) {
-              // 2. APPEND LOGIC: The ID exists! Copy the list and append the new token to the text body
               const updatedMessages = [...prevMessages];
               updatedMessages[existingMsgIndex] = {
                 ...updatedMessages[existingMsgIndex],
@@ -134,7 +127,6 @@ export default function ChatSupport() {
               };
               return updatedMessages;
             } else {
-              // 3. NEW BUBBLE LOGIC: First time seeing this ID? Create a fresh entry in the conversation array
               return [
                 ...prevMessages,
                 {
@@ -154,7 +146,7 @@ export default function ChatSupport() {
         },
       });
 
-    // 4. CLEANUP: Correctly tear down the WebSocket hook when the user leaves the page
+    
     return () => {
       subscription.unsubscribe();
     };

@@ -33,43 +33,46 @@ const Catalog = () => {
     return;
   };
   return (
-    <div className="flex flex-col h-screen overflow-y-auto">
+    <div className="flex flex-col min-h-screen ">
       <Header />
       {/* toggle */}
-      <div className="mt-30 flex flex-row p-1 gap-10 items-center justify-center font-sans dark:bg-black">
+      <div className="mt-28 flex py-1 gap-5 justify-start font-sans dark:bg-black overflow-x-auto">
         {/* fixed - two options */}
-        <div
-          className={`   rounded-lg px-5 py-3 flex ${
-            productType === "made-to-order"
-              ? "underline underline-offset-3"
-              : "hover:bg-zinc-200"
-          }   hover:underline hover:underline-offset-3`}
-          onClick={() => setType("made-to-order")}
-        >
-          Made-To-Order
-        </div>
-        <div
-          className={`   rounded-lg px-5 py-3 flex ${
-            productType === "stock"
-              ? "underline underline-offset-3"
-              : "hover:bg-zinc-200"
-          }  hover:underline hover:underline-offset-3`}
-          onClick={() => setType("stock")}
-        >
-          Stock
-        </div>
+        {[
+          "Made-To-Order",
+          "Stock",
+          "Made-To-Order",
+          "Stock",
+          "Made-To-Order",
+          "Stock",
+        ].map((c, index) => (
+          <div
+            key={index}
+            className={`border shrink-0 rounded-lg px-2 py-3 m-1 flex items-center gap-3 cursor-pointer select-none transition-all ${
+              productType === c
+                ? "underline underline-offset-3"
+                : "hover:bg-zinc-200"
+            } hover:underline hover:underline-offset-3`}
+            onClick={() => setType(c)}
+          >
+            <div className="relative aspect-square h-12 w-12 shrink-0 overflow-hidden rounded-lg bg-zinc-300 dark:bg-zinc-700">
+              <div className="absolute inset-0 bg-linear-to-t from-black/60 via-black/20 to-transparent" />
+            </div>
+            <div>{c}</div>
+          </div>
+        ))}
       </div>
       {/* catalog */}
-      <div className="grid w-full h-screen sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-5 3xl:grid-cols-7 p-5 scroll-smooth font-sans dark:bg-black gap-10">
+      <div className="grid w-full grid-cols-2 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-5 3xl:grid-cols-7 p-5 scroll-smooth font-sans dark:bg-black gap-10 overflow-y-auto">
         {/* made to order */}
-        {productType === "made-to-order" &&
+        {productType === "Made-To-Order" &&
           data["popular products"].map((p) => (
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.9 }}
             >
-              <div className="flex flex-col pb-1 h-125 w-75   justify-between bg-zinc-50 shadow-md rounded-lg space-y-3">
+              <div className="col-span-1 flex flex-col pb-1 h-72 w-36 justify-between bg-zinc-50 shadow-md rounded-lg space-y-3">
                 <div className="group rounded-lg  cursor-pointer h-full w-full">
                   <div className="relative overflow-hidden rounded-lg h-full w-full ">
                     <Image
@@ -106,14 +109,14 @@ const Catalog = () => {
           ))}
 
         {/* stock */}
-        {productType === "stock" &&
+        {productType === "Stock" &&
           data["products in stock"].map((p) => (
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.9 }}
             >
-              <div className="flex flex-col pb-1 h-125 w-75   justify-between bg-zinc-50 shadow-md rounded-lg space-y-3">
+              <div className="col-span-1 flex flex-col pb-1 h-72 w-36 justify-between bg-zinc-50 shadow-md rounded-lg space-y-3">
                 <div className="group rounded-lg  cursor-pointer h-full w-full">
                   <div className="relative overflow-hidden rounded-lg h-full w-full ">
                     <Image
