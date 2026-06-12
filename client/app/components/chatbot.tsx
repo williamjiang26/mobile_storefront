@@ -82,7 +82,7 @@ export default function ChatSupport() {
     setMessage("");
     const updatedMessages = [
       ...messages,
-      { id: "", role: "user", content: currentInput },
+      { id: "user-message", role: "user", content: currentInput },
     ];
     // setMessages([...updatedMessages, { id: "", role: "assistant", content: "" }]);
     // const updatedMessages =  messages

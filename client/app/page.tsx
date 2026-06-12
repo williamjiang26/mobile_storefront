@@ -114,8 +114,11 @@ export default function Home() {
                 </div>
 
                 <div className="basis-5/6 flex flex-row w-[80%] mx-auto justify-between overflow-x-auto ">
-                  {data["popular products"].slice(0, 5).map((p) => (
-                    <div className="flex flex-col bg-zinc-50 p-1 min-w-59 justify-between shadow-lg m-1 rounded-lg ">
+                  {data["popular products"].slice(0, 5).map((p, index) => (
+                    <div
+                      key={index}
+                      className="flex flex-col bg-zinc-50 p-1 min-w-59 justify-between shadow-lg m-1 rounded-lg "
+                    >
                       <div className="   flex-col rounded-md p-1">
                         <div className="rounded-lg relative  h-59  bg-zinc-50 p-1 overflow-hidden  ">
                           {p.url && (
@@ -153,8 +156,11 @@ export default function Home() {
                   </span>
                 </div>
                 <div className="basis-5/6 flex flex-row w-[80%] mx-auto justify-between overflow-x-auto">
-                  {data["products in stock"].slice(0, 5).map((p) => (
-                    <div className="flex flex-col bg-zinc-50 p-1 min-w-59 shadow-lg m-1 rounded-lg ">
+                  {data["products in stock"].slice(0, 5).map((p, index) => (
+                    <div
+                      key={index}
+                      className="flex flex-col bg-zinc-50 p-1 min-w-59 shadow-lg m-1 rounded-lg "
+                    >
                       <div className="w-full mx-auto  flex-col rounded-md p-1">
                         <div className="rounded-lg relative     bg-zinc-50 p-1 overflow-hidden h-59">
                           {p.url && (
