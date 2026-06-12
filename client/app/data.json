@@ -102,16 +102,17 @@
   ],
   "frequently asked questions": [
     {
-      "question": "high quality",
-      "answer": ""
+      "question": "how do I place an order?",
+      "answer": "you can place an order by selecting a product or through the chat"
     },
     {
-      "question": "healthy",
-      "answer": ""
+      "question": "how do I select the right product for me?",
+      "answer": "we can recommend a few products depending on your goals, chat w us"
     },
     {
-      "question": "convenient",
-      "answer": ""
+      "question": "do you deliver?",
+
+      "answer": "yes we deliver "
     }
   ],
   "process": [
@@ -141,6 +142,7 @@
       "url": "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/Screen+Shot+2026-05-16+at+2.45.40+PM.png"
     }
   ],
+
   "reviews": [
     {
       "id": 1,
