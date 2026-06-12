@@ -148,7 +148,7 @@ export default function Home() {
               </div>
               {/* 2 - shop right away - products in stock - glimpse of all categories */}
               <div className="relative flex flex-col h-125 rounded-lg items-center justify-center bg-transparent font-sans dark:bg-black pb-5">
-                <div className="basis-1/6 flex items-center justify-center font-bold text-3xl text-white/90 text-center">
+                <div className="basis-1/6 flex items-center justify-center font-bold text-3xl text-white/90 text-center mx-1">
                   <span className="[text-shadow:1px_1px_5px_rgba(0,0,0,0.3)] tracking-wide">
                     Products in stock ~ ships in 2-3 weeks
                   </span>
