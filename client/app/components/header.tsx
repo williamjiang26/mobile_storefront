@@ -28,23 +28,21 @@ const Header = () => {
         opacity: hidden ? 0 : 1,
       }}
       transition={{ duration: 0.25, ease: "easeOut" }}
-      className="flex fixed top-10 inset-x-0 z-50 mx-auto sm:w-[80%] rounded-lg border backdrop-blur justify-between"
+      className="flex fixed px-1 top-10 inset-x-0 z-50 mx-1 sm:w-[80%] sm:mx-auto rounded-lg border backdrop-blur justify-between"
     >
       <div
-        className="hover:bg-zinc-200 sm:p-6 hover:rounded-lg"
+        className="flex items-center justify-start hover:bg-zinc-200 hover:rounded-lg"
         onClick={() => router.push("/")}
       >
         Get Active Foods
       </div>
-      <div className="flex justify-between items-center">
-        {/* about */}
+      <div className="flex justify-end items-center gap-3 py-3">
         <div
-          className="relative p-3"
+          className=""
           onMouseEnter={() => setOpen("about")}
           onMouseLeave={() => setOpen("")}
         >
-          <div className="hover:bg-zinc-200 hover:rounded-lg p-3">About</div>
-
+          <div className="hover:bg-zinc-200 hover:rounded-lg">About</div>
           <AnimatePresence>
             {open === "about" && (
               <motion.div
@@ -52,31 +50,29 @@ const Header = () => {
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 exit={{ opacity: 0, y: 10, scale: 0.98 }}
                 transition={{ duration: 0.18, ease: "easeOut" }}
-                className="absolute left-0 top-full mt-2 w-56 rounded-lg border bg-white shadow-lg"
+                className="absolute top-full mt-2 w-56 rounded-lg border bg-white shadow-lg"
               >
                 <div
                   className="p-3 hover:bg-zinc-100 rounded-lg"
                   onClick={() => router.push("/catalog")}
                 >
                   Catalog
-                </div> 
+                </div>
                 <div
                   className="p-3 hover:bg-zinc-100 rounded-lg"
                   onClick={() => router.push("/about")}
                 >
-                 What is getActiveFoods ?
+                  What is getActiveFoods ?
                 </div>
               </motion.div>
             )}
           </AnimatePresence>
         </div>
-        {/* guides */}
         <div
-          className="relative p-3"
-          onMouseEnter={() => setOpen("guides")}
+           onMouseEnter={() => setOpen("guides")}
           onMouseLeave={() => setOpen("")}
         >
-          <div className="hover:bg-zinc-200 hover:rounded-lg p-3">Guides</div>
+          <div className="hover:bg-zinc-200 hover:rounded-lg">Guides</div>
 
           <AnimatePresence>
             {open === "guides" && (
@@ -85,7 +81,7 @@ const Header = () => {
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 exit={{ opacity: 0, y: 10, scale: 0.98 }}
                 transition={{ duration: 0.18, ease: "easeOut" }}
-                className="absolute left-0 top-full mt-2 w-56 rounded-lg border bg-white shadow-lg"
+                className="absolute top-full mt-2 w-56 rounded-lg border bg-white shadow-lg"
               >
                 <div className="p-3 hover:bg-zinc-100 rounded-lg">
                   product selection guide
@@ -98,22 +94,19 @@ const Header = () => {
             )}
           </AnimatePresence>
         </div>
-        {/* blog */}
-        <div className="relative sm:p-3">
+        <div>
           <div
-            className="hover:bg-zinc-200 hover:rounded-lg p-3"
+            className="hover:bg-zinc-200 hover:rounded-lg "
             onClick={() => router.push("/blog")}
           >
             Blog
           </div>
         </div>
-        {/* links */}
         <div
-          className="relative p-3"
-          onMouseEnter={() => setOpen("links")}
+           onMouseEnter={() => setOpen("links")}
           onMouseLeave={() => setOpen("")}
         >
-          <div className="hover:bg-zinc-200 hover:rounded-lg p-3">Docs</div>
+          <div className="hover:bg-zinc-200 hover:rounded-lg ">Docs</div>
 
           <AnimatePresence>
             {open === "links" && (
@@ -122,7 +115,7 @@ const Header = () => {
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 exit={{ opacity: 0, y: 10, scale: 0.98 }}
                 transition={{ duration: 0.18, ease: "easeOut" }}
-                className="absolute left-0 top-full mt-2 w-56 rounded-lg border bg-white shadow-lg"
+                className="absolute top-full mt-2 w-56 rounded-lg border bg-white shadow-lg"
               >
                 <div className="p-3 hover:bg-zinc-100 rounded-lg">
                   refund policy
@@ -135,13 +128,8 @@ const Header = () => {
             )}
           </AnimatePresence>
         </div>
-        {/* log in  */}
-        <div className="relative sm:p-3">
-          <div className="hover:bg-zinc-200 hover:rounded-lg p-3">Log in</div>
-        </div>
-        {/* sign up */}
-        <div className="relative sm:p-3">
-          <div className="hover:bg-zinc-200 hover:rounded-lg p-3">Sign up</div>
+        <div>
+          <div className="hover:bg-zinc-200 hover:rounded-lg ">Log in</div>
         </div>
       </div>
     </motion.header>

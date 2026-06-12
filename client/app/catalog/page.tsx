@@ -34,7 +34,7 @@ const Catalog = () => {
   };
   return (
     <div className="flex flex-col min-h-screen ">
-      <Header />
+      <Header/>
       {/* toggle */}
       <div className="mt-28 flex py-1 gap-5 justify-start font-sans dark:bg-black overflow-x-auto">
         {/* fixed - two options */}
