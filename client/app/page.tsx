@@ -179,8 +179,8 @@ export default function Home() {
                 </div>
               </div>
             </div>
-            <div className="relative overflow-hidden flex w-full items-center justify-center font-bold text-3xl text-white/90">
-              <div className="flex items-center justify-center text-center w-full font-bold text-3xl text-white/90 bg-blue-300">
+            <div className="relative overflow-hidden flex w-full items-center justify-center">
+              <div className="font-bold text-3xl text-white/90 bg-blue-300">
                 "Conveniently placed healthy foods that will help you stay fit.
                 Organic sugars and protein - no added ingredients." - brand
                 motto
@@ -257,21 +257,21 @@ export default function Home() {
           <ScrollHorizontal listName={"process"} />
         </motion.div>
         {/* 7 - contact */}
-        <div className="w-full h-screen">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={containerVariants}
-          >
-            <div className="m-1 items-center font-semibold text-lg flex justify-center">
-              <div className="flex items-center md:space-x-3">
-                <div>
-                  {" "}
-                  Our team is available 9-5 7x/week, contact or get a quote
-                </div>
+
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={containerVariants}
+        >
+          <div className="m-1 flex justify-center text-center font-semibold text-lg">
+            <div className="flex md:flex-row items-center justify-center">
+              <div>
+                Our team is available 9-5 7x/week, contact or get a quote
+              </div>
+              <div className="flex px-1 my-1 items-center justify-center">
                 <Button
-                  className="h-10 flex items-center"
+                  className="items-center "
                   onClick={() => {
                     router.push("/contact");
                   }}
@@ -280,36 +280,9 @@ export default function Home() {
                 </Button>
               </div>
             </div>
-          </motion.div>
-          <div className="relative w-full md:w-[90%] md:mx-auto overflow-hidden   h-250 bg-zinc-200">
-            {/* Image starts scaled up, and zooms out to scale-100 when the group is hovered */}
-            <Image
-              src={
-                "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/Screen+Shot+2026-05-16+at+2.45.40+PM.png"
-              } // Fixed the fallback logic string
-              alt={""}
-              fill
-              className="object-cover scale-110 transition-transform duration-500 ease-out group-hover:scale-100"
-            />
-            {/* Dark gradient overlay to ensure text is legible against light images */}
-            <div className="absolute inset-0 bg-linear-to-t from-black/60 via-black/20 to-transparent" />
-            {/* Text forced to the bottom-left corner */}{" "}
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={containerVariants}
-            >
-              <div className="w-full md:w-[90%] mx-auto">
-                <div className="absolute bottom-0 mb-5">
-                  <Button onClick={() => router.push("/contact")}>
-                    Contact
-                  </Button>
-                </div>
-              </div>
-            </motion.div>
           </div>
-        </div>
+        </motion.div>
+
         {/* 8 - guides */}
         <motion.div
           initial="hidden"
@@ -317,7 +290,7 @@ export default function Home() {
           viewport={{ once: true }}
           variants={containerVariants}
         >
-          <div className="flex flex-col md:flex-row sm:space-y-1 w-full md:w-[90%] mx-auto rounded-lg md:h-screen h-full items-center justify-between gap-3">
+          <div className="flex flex-col md:flex-row sm:space-y-1 w-full md:w-[90%] mx-auto rounded-lg md:h-screen h-full items-center justify-between gap-3 mb-3 px-3">
             {/* mobile screen rectangle */}
             <div className="relative group overflow-hidden w-full md:aspect-square aspect-video rounded-lg bg-zinc-200">
               {/* Image starts scaled up, and zooms out to scale-100 when the group is hovered */}
@@ -374,3 +347,32 @@ export default function Home() {
     </div>
   );
 }
+
+const PageComponent = () => (
+  <div className="relative w-full md:w-[90%] md:mx-auto overflow-hidden   h-250 bg-zinc-200">
+    {/* Image starts scaled up, and zooms out to scale-100 when the group is hovered */}
+    <Image
+      src={
+        "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/Screen+Shot+2026-05-16+at+2.45.40+PM.png"
+      } // Fixed the fallback logic string
+      alt={""}
+      fill
+      className="object-cover scale-110 transition-transform duration-500 ease-out group-hover:scale-100"
+    />
+    {/* Dark gradient overlay to ensure text is legible against light images */}
+    <div className="absolute inset-0 bg-linear-to-t from-black/60 via-black/20 to-transparent" />
+    {/* Text forced to the bottom-left corner */}
+    <motion.div
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true }}
+      variants={containerVariants}
+    >
+      <div className="w-full md:w-[90%] mx-auto">
+        <div className="absolute bottom-0 mb-5">
+          <Button onClick={() => router.push("/contact")}>Contact</Button>
+        </div>
+      </div>
+    </motion.div>
+  </div>
+);
