@@ -4,13 +4,10 @@ import { createClient } from "graphql-ws";
 
 import { getMainDefinition } from "@apollo/client/utilities";
 import { gql } from "@apollo/client";
-import { projectHmrEvents } from "@/node_modules/next/dist/build/swc/generated-native";
 // 1. HTTP Link for standard Queries and Mutations
 const httpLink = new HttpLink({
   uri: "http://localhost:8003/graphql",
 });
-
-
 
 // 2. WebSocket Link for real-time Subscriptions
 const wsLink = new GraphQLWsLink(
@@ -31,8 +28,6 @@ const splitLink = split(
   wsLink,
   httpLink
 );
-
-
 
 export const client = new ApolloClient({
   link: splitLink,
@@ -71,7 +66,6 @@ export const LISTEN_MESSAGES_SUBSCRIPTION = gql`
 //     },
 //   });
 
-
 const SEND_MESSAGE_MUTATION = gql`
   mutation PublishMessage(
     $senderType: String!
@@ -86,7 +80,11 @@ const SEND_MESSAGE_MUTATION = gql`
 `;
 
 // Helper function to fire off user chat actions
-export async function handleUserSendMessage(name, typedText, senderType) {
+export async function handleUserSendMessage(
+  name: string,
+  typedText: string,
+  senderType: string
+) {
   try {
     const result = await client.mutate({
       mutation: SEND_MESSAGE_MUTATION,
@@ -96,14 +94,7 @@ export async function handleUserSendMessage(name, typedText, senderType) {
         text: typedText,
       },
     });
-
-    console.log(
-      "💾 Message archived in Postgres with ID:",
-      result.data.sendMessage.id
-    );
   } catch (error) {
     console.error("Failed to commit mutation request:", error);
   }
 }
-
- 

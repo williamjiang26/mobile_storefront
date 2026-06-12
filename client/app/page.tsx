@@ -13,7 +13,6 @@ import { useState, useEffect, useRef } from "react";
 import Header from "./components/header";
 import Footer from "./components/footer";
 import ScrollHorizontal from "./components/features";
-import ScrollHorizontal2 from "./components/process";
 import VerticalTicker from "./components/reviews";
 import Button from "./components/slideButton";
 import VideoBackground from "./components/youtubeVideo";
@@ -363,11 +362,11 @@ const PageComponent = () => (
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true }}
-      variants={containerVariants}
+      // variants={containerVariants}
     >
       <div className="w-full md:w-[90%] mx-auto">
         <div className="absolute bottom-0 mb-5">
-          <Button onClick={() => router.push("/contact")}>Contact</Button>
+          {/* <Button onClick={() => router.push("/contact")}>Contact</Button> */}
         </div>
       </div>
     </motion.div>

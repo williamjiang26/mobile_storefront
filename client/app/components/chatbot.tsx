@@ -7,7 +7,9 @@ import {
   client,
   LISTEN_MESSAGES_SUBSCRIPTION,
 } from "../actions/chats";
-
+interface ListenMessagesData {
+  listenMessages: any; // Replace 'any' with your actual Message type if available
+}
 export default function ChatSupport() {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([
@@ -80,7 +82,7 @@ export default function ChatSupport() {
     setMessage("");
     const updatedMessages = [
       ...messages,
-      {id:"", role: "user", content: currentInput },
+      { id: "", role: "user", content: currentInput },
     ];
     // setMessages([...updatedMessages, { id: "", role: "assistant", content: "" }]);
     // const updatedMessages =  messages
@@ -105,48 +107,34 @@ export default function ChatSupport() {
   };
   useEffect(() => {
     const subscription = client
-      .subscribe({ query: LISTEN_MESSAGES_SUBSCRIPTION })
-      .subscribe({
-        next(response) {
-          const newMessage = response.data.listenMessages;
-          console.log(
-            `✨ Real-time chunk received for ID [${newMessage.id}]:`,
-            newMessage.text
+      .subscribe<ListenMessagesData>({ query: LISTEN_MESSAGES_SUBSCRIPTION })
+      .subscribe((response) => {
+        const newMessage = response.data?.listenMessages;
+        setMessages((prevMessages) => {
+          const existingMsgIndex = prevMessages.findIndex(
+            (msg) => msg.id === newMessage.id
           );
+          if (existingMsgIndex > -1) {
+            const updatedMessages = [...prevMessages];
+            updatedMessages[existingMsgIndex] = {
+              ...updatedMessages[existingMsgIndex],
+              content:
+                updatedMessages[existingMsgIndex].content + newMessage.text,
+            };
+            return updatedMessages;
+          }
 
-          setMessages((prevMessages) => {
-            const existingMsgIndex = prevMessages.findIndex(
-              (msg) => msg.id === newMessage.id
-            );
-            if (existingMsgIndex > -1) {
-              const updatedMessages = [...prevMessages];
-              updatedMessages[existingMsgIndex] = {
-                ...updatedMessages[existingMsgIndex],
-                content:
-                  updatedMessages[existingMsgIndex].content + newMessage.text,
-              };
-              return updatedMessages;
-            } else {
-              return [
-                ...prevMessages,
-                {
-                  id: newMessage.id,
-                  role: newMessage.senderType === "user" ? "user" : "assistant",
-                  content: newMessage.text, // Populates with the first token/chunk
-                },
-              ];
-            }
-          });
-        },
-        error(err) {
-          console.error("Subscription pipeline broken:", err);
-        },
-        complete() {
-          console.log("Subscription connection closed cleanly.");
-        },
+          return [
+            ...prevMessages,
+            {
+              id: newMessage.id,
+              role: newMessage.senderType === "user" ? "user" : "assistant",
+              content: newMessage.text,
+            },
+          ];
+        });
       });
 
-    
     return () => {
       subscription.unsubscribe();
     };

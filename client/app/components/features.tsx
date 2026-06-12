@@ -5,7 +5,11 @@ import { motion, useScroll, useTransform } from "motion/react";
 import { useRef } from "react";
 import data from "../data.json";
 
-export default function ScrollHorizontal({ listName }) {
+export default function ScrollHorizontal({
+  listName,
+}: {
+  listName: keyof typeof data;
+}) {
   const containerRef = useRef(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -39,7 +43,7 @@ export default function ScrollHorizontal({ listName }) {
               className="flex gap-7.5 will-change-transform max-[600px]:gap-4 motion-reduce:transform-none! z-20"
               style={{ x }}
             >
-              {data[listName].map((feature) => (
+              {(data[listName] as any[]).map((feature) => (
                 <div
                   key={feature.id}
                   className="gallery-item shrink-0 w-125 h-150 rounded-xl relative overflow-hidden max-[600px]:w-70 max-[600px]:h-87.5 before:content-[''] before:absolute before:inset-0 before:bg-linear-to-b before:from-transparent before:via-black/30 before:to-black/80 before:z-10 before:pointer-events-none"
