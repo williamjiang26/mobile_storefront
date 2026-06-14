@@ -3,10 +3,10 @@ import React from "react";
 const Page = () => {
   return (
     <div>
-      {/* storefront */}
-      <div>storefront</div>
-      {/*  a mobile site that has xyz benefits  */}
-      <div>a mobile site</div>
+      {/* business dashboard */}
+      <div>business dashboard</div>
+      {/*  a dashbpard  */}
+      <div>a dashboard to easily manage operations at scale</div>
       {/* preview click for live demo */}
       <div>preview/demo</div>
     </div>

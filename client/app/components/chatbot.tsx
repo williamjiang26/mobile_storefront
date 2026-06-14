@@ -10,7 +10,7 @@ import {
 interface ListenMessagesData {
   listenMessages: any; // Replace 'any' with your actual Message type if available
 }
-const roomId = window.crypto.randomUUID();
+const roomId = crypto.randomUUID();
 
 export default function ChatSupport() {
   const [isOpen, setIsOpen] = useState(false);

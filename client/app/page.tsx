@@ -33,17 +33,17 @@ const Page = () => {
       y: 0,
       transition: {
         duration: 0.5,
-        ease: "easeOut",
+        ease: "easeInOut",
       },
     },
-  };
+  } as const;
   return (
-    <div className="min-h-screen flex flex-col w-screen  ">
-      <div className="h-[10vh] bg-red-300 flex justify-between items-center px-1">
-        <div className="border flex items-center p-3 gap-1">
+    <div className="min-h-screen flex flex-col w-screen">
+      <div className="h-[10vh] bg-gray-100 flex justify-between items-center px-1">
+        <div className="flex items-center p-3 gap-1">
           <Store className="w-5 h-5" /> <div>storefront</div>
         </div>
-        <div className="border flex justify-between items-center space-x-3">
+        <div className="flex justify-between items-center space-x-3">
           <div className="px-5 py-2 hover:border rounded-lg hover:text-white">
             blog
           </div>
@@ -52,8 +52,8 @@ const Page = () => {
           </div>
         </div>
       </div>
-      <div className="min-h-[75vh] border flex flex-col space-y-1   ">
-        {/* tools for running you retail business...  */} 
+      <div className="min-h-[75vh] flex flex-col space-y-1">
+        {/* tools for running you retail business...  */}
         <div className="h-[25vh] flex justify-center items-center">
           <motion.div
             initial={{ y: 50, opacity: 0 }}
@@ -65,19 +65,19 @@ const Page = () => {
               mass: 1.9,
             }}
           >
-            <div className="text-center flex items-center leading-tight tracking-tight">
+            <div className="text-center flex items-center leading-tight tracking-tight text-3xl font-light ">
               a set of tools you need for running your retail business
             </div>
           </motion.div>
         </div>
         {/* tools popup  */}
-        <div className="h-[25vh] flex gap-1 mx-1">
+        <div className="h-[25vh] flex gap-1 mx-1 ">
           <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
             variants={containerVariants}
-            className="grid grid-cols-2 md:grid-cols-3 gap-1 w-full mx-auto"
+            className="grid grid-cols-2 md:grid-cols-3 gap-1 w-full mx:auto"
           >
             {[
               {
@@ -87,8 +87,8 @@ const Page = () => {
               },
               {
                 title: "business dashboard",
-                url: "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/Screen+Shot+2026-06-14+at+12.36.56+PM.png",
-                nav: "/landing/docs",
+                url: "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/Screen+Shot+2026-05-29+at+8.16.28+PM.png",
+                nav: "/businessdashboard/docs",
               },
             ].map((p, index) => (
               <motion.div
@@ -103,7 +103,7 @@ const Page = () => {
                     alt=""
                     fill
                     sizes="100"
-                    className="object-cover"
+                    className="object-cover transition hover:scale-110 duration-300 ease-in-out "
                   />
                 )}
                 <div className="absolute bottom-0 left-0 p-6 text-white bg-linear-to-t from-black/60 to-transparent w-full">
@@ -114,7 +114,7 @@ const Page = () => {
           </motion.div>
         </div>
         {/* contact / demo */}
-        <div className="h-[25vh] flex justify-center bg-white rounded-xl">
+        <div className="h-[25vh] flex justify-center bg-gray-50  ">
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -136,11 +136,11 @@ const Page = () => {
         </div>
       </div>
       {/* footer */}
-      <div className="h-[15vh]  bg-gray-600 rounded-t-xl text-white grid grid-cols-2 px-1">
+      <div className="h-[15vh] bg-gray-500 text-white grid grid-cols-2 px-1">
+        <div className="col-span-2 text-xl font-semibold">storefront</div>
         <div className="col-span-1 flex flex-col">
-          <div className="text-xl font-semibold">storefront</div>
           {["call us", "email us", "follow us"].map((p) => (
-            <div className="mr-auto">{p}</div>
+            <div className="mr-auto text-sm">{p}</div>
           ))}
           <div>
             <FontAwesomeIcon icon={faInstagram} />
@@ -150,9 +150,9 @@ const Page = () => {
             <FontAwesomeIcon icon={faPinterest} />
           </div>
         </div>
-        <div className="col-span-1 flex flex-col ml-auto">
+        <div className="col-span-1 flex flex-col">
           {["products", "blog", "reviews"].map((p) => (
-            <div className="ml-auto">{p}</div>
+            <div className="ml-auto text-sm">{p}</div>
           ))}
         </div>
       </div>
