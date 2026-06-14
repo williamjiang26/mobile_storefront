@@ -38,7 +38,7 @@ export default function RootLayout({
     >
       <TooltipProvider>
         <body className="min-h-full flex flex-col">
-          <ClerkProvider>
+          <ClerkProvider telemetry={false}>
             {children}
             <Chatbot />
           </ClerkProvider>
