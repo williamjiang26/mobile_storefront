@@ -71,19 +71,26 @@ const SEND_MESSAGE_MUTATION = gql`
     $senderType: String!
     $senderName: String!
     $text: String!
+    $roomId: String!
   ) {
-    sendMessage(senderType: $senderType, senderName: $senderName, text: $text) {
+    sendMessage(
+      senderType: $senderType
+      senderName: $senderName
+      text: $text
+      roomId: $roomId
+    ) {
       id
       text
+      roomId
     }
   }
 `;
-
 // Helper function to fire off user chat actions
 export async function handleUserSendMessage(
   name: string,
   typedText: string,
-  senderType: string
+  senderType: string,
+  roomId: string
 ) {
   try {
     const result = await client.mutate({
@@ -92,6 +99,7 @@ export async function handleUserSendMessage(
         senderType: senderType,
         senderName: name,
         text: typedText,
+        roomId: roomId,
       },
     });
   } catch (error) {

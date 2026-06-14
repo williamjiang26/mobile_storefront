@@ -10,6 +10,8 @@ import {
 interface ListenMessagesData {
   listenMessages: any; // Replace 'any' with your actual Message type if available
 }
+const roomId = window.crypto.randomUUID();
+
 export default function ChatSupport() {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([
@@ -27,6 +29,7 @@ export default function ChatSupport() {
   ]);
   const [message, setMessage] = useState("");
   const [isSalesRep, setSalesRep] = useState(false);
+ 
   // send message function
   // const sendMessage = async () => {
   //   setMessage("");
@@ -70,7 +73,7 @@ export default function ChatSupport() {
 
   // send message to chat regular
   const sendMessage = () => {
-    handleUserSendMessage("user", message, "user");
+    handleUserSendMessage("user", message, "user", roomId);
     setMessage("");
   };
 

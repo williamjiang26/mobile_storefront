@@ -137,13 +137,15 @@ const Header = () => {
         </div>
         <div>
           <Show when="signed-in">
-            <UserAvatar
+            <div
               onMouseEnter={() => setOpen("user-portal")}
               onMouseLeave={() => setOpen("")}
-            />
+              className="inline-block" // Keeps layout tight around the avatar
+            >
+              <UserAvatar />
+            </div>
           </Show>
-          <Show when="signed-out">
-            <SignInButton />
+          <Show when="signed-out"><SignInButton />
           </Show>
           <AnimatePresence>
             {open === "user-portal" && (
