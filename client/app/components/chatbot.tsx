@@ -115,7 +115,7 @@ export default function ChatSupport() {
         const newMessage = response.data?.listenMessages;
         setMessages((prevMessages) => {
           const existingMsgIndex = prevMessages.findIndex(
-            (msg) => msg.id === newMessage.id
+            (msg) => msg.id === newMessage?.id
           );
           if (existingMsgIndex > -1) {
             const updatedMessages = [...prevMessages];
