@@ -67,7 +67,7 @@ const Footer = () => {
           <div>Zelle</div>
         </div>
  
-        <div className="col-span-3 text-center whitespace-nowrap">
+        <div className="col-span-3 sm:col-span-5 w-full text-center whitespace-nowrap mt-5">
           Copywright 2026 @ getactivefoods.com
         </div>
         
