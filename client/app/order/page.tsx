@@ -100,13 +100,13 @@ const Page = () => {
   };
 
   return (
-    <div className="flex flex-col justify-between h-screen w-full ">
+    <div className="flex flex-col justify-between w-full ">
       <Header />
-      <div className="mt-50 flex w-[80%] mx-auto h-full ">
+      <div className="mt-50 w-full sm:w-[80%] mx-auto grid grid-cols-1 sm:grid-cols-2">
         {/* <div className="absolute top-0 left-0 ">back</div> */}
-        <div className="rounded-lg ml-auto w-full mb-5 h-110">
+        <div className="cols-span-1 rounded-lg ml-auto w-full mb-10">
           {/* product image */}
-          <div className="rounded-md px-1 flex h-full justify-center items-center">
+          <div className="rounded-md px-1 flex sm:h-full justify-center items-center">
             <div className="relative rounded-lg aspect-square h-50 overflow-hidden group cursor-pointer">
               <Image
                 src={product.url}
@@ -116,7 +116,7 @@ const Page = () => {
               />
             </div>
           </div>
-          <div className=" flex flex-col space-y-1">
+          <div className=" flex flex-col w-[80%] mx-auto space-y-1">
             <div className="text-xl">{product.name}</div>
             <div className="font-semibold text-xl">
               {product["start amount"]}
@@ -127,7 +127,7 @@ const Page = () => {
           </div>
         </div>
         {/* Form */}
-        <div className="rounded-r-lg mr-auto w-full">
+        <div className="cols-span-1 rounded-r-lg mr-auto w-full">
           {/* multistep form */}
           <form className="space-y-1 px-1">
             <Card index={1}>
