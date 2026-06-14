@@ -43,13 +43,11 @@ const Page = () => {
   const prevStep = () => setStep((s) => Math.max(s - 1, 1));
   //
   const searchParams = useSearchParams();
-
   const idParam = searchParams.get("id"); 
   const id = idParam ? Number(idParam) : 0; 
   const index = id % 10;
   // search item function from database
   const product = data["popular products"][index - 1];
-  console.log("🚀 ~ Page ~ product:", product);
   const handleCheckout = () => {
     router.push(`/checkout?id=${id}`); // if (!response.ok)
     return;
