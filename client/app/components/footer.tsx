@@ -14,7 +14,7 @@ const Footer = () => {
   return (
     <div className="relative flex h-full pt-30 justify-between md:w-[90%] mx-auto bg-yellow-300/30 font-sans dark:bg-black rounded-t-lg text-black/50">
       <div className="absolute m-5 top-0 left-0">Get Active Foods</div>
-      <div className="grid grid-cols-3">
+      <div className="grid grid-cols-3 sm:grid-cols-5">
         <div className="col-span-1 w-full">
           {/* follow us */}
           <div className="font-semibold">Get in touch</div>
