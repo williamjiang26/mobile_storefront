@@ -158,6 +158,9 @@ const Page = () => {
                       <div className="absolute top-0 left-0 m-3 text-lg">
                         {flavor}
                       </div>
+                      <div className="absolute top-0 right-0 m-3 text-sm">
+                        + $1
+                      </div>
                     </div>
                   ))}
                 </div>
