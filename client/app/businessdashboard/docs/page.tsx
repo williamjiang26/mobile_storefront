@@ -30,7 +30,7 @@ const Page = () => {
       >
         <Image
           src={
-            "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/Screen+Shot+2026-05-29+at+8.16.28+PM.png"
+            "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/Screen+Shot+2026-06-14+at+3.14.20+PM.png"
           }
           alt=""
           fill
