@@ -11,7 +11,7 @@ import {
   faPinterest,
   faTiktok,
 } from "@fortawesome/free-brands-svg-icons";
-// 
+//
 import { motion } from "motion/react";
 const Page = () => {
   const router = useRouter();
@@ -38,7 +38,7 @@ const Page = () => {
     },
   };
   return (
-    <div className="min-h-screen flex flex-col w-screen">
+    <div className="min-h-screen flex flex-col w-screen  ">
       <div className="h-[10vh] bg-red-300 flex justify-between items-center px-1">
         <div className="border flex items-center p-3 gap-1">
           <Store className="w-5 h-5" /> <div>storefront</div>
@@ -52,8 +52,8 @@ const Page = () => {
           </div>
         </div>
       </div>
-      <div className="min-h-[75vh] border flex flex-col space-y-1">
-        {/* tools for running you retail business...  */}{" "}
+      <div className="min-h-[75vh] border flex flex-col space-y-1   ">
+        {/* tools for running you retail business...  */} 
         <div className="h-[25vh] flex justify-center items-center">
           <motion.div
             initial={{ y: 50, opacity: 0 }}
@@ -82,10 +82,14 @@ const Page = () => {
             {[
               {
                 title: "storefront",
-                url: "",
+                url: "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/Screen+Shot+2026-06-14+at+12.36.56+PM.png",
                 nav: "/landing/docs",
               },
-              { title: "business dashboard", url: "", nav: "/landing/docs" },
+              {
+                title: "business dashboard",
+                url: "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/Screen+Shot+2026-06-14+at+12.36.56+PM.png",
+                nav: "/landing/docs",
+              },
             ].map((p, index) => (
               <motion.div
                 key={index}
@@ -93,18 +97,15 @@ const Page = () => {
                 className="rounded-lg relative overflow-hidden group bg-slate-900"
                 onClick={() => router.push(p.nav)}
               >
-                {/* {p.url && ( */}
-                <Image
-                  src={
-                    "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/images.jpg" ||
-                    "/placeholder.png"
-                  }
-                  alt=""
-                  fill
-                  sizes="100"
-                  className="object-cover"
-                />
-                {/* )} */}
+                {p.url && (
+                  <Image
+                    src={p.url || "/placeholder.png"}
+                    alt=""
+                    fill
+                    sizes="100"
+                    className="object-cover"
+                  />
+                )}
                 <div className="absolute bottom-0 left-0 p-6 text-white bg-linear-to-t from-black/60 to-transparent w-full">
                   <h2 className="font-bold">{p.title}</h2>
                 </div>
@@ -113,7 +114,7 @@ const Page = () => {
           </motion.div>
         </div>
         {/* contact / demo */}
-        <div className="h-[25vh] flex justify-center">
+        <div className="h-[25vh] flex justify-center bg-white rounded-xl">
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -135,7 +136,7 @@ const Page = () => {
         </div>
       </div>
       {/* footer */}
-      <div className="h-[15vh] bg-gray-600 text-white grid grid-cols-2 px-1">
+      <div className="h-[15vh]  bg-gray-600 rounded-t-xl text-white grid grid-cols-2 px-1">
         <div className="col-span-1 flex flex-col">
           <div className="text-xl font-semibold">storefront</div>
           {["call us", "email us", "follow us"].map((p) => (
