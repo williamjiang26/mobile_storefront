@@ -122,7 +122,7 @@ export default function ChatSupport() {
             updatedMessages[existingMsgIndex] = {
               ...updatedMessages[existingMsgIndex],
               content:
-                updatedMessages[existingMsgIndex].content + newMessage.text,
+                updatedMessages[existingMsgIndex].content + newMessage?.text,
             };
             return updatedMessages;
           }
@@ -130,9 +130,9 @@ export default function ChatSupport() {
           return [
             ...prevMessages,
             {
-              id: newMessage.id,
-              role: newMessage.senderType === "user" ? "user" : "assistant",
-              content: newMessage.text,
+              id: newMessage?.id,
+              role: newMessage?.senderType === "user" ? "user" : "assistant",
+              content: newMessage?.text,
             },
           ];
         });

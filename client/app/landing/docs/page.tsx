@@ -31,8 +31,7 @@ const Page = () => {
         >
           <Image
             src={
-              "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/Screen+Shot+2026-06-14+at+12.36.56+PM.png" ||
-              "/placeholder.png"
+              "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/Screen+Shot+2026-06-14+at+12.36.56+PM.png"
             }
             alt=""
             fill
