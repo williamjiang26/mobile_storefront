@@ -49,13 +49,13 @@ export default function MotionReviewTicker() {
       <div className="max-w-7xl mx-auto">
         {/* Title */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-3xl font-black tracking-tight text-white/50 dark:text-white sm:text-5xl">
+          <h2 className="text-3xl font-black tracking-tight text-white dark:text-white sm:text-5xl">
             <span className="[text-shadow:1px_1px_1px_rgba(0,0,0,0.1)] tracking-wide">
               Leave a review
             </span>
           </h2>
         </div>
-        <div className="relative h-150 overflow-hidden rounded-3xl border border-slate-200 dark:border-slate-800 bg-slate-100/30 dark:bg-slate-900/20 p-5 max-w-xl mx-auto">
+        <div className="relative h-150 overflow-hidden rounded-3xl  border-slate-200 dark:border-slate-800 bg-slate-100/30 dark:bg-slate-900/20 p-5 max-w-xl mx-auto">
           <motion.div
             className="flex flex-col gap-5"
             initial={{ y: 0 }}
@@ -76,7 +76,7 @@ export default function MotionReviewTicker() {
           <div className="absolute bottom-0 inset-x-0 h-20 bg-linear-to-t from-slate-50 dark:from-slate-950 to-transparent pointer-events-none z-10" />
         </div>
         {/* Title */}
-        <div className="text-center max-w-lg mt-3 mx-auto mb-16">
+        <div className="text-center max-w-lg mt-5 mx-auto mb-16">
           <div
             className="relative overflow-hidden z-10 bg-white
             px-5 py-3 rounded-lg  
