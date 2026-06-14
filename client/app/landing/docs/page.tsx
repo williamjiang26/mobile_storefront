@@ -1,7 +1,8 @@
 "use client";
 import Image from "@/node_modules/next/image";
 import { motion } from "motion/react";
-
+// 
+import { useRouter } from "@/node_modules/next/navigation";
 const Page = () => {
   const itemVariants = {
     hidden: { opacity: 0, y: 30 },
@@ -14,6 +15,7 @@ const Page = () => {
       },
     },
   } as const;
+  const router = useRouter()
   return (
     <div className="flex flex-col m-1">
       <div className="space-y-3">
@@ -28,6 +30,7 @@ const Page = () => {
         <motion.div
           variants={itemVariants}
           className="rounded-lg relative overflow-hidden aspect-video group bg-slate-900"
+          onClick={() => router.push('/landing')}
         >
           <Image
             src={
