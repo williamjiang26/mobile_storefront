@@ -29,7 +29,7 @@ export default function ChatSupport() {
   ]);
   const [message, setMessage] = useState("");
   const [isSalesRep, setSalesRep] = useState(false);
- 
+
   // send message function
   // const sendMessage = async () => {
   //   setMessage("");
@@ -113,6 +113,10 @@ export default function ChatSupport() {
       .subscribe<ListenMessagesData>({ query: LISTEN_MESSAGES_SUBSCRIPTION })
       .subscribe((response) => {
         const newMessage = response.data?.listenMessages;
+        if (!newMessage) {
+          console.warn("new message undefined");
+          return;
+        }
         setMessages((prevMessages) => {
           const existingMsgIndex = prevMessages.findIndex(
             (msg) => msg.id === newMessage?.id
