@@ -12,7 +12,7 @@ const httpLink = new HttpLink({
 // 2. WebSocket Link for real-time Subscriptions
 const wsLink = new GraphQLWsLink(
   createClient({
-    url: process.env.NEXT_WEBSOCKET_CHATS_API_URL as string,
+    url: "ws://localhost:8003/graphql",
   })
 );
 
@@ -35,8 +35,8 @@ export const client = new ApolloClient({
 });
 
 export const LISTEN_MESSAGES_SUBSCRIPTION = gql`
-  subscription OnNewMessage {
-    listenMessages {
+  subscription OnNewMessage($roomId: String!) {
+    listenMessages(roomId: $roomId) {
       id
       senderName
       senderType
@@ -44,27 +44,6 @@ export const LISTEN_MESSAGES_SUBSCRIPTION = gql`
     }
   }
 `;
-
-// Start the real-time observer stream
-// export const subscription = client
-//   .subscribe({ query: LISTEN_MESSAGES_SUBSCRIPTION })
-//   .subscribe({
-//     next(response) {
-//       const newMessage = response.data.listenMessages;
-//       console.log(
-//         `✨ Real-time update from ${newMessage.senderName}:`,
-//         newMessage.text
-//       );
-//       // Frontend Logic: Append `newMessage` to your UI state array here
-//       setMessages([...prev])
-//     },
-//     error(err) {
-//       console.error("Subscription pipeline broken:", err);
-//     },
-//     complete() {
-//       console.log("Subscription connection closed cleanly.");
-//     },
-//   });
 
 const SEND_MESSAGE_MUTATION = gql`
   mutation PublishMessage(

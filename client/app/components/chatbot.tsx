@@ -30,55 +30,14 @@ export default function ChatSupport() {
   const [message, setMessage] = useState("");
   const [isSalesRep, setSalesRep] = useState(false);
 
-  // send message function
-  // const sendMessage = async () => {
-  //   setMessage("");
-  //   setMessages((prev) => [
-  //     ...prev,
-  //     { role: "user", content: message },
-  //     { role: "assistant", content: "" },
-  //   ]);
-  //   try {
-  //     const res = await fetch("http://localhost:8000/api/chat/stream", {
-  //       method: "POST",
-  //       headers: { "Content-Type": "application/json" },
-  //       body: JSON.stringify({
-  //         messages: [...messages, { role: "user", content: message }],
-  //       }),
-  //     });
-  //     const reader = res.body?.getReader();
-  //     if (!reader) throw new Error("No stream reader");
-
-  //     const decoder = new TextDecoder();
-
-  //     while (true) {
-  //       const { done, value } = await reader.read();
-  //       console.log("🚀 ~ sendMessage ~ value:", value);
-  //       if (done) break;
-
-  //       const text = decoder.decode(value, { stream: true });
-
-  //       setMessages((prev) => {
-  //         const last = prev[prev.length - 1];
-  //         return [
-  //           ...prev.slice(0, -1),
-  //           { ...last, content: last.content + text },
-  //         ];
-  //       });
-  //     }
-  //   } catch (error) {
-  //     console.error("Stream error:", error);
-  //   }
-  // };
-
   // send message to chat regular
   const sendMessage = () => {
     handleUserSendMessage("user", message, "user", roomId);
     setMessage("");
   };
-
   const sendAgentMessage = async () => {
     if (!message.trim()) return; // Prevent sending empty messages
+    console.log("🚀 ~ sendAgentMessage ~ message:");
 
     // 1. Clear the input box right away
     const currentInput = message;
@@ -87,15 +46,14 @@ export default function ChatSupport() {
       ...messages,
       { id: "user-message", role: "user", content: currentInput },
     ];
-    // setMessages([...updatedMessages, { id: "", role: "assistant", content: "" }]);
-    // const updatedMessages =  messages
+    const payload = { roomId: roomId, messages: updatedMessages };
     try {
       await fetch("http://localhost:8003/api/chat", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(updatedMessages),
+        body: JSON.stringify(payload),
       });
     } catch (error) {
       console.error("Error fetching agent stream:", error);
@@ -108,44 +66,50 @@ export default function ChatSupport() {
     ); // switch the route to sales rep
     setSalesRep(true);
   };
+
   useEffect(() => {
     const subscription = client
-      .subscribe<ListenMessagesData>({ query: LISTEN_MESSAGES_SUBSCRIPTION })
-      .subscribe((response) => {
-        const newMessage = response.data?.listenMessages;
-        if (!newMessage) {
-          console.warn("new message undefined");
-          return;
-        }
-        setMessages((prevMessages) => {
-          const existingMsgIndex = prevMessages.findIndex(
-            (msg) => msg.id === newMessage?.id
-          );
-          if (existingMsgIndex > -1) {
-            const updatedMessages = [...prevMessages];
-            updatedMessages[existingMsgIndex] = {
-              ...updatedMessages[existingMsgIndex],
-              content:
-                updatedMessages[existingMsgIndex].content + newMessage?.text,
-            };
-            return updatedMessages;
+      .subscribe<ListenMessagesData>({
+        query: LISTEN_MESSAGES_SUBSCRIPTION,
+        variables: { roomId },
+      })
+      .subscribe({
+        next(response) {
+          const newMessage = response.data?.listenMessages;
+          console.log("🚀 ~ next ~ newMessage:", newMessage)
+          if (!newMessage) {
+            console.warn("new message undefined");
+            return;
           }
-
-          return [
-            ...prevMessages,
-            {
-              id: newMessage?.id,
-              role: newMessage?.senderType === "user" ? "user" : "assistant",
-              content: newMessage?.text,
-            },
-          ];
-        });
+          setMessages((prevMessages) => {
+            const existingMsgIndex = prevMessages.findIndex(
+              (msg) => msg.id === newMessage?.id
+            );
+            if (existingMsgIndex > -1) {
+              const updatedMessages = [...prevMessages];
+              updatedMessages[existingMsgIndex] = {
+                ...updatedMessages[existingMsgIndex],
+                content:
+                  updatedMessages[existingMsgIndex].content + newMessage?.text,
+              };
+              return updatedMessages;
+            }
+            return [
+              ...prevMessages,
+              {
+                id: newMessage?.id,
+                role: newMessage?.senderType === "user" ? "user" : "assistant",
+                content: newMessage?.text,
+              },
+            ];
+          });
+        },
       });
 
     return () => {
       subscription.unsubscribe();
     };
-  }, []);
+  }, [roomId, client]);
 
   return (
     <>
