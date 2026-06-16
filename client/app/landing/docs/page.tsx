@@ -1,8 +1,12 @@
 "use client";
 import Image from "@/node_modules/next/image";
 import { motion } from "motion/react";
-// 
+//
 import { useRouter } from "@/node_modules/next/navigation";
+import ResponsiveDialog from "../../components/ResponsiveDialog";
+import { useState } from "react";
+import ordermanagementdemo from "../../../public/ordermanagementdemo.mp4";
+import { SheetTitle } from "@/components/ui/sheet";
 const Page = () => {
   const itemVariants = {
     hidden: { opacity: 0, y: 30 },
@@ -15,14 +19,66 @@ const Page = () => {
       },
     },
   } as const;
-  const router = useRouter()
+  const router = useRouter();
+  const [isOpen, setIsOpen] = useState(false);
+  //
+  const [feature, setFeature] = useState({
+    video: ordermanagementdemo,
+    title: "automated customer support",
+  });
+  const handleOpen = (p) => {
+    setFeature(p);
+    setIsOpen(true);
+  };
+  const features = [
+    { video: ordermanagementdemo, title: "automated customer support" },
+    { video: ordermanagementdemo, title: "request sales representative" },
+    { video: ordermanagementdemo, title: "account management: rewards" },
+    { video: ordermanagementdemo, title: "account management: order tracking" },
+    { video: ordermanagementdemo, title: "streamlined checkout" },
+    { video: ordermanagementdemo, title: "find nearby locations" },
+    { video: ordermanagementdemo, title: "animated landing page" },
+    { video: ordermanagementdemo, title: "browse catalog" },
+  ];
   return (
-    <div className="flex flex-col m-1">
+    <div className="flex flex-col m-1 w-screen h-screen">
       <div className="space-y-3">
+        <ResponsiveDialog
+          isOpen={isOpen}
+          setIsOpen={setIsOpen}
+          title={feature.title}
+          // description={description}
+          className=""
+        >
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            style={{
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+              display: "block",
+              borderRadius: 7,
+            }}
+          >
+            {/* The leading slash automatically references your public directory */}
+            <source src={feature.video} type="video/mp4" />
+          </video>
+        </ResponsiveDialog>
         {/* storefront */}
         <div className="text-3xl font-light">storefront</div>
         {/*  a dashboard  */}
         <div>a mobile site</div>
+        <li className="pl-3">feature demos:</li>
+        <ol className="pl-6">
+          {features.map((p) => (
+            <li className="hover:underline" onClick={() => handleOpen(p)}>
+              {p.title}
+            </li>
+          ))}
+        </ol>
       </div>
 
       {/* preview click for live demo */}
@@ -30,7 +86,7 @@ const Page = () => {
         <motion.div
           variants={itemVariants}
           className="rounded-lg relative overflow-hidden aspect-video group bg-slate-900"
-          onClick={() => router.push('/landing')}
+          onClick={() => router.push("/landing")}
         >
           <Image
             src={

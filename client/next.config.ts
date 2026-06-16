@@ -2,6 +2,17 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   /* config options here */
+  turbopack: {
+    rules: {
+      // Tells Turbopack to emit the video file and return its public URL
+      "*.mov": {
+        type: "asset",
+      },
+      "*.mp4": {
+        type: "asset",
+      },
+    },
+  },
   images: {
     remotePatterns: [
       {
