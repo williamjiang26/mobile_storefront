@@ -6,7 +6,6 @@ import { useRouter } from "@/node_modules/next/navigation";
 import ResponsiveDialog from "../../components/ResponsiveDialog";
 import { useState } from "react";
 import ordermanagementdemo from "../../../public/ordermanagementdemo.mp4";
-import { SheetTitle } from "@/components/ui/sheet";
 const Page = () => {
   const itemVariants = {
     hidden: { opacity: 0, y: 30 },
@@ -21,7 +20,8 @@ const Page = () => {
   } as const;
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
-  //
+
+  // 
   const [feature, setFeature] = useState({
     video: ordermanagementdemo,
     title: "automated customer support",
@@ -30,15 +30,16 @@ const Page = () => {
     setFeature(p);
     setIsOpen(true);
   };
+  // 
   const features = [
     { video: ordermanagementdemo, title: "automated customer support" },
     { video: ordermanagementdemo, title: "request sales representative" },
-    { video: ordermanagementdemo, title: "account management: rewards" },
-    { video: ordermanagementdemo, title: "account management: order tracking" },
-    { video: ordermanagementdemo, title: "streamlined checkout" },
-    { video: ordermanagementdemo, title: "find nearby locations" },
-    { video: ordermanagementdemo, title: "animated landing page" },
-    { video: ordermanagementdemo, title: "browse catalog" },
+    // { video: ordermanagementdemo, title: "account management: rewards" },
+    // { video: ordermanagementdemo, title: "account management: order tracking" },
+    // { video: ordermanagementdemo, title: "streamlined checkout" },
+    // { video: ordermanagementdemo, title: "find nearby locations" },
+    // { video: ordermanagementdemo, title: "animated landing page" },
+    // { video: ordermanagementdemo, title: "browse catalog" },
   ];
   return (
     <div className="flex flex-col m-1 w-screen h-screen">
@@ -47,8 +48,6 @@ const Page = () => {
           isOpen={isOpen}
           setIsOpen={setIsOpen}
           title={feature.title}
-          // description={description}
-          className=""
         >
           <video
             autoPlay
@@ -63,7 +62,6 @@ const Page = () => {
               borderRadius: 7,
             }}
           >
-            {/* The leading slash automatically references your public directory */}
             <source src={feature.video} type="video/mp4" />
           </video>
         </ResponsiveDialog>

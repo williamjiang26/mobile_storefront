@@ -86,7 +86,7 @@ const Page = () => {
                 nav: "/landing/docs",
               },
               {
-                title: "business dashboard", 
+                title: "business dashboard",
                 url: "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/Screen+Shot+2026-06-14+at+3.14.20+PM.png",
                 nav: "/businessdashboard/docs",
               },
@@ -139,8 +139,10 @@ const Page = () => {
       <div className="h-[15vh] bg-gray-500 text-white grid grid-cols-2 px-1">
         <div className="col-span-2 text-xl font-semibold">storefront</div>
         <div className="col-span-1 flex flex-col">
-          {["call us", "email us", "follow us"].map((p) => (
-            <div className="mr-auto text-sm">{p}</div>
+          {["call us", "email us", "follow us"].map((p, index) => (
+            <div className="mr-auto text-sm" key={index}>
+              {p}
+            </div>
           ))}
           <div>
             <FontAwesomeIcon icon={faInstagram} />
@@ -151,8 +153,10 @@ const Page = () => {
           </div>
         </div>
         <div className="col-span-1 flex flex-col">
-          {["products", "blog", "reviews"].map((p) => (
-            <div className="ml-auto text-sm">{p}</div>
+          {["products", "blog", "reviews"].map((p, index) => (
+            <div className="ml-auto text-sm" key={index}>
+              {p}
+            </div>
           ))}
         </div>
       </div>

@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
 import Header from "../components/header";
 import data from "../data.json";
+import { ImageConfigContext } from "@/node_modules/next/dist/shared/lib/image-config-context.shared-runtime";
 const Page = () => {
   const router = useRouter();
   const steps = [
@@ -31,7 +32,6 @@ const Page = () => {
     },
   ];
   const [step, setStep] = useState(1);
-  const p = data["popular products"][0];
   const [formData, setFormData] = useState({
     yogurtFlavor: "",
     size: "",
@@ -41,15 +41,15 @@ const Page = () => {
 
   const nextStep = () => setStep((s) => Math.min(s + 1, steps.length));
   const prevStep = () => setStep((s) => Math.max(s - 1, 1));
+
   //
   const searchParams = useSearchParams();
-  const idParam = searchParams.get("id");
-  const id = idParam ? Number(idParam) : 0;
-  const index = id % 10;
-  // search item function from database
-  const product = data["popular products"][index - 1];
+  const itemsParam = searchParams.get("items");
+  const product = itemsParam ? JSON.parse(decodeURIComponent(itemsParam)) : null;
+  const {id, name, price, img, stock} = product
+  // const product = data["products in stock"][0];
   const handleCheckout = () => {
-    router.push(`/checkout?id=${id}`); // if (!response.ok)
+    router.push(`/checkout?items=${searchParams}`); // if (!response.ok)
     return;
   };
 
@@ -109,7 +109,7 @@ const Page = () => {
           <div className="rounded-md px-1 flex sm:h-full justify-center items-center">
             <div className="relative rounded-lg aspect-square h-50 overflow-hidden group cursor-pointer">
               <Image
-                src={product.url}
+                src={img}
                 alt=""
                 fill
                 className="object-cover scale-110 transition-transform duration-500 ease-out group-hover:scale-100 rounded-lg"
@@ -117,9 +117,9 @@ const Page = () => {
             </div>
           </div>
           <div className=" flex flex-col w-[80%] mx-auto space-y-1">
-            <div className="text-xl">{product.name}</div>
+            <div className="text-xl">{name}</div>
             <div className="font-semibold text-xl">
-              {product["start amount"]}
+              {price}
             </div>
             <div className=" ">med, to-go, cold</div>
             <div className=" ">{product["storage instructions"]}</div>

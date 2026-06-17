@@ -1,44 +1,57 @@
-// export async function getProducts() {
-//   try {
-//     const res = await fetch("http://127.0.0.1:8000/api/product");
+import { ApolloClient, InMemoryCache, HttpLink, gql } from "@apollo/client";
 
-//     if (!res.ok) {
-//       throw new Error(`Http error`);
-//     }
-//     const data = await res.json();
-//     return data;
-//   } catch (error) {
-//     console.error("failed");
-//     return [];
-//   }
-// }
+const httpLink = new HttpLink({
+  uri: "https://products-service-kknp.onrender.com/graphql",
+});
 
-export async function getProducts() {
-  const url = process.env.NEXT_PUBLIC_PRODUCTS_API_URL as string
-  try {
-    const res = await fetch(url, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        query: `
-            query GetProduct {
-            product {
-                id
-                name
-                img
-            }
-        }`,
-      }),
-    });
-    if (!res.ok) {
-      throw new Error(`Http error! status:`);
+const client = new ApolloClient({
+  link: httpLink,
+  cache: new InMemoryCache(),
+});
+const GET_PRODUCTS_QUERY = gql`
+  query products {
+    products {
+      id
+      name
+      img
+      stock
+      price
     }
-    const json = await res.json();
-    return json.data?.product || [];
-  } catch (error) {
-    console.error("GraphQL Fetch Failed", error);
-    return [];
   }
-}
+`;
+export const fetchMyProducts = async (setProducts) => {
+  try {
+    const response = await client.query({
+      query: GET_PRODUCTS_QUERY,
+      fetchPolicy: "network-only",
+    });
+    setProducts(response.data.products);
+  } catch (error) {
+    console.error("Error fetching products:", error);
+  }
+};
+
+// get by id
+const PRODUCT_ID_QUERY = gql`
+  query getById ($id: Int!) {
+    product (id: $id){
+      id
+      name
+      img
+      stock
+      price
+    }
+  }
+`;
+export const fetchById = async (id) => {
+  try {
+    const response = await client.query({
+      query: PRODUCT_ID_QUERY,
+      fetchPolicy: "network-only",
+    });
+    return response.data.product
+  } catch (error) {
+    console.error("Error fetching products:", error);
+  }
+};
+

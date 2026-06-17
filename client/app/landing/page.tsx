@@ -15,6 +15,7 @@ import Footer from "../components/footer";
 import ScrollHorizontal from "../components/features";
 import VerticalTicker from "../components/reviews";
 import Button from "../components/slideButton";
+import { fetchMyProducts } from "../actions/products";
 
 // import Image from "next/image";
 
@@ -58,14 +59,16 @@ function AccordionItem({ f }: { f: Record<string, any> }) {
 }
 export default function Home() {
   const router = useRouter();
-  const handleAdd = (id: number) => {
-    const serializedId = encodeURIComponent(JSON.stringify(id));
-    router.push(`/order?id=${serializedId}`); // if (!response.ok)
+  const [products, setProducts] = useState([]);
+  fetchMyProducts(setProducts);
+  const handleAdd = (p) => {
+    const serializedItems = encodeURIComponent(JSON.stringify(p));
+    router.push(`/order?items=${serializedItems}`);
     return;
   };
-  const handleCheckout = (id: number) => {
-    const serializedId = encodeURIComponent(JSON.stringify(id));
-    router.push(`/checkout?id=${serializedId}`); // if (!response.ok)
+  const handleCheckout = (p) => {
+    const serializedItems = encodeURIComponent(JSON.stringify(p));
+    router.push(`/checkout?items=${serializedItems}`);
     return;
   };
   const containerVariants = {
@@ -113,38 +116,41 @@ export default function Home() {
                 </div>
 
                 <div className="basis-5/6 flex flex-row w-[80%] mx-auto justify-between overflow-x-auto ">
-                  {data["popular products"].slice(0, 5).map((p, index) => (
-                    <div
-                      key={index}
-                      className="flex flex-col bg-zinc-50 p-1 min-w-59 justify-between shadow-lg m-1 rounded-lg "
-                    >
-                      <div className="   flex-col rounded-md p-1">
-                        <div className="rounded-lg relative  h-59  bg-zinc-50 p-1 overflow-hidden  ">
-                          {p.url && (
-                            <Image
-                              src={p.url || "/placeholder.png"}
-                              alt=""
-                              fill
-                              className="object-cover "
-                            />
-                          )}
+                  {products
+                    .filter((p) => !p.stock)
+                    .slice(0, 5)
+                    .map((p, index) => (
+                      <div
+                        key={index}
+                        className="flex flex-col bg-zinc-50 p-1 min-w-59 justify-between shadow-lg m-1 rounded-lg "
+                      >
+                        <div className="   flex-col rounded-md p-1">
+                          <div className="rounded-lg relative  h-59  bg-zinc-50 p-1 overflow-hidden  ">
+                            {p.img && (
+                              <Image
+                                src={p.img || "/placeholder.png"}
+                                alt=""
+                                fill
+                                className="object-cover "
+                              />
+                            )}
+                          </div>
+                          <div className="font-semibold p-1">{p["name"]}</div>
+                          <div className="p-1">from ${p["price"]}</div>
                         </div>
-                        <div className="font-semibold p-1">{p["name"]}</div>
-                        <div className="p-1">from {p["start amount"]}</div>
-                      </div>
-                      <div className="justify-center flex p-3">
-                        <div
-                          className="w-[80%] mx-auto flex justify-center items-center relative h-9 overflow-hidden z-10  rounded-lg text-black tracking-wider border-slate-300 border transition-colors duration-300 ease-in-out hover:text-white
+                        <div className="justify-center flex p-3">
+                          <div
+                            className="w-[80%] mx-auto flex justify-center items-center relative h-9 overflow-hidden z-10  rounded-lg text-black tracking-wider border-slate-300 border transition-colors duration-300 ease-in-out hover:text-white
                         before:absolute before:top-0 before:left-0 before:h-full before:w-full before:-z-10 before:bg-slate-300 before:scale-x-0
                          before:origin-left before:duration-200 before:ease-in-out before:transition-transform hover:before:scale-x-100
                         "
-                          onClick={() => handleAdd(p["id"])}
-                        >
-                          Add
+                            onClick={() => handleAdd(p)}
+                          >
+                            Add
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  ))}
+                    ))}
                 </div>
               </div>
               {/* 2 - shop right away - products in stock - glimpse of all categories */}
@@ -155,35 +161,37 @@ export default function Home() {
                   </span>
                 </div>
                 <div className="basis-5/6 flex flex-row w-[80%] mx-auto justify-between overflow-x-auto">
-                  {data["products in stock"].slice(0, 5).map((p, index) => (
-                    <div
-                      key={index}
-                      className="flex flex-col bg-zinc-50 p-1 min-w-59 shadow-lg m-1 rounded-lg "
-                    >
-                      <div className="w-full mx-auto  flex-col rounded-md p-1">
-                        <div className="rounded-lg relative     bg-zinc-50 p-1 overflow-hidden h-59">
-                          {p.url && (
-                            <Image
-                              src={p.url || "/placeholder.png"}
-                              alt=""
-                              fill
-                              className="object-cover"
-                            />
-                          )}
-                        </div>
-                        <div className="font-semibold p-1">{p["name"]}</div>
-                        {/* <div className=" p-1">{p["description"]}</div> */}
-                        <div className=" p-1">{p["amount"]}</div>
-                      </div>
-
+                  {products
+                    .filter((p) => p.stock)
+                    .slice(0, 5)
+                    .map((p, index) => (
                       <div
-                        className="w-[80%] mx-auto flex justify-center items-center relative h-9 overflow-hidden z-10 border-slate-300 border rounded-lg text-black tracking-wider  transition-colors duration-500 ease-in-out hover:text-white before:absolute before:top-0 before:left-0 before:h-full before:w-full before:-z-10 before:bg-slate-300 before:scale-x-0 before:origin-left before:duration-200 before:ease-in-out before:transition-transform hover:before:scale-x-100 border-zinc-200"
-                        onClick={() => handleCheckout(p["id"])}
+                        key={index}
+                        className="flex flex-col bg-zinc-50 p-1 min-w-59 shadow-lg m-1 rounded-lg "
                       >
-                        Checkout
+                        <div className="w-full mx-auto  flex-col rounded-md p-1">
+                          <div className="rounded-lg relative     bg-zinc-50 p-1 overflow-hidden h-59">
+                            {p.img && (
+                              <Image
+                                src={p.img || "/placeholder.png"}
+                                alt=""
+                                fill
+                                className="object-cover"
+                              />
+                            )}
+                          </div>
+                          <div className="font-semibold p-1">{p["name"]}</div>
+                          {/* <div className=" p-1">{p["description"]}</div> */}
+                          <div className="p-1">${p["price"]}</div>
+                        </div>
+                        <div
+                          className="w-[80%] mx-auto flex justify-center items-center relative h-9 overflow-hidden z-10 border-slate-300 border rounded-lg text-black tracking-wider  transition-colors duration-500 ease-in-out hover:text-white before:absolute before:top-0 before:left-0 before:h-full before:w-full before:-z-10 before:bg-slate-300 before:scale-x-0 before:origin-left before:duration-200 before:ease-in-out before:transition-transform hover:before:scale-x-100 border-zinc-200"
+                          onClick={() => handleCheckout(p)}
+                        >
+                          Checkout
+                        </div>
                       </div>
-                    </div>
-                  ))}
+                    ))}
                 </div>
               </div>
             </div>

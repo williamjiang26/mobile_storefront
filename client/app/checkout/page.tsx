@@ -17,19 +17,13 @@ const stripePromise = loadStripe(
 // 1. This inner component handles the search parameters and Stripe logic safely
 const CheckoutForm = () => {
   const searchParams = useSearchParams();
-  const idParam = searchParams.get("id"); 
-  const id = idParam ? Number(idParam) : 0; 
-
-  const index = id % 10;
-  let type: keyof typeof data = "popular products";
-  if (Math.floor(Math.abs(id) / 10) % 10 === 2) {
-    type = "products in stock";
-  }
-
-  const product = data[type]?.[index - 1];
-  const price = product.price;
+  const itemsParam = searchParams.get("items");
+  const product = itemsParam
+    ? JSON.parse(decodeURIComponent(itemsParam))
+    : null;
+  const { id, name, price, img, stock, priceId } = product;
   const quantity = 1;
-  const lineItems = [{ price, quantity }];
+  const lineItems = [{ price: priceId, quantity: 1 }];
 
   return (
     <EmbeddedCheckoutProvider
