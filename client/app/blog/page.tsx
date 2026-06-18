@@ -16,15 +16,15 @@ export const GET_PRODUCTS_QUERY = gql`
   }
 `;
 const httpLink = new HttpLink({
-  // uri: "https://products-service-kknp.onrender.com/graphql",
-  uri: "http://localhost:8007/graphql",
+  uri: process.env.NEXT_PUBLIC_BLOG_URL,
+  // uri: "http://localhost:8007/graphql",
 });
 export const client = new ApolloClient({
   link: httpLink,
   cache: new InMemoryCache(),
 });
 const Page = () => {
-  const router = useRouter()
+  const router = useRouter();
   const [products, setProducts] = useState([]);
   const fetchMyProducts = async () => {
     try {
@@ -47,7 +47,7 @@ const Page = () => {
           <div
             key={index}
             className="border rounded-lg w-[80%] p-3 flex items-center"
-            onClick={()=>router.push(`/blog/${p.title}`)}
+            onClick={() => router.push(`/blog/${p.title}`)}
           >
             <div className="text-lg font-light">{p.date}</div>-
             <div>{p.title}</div>
