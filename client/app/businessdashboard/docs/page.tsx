@@ -71,7 +71,8 @@ const Page = () => {
         <div className="text-3xl font-light">business dashboard</div>
         {/*  a dashbpard  */}
         <div>a dashboard to easily manage operations at scale</div>
-        <li className="pl-3">feature demos:</li>
+        {/* <div>
+           <li className="pl-3">feature demos:</li>
         <ol className="pl-6">
           {features.map((p) => (
             <li className="hover:underline" onClick={() => handleOpen(p)}>
@@ -79,6 +80,8 @@ const Page = () => {
             </li>
           ))}
         </ol>
+        </div> */}
+        
       </div>
       {/* preview click for live demo */}
       <div className="pt-6">

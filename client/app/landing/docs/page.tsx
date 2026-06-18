@@ -20,16 +20,16 @@ const Page = () => {
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
 
-  // 
+  //
   const [feature, setFeature] = useState({
     video: "ordermanagementdemo",
     title: "automated customer support",
   });
-  const handleOpen = (p:any) => {
+  const handleOpen = (p: any) => {
     setFeature(p);
     setIsOpen(true);
   };
-  // 
+  //
   const features = [
     { video: "ordermanagementdemo", title: "automated customer support" },
     { video: "ordermanagementdemo", title: "request sales representative" },
@@ -68,14 +68,16 @@ const Page = () => {
         <div className="text-3xl font-light">storefront</div>
         {/*  a dashboard  */}
         <div>a mobile site</div>
-        <li className="pl-3">feature demos:</li>
-        <ol className="pl-6">
-          {features.map((p:any) => (
-            <li className="hover:underline" onClick={() => handleOpen(p)}>
-              {p.title}
-            </li>
-          ))}
-        </ol>
+        {/* <div>
+          <li className="pl-3">feature demos:</li>
+          <ol className="pl-6">
+            {features.map((p: any) => (
+              <li className="hover:underline" onClick={() => handleOpen(p)}>
+                {p.title}
+              </li>
+            ))}
+          </ol>
+        </div> */}
       </div>
 
       {/* preview click for live demo */}
