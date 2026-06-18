@@ -3,7 +3,7 @@ import { ApolloClient, InMemoryCache, HttpLink, gql } from "@apollo/client";
 
 
 const httpLink = new HttpLink({
-  uri: process.env.NEXT_PUBLIC_PRODUCTS_API_URL,
+  uri: process.env.NEXT_PUBLIC_PRODUCTS_ENDPOINT,
 });
 export const client = new ApolloClient({
   link: httpLink,
