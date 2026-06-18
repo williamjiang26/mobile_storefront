@@ -3,7 +3,7 @@ import { ApolloClient, InMemoryCache, HttpLink, gql } from "@apollo/client";
 
 
 const httpLink = new HttpLink({
-  uri: "https://products-service-kknp.onrender.com/graphql",
+  uri: process.env.NEXT_PUBLIC_PRODUCTS_API_URL,
 });
 export const client = new ApolloClient({
   link: httpLink,

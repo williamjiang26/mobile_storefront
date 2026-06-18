@@ -37,7 +37,7 @@ export default function ChatSupport() {
   };
   const sendAgentMessage = async () => {
     if (!message.trim()) return; // Prevent sending empty messages
-    console.log("🚀 ~ sendAgentMessage ~ message:");
+    
 
     // 1. Clear the input box right away
     const currentInput = message;
@@ -48,7 +48,8 @@ export default function ChatSupport() {
     ];
     const payload = { roomId: roomId, messages: updatedMessages };
     try {
-      await fetch("http://localhost:8003/api/chat", {
+      const backendUrl = process.env.NEXT_PUBLIC_STREAM_CHATS_URL as string;
+      await fetch(backendUrl, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -76,7 +77,7 @@ export default function ChatSupport() {
       .subscribe({
         next(response) {
           const newMessage = response.data?.listenMessages;
-          console.log("🚀 ~ next ~ newMessage:", newMessage)
+
           if (!newMessage) {
             console.warn("new message undefined");
             return;
