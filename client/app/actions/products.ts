@@ -1,9 +1,10 @@
 import { ApolloClient, InMemoryCache, HttpLink, gql } from "@apollo/client";
 
+
+
 const httpLink = new HttpLink({
   uri: "https://products-service-kknp.onrender.com/graphql",
 });
-
 const client = new ApolloClient({
   link: httpLink,
   cache: new InMemoryCache(),
@@ -33,8 +34,8 @@ export const fetchMyProducts = async (setProducts) => {
 
 // get by id
 const PRODUCT_ID_QUERY = gql`
-  query getById ($id: Int!) {
-    product (id: $id){
+  query getById($id: Int!) {
+    product(id: $id) {
       id
       name
       img
@@ -49,9 +50,8 @@ export const fetchById = async (id) => {
       query: PRODUCT_ID_QUERY,
       fetchPolicy: "network-only",
     });
-    return response.data.product
+    return response.data.product;
   } catch (error) {
     console.error("Error fetching products:", error);
   }
 };
-
