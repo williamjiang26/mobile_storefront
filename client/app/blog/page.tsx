@@ -32,7 +32,7 @@ const Page = () => {
         query: GET_PRODUCTS_QUERY,
         fetchPolicy: "network-only",
       });
-      setProducts(response.data.essays);
+      setProducts((response.data as any).essays);
     } catch (error) {
       console.error("Error fetching products:", error);
     }
@@ -43,7 +43,7 @@ const Page = () => {
       <Header />
       {/* toggle */}
       <div className="mt-28 flex py-1 gap-5 font-sans dark:bg-black overflow-x-auto justify-center">
-        {products.map((p, index) => (
+        {products.map((p:any, index) => (
           <div
             key={index}
             className="border rounded-lg w-[80%] p-3 flex items-center"

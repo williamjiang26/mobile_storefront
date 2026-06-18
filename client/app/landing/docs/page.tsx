@@ -5,7 +5,6 @@ import { motion } from "motion/react";
 import { useRouter } from "@/node_modules/next/navigation";
 import ResponsiveDialog from "../../components/ResponsiveDialog";
 import { useState } from "react";
-import ordermanagementdemo from "../../../public/ordermanagementdemo.mp4";
 const Page = () => {
   const itemVariants = {
     hidden: { opacity: 0, y: 30 },
@@ -23,17 +22,17 @@ const Page = () => {
 
   // 
   const [feature, setFeature] = useState({
-    video: ordermanagementdemo,
+    video: "ordermanagementdemo",
     title: "automated customer support",
   });
-  const handleOpen = (p) => {
+  const handleOpen = (p:any) => {
     setFeature(p);
     setIsOpen(true);
   };
   // 
   const features = [
-    { video: ordermanagementdemo, title: "automated customer support" },
-    { video: ordermanagementdemo, title: "request sales representative" },
+    { video: "ordermanagementdemo", title: "automated customer support" },
+    { video: "ordermanagementdemo", title: "request sales representative" },
     // { video: ordermanagementdemo, title: "account management: rewards" },
     // { video: ordermanagementdemo, title: "account management: order tracking" },
     // { video: ordermanagementdemo, title: "streamlined checkout" },
@@ -62,7 +61,7 @@ const Page = () => {
               borderRadius: 7,
             }}
           >
-            <source src={feature.video} type="video/mp4" />
+            <source src="/ordermanagementdemo.mp4" type="video/mp4" />
           </video>
         </ResponsiveDialog>
         {/* storefront */}
@@ -71,7 +70,7 @@ const Page = () => {
         <div>a mobile site</div>
         <li className="pl-3">feature demos:</li>
         <ol className="pl-6">
-          {features.map((p) => (
+          {features.map((p:any) => (
             <li className="hover:underline" onClick={() => handleOpen(p)}>
               {p.title}
             </li>

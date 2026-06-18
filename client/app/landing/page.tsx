@@ -15,7 +15,7 @@ import Footer from "../components/footer";
 import ScrollHorizontal from "../components/features";
 import VerticalTicker from "../components/reviews";
 import Button from "../components/slideButton";
-import { fetchMyProducts } from "../actions/products";
+import { client, GET_PRODUCTS_QUERY } from "../actions/products";
 
 // import Image from "next/image";
 
@@ -60,13 +60,24 @@ function AccordionItem({ f }: { f: Record<string, any> }) {
 export default function Home() {
   const router = useRouter();
   const [products, setProducts] = useState([]);
-  fetchMyProducts(setProducts);
-  const handleAdd = (p) => {
+  const fetchMyProducts = async () => {
+    try {
+      const response = await client.query({
+        query: GET_PRODUCTS_QUERY,
+        fetchPolicy: "network-only",
+      });
+      setProducts((response.data as any).products);
+    } catch (error) {
+      console.error("Error fetching products:", error);
+    }
+  };
+  fetchMyProducts();
+  const handleAdd = (p:any) => {
     const serializedItems = encodeURIComponent(JSON.stringify(p));
     router.push(`/order?items=${serializedItems}`);
     return;
   };
-  const handleCheckout = (p) => {
+  const handleCheckout = (p:any) => {
     const serializedItems = encodeURIComponent(JSON.stringify(p));
     router.push(`/checkout?items=${serializedItems}`);
     return;
@@ -117,9 +128,9 @@ export default function Home() {
 
                 <div className="basis-5/6 flex flex-row w-[80%] mx-auto justify-between overflow-x-auto ">
                   {products
-                    .filter((p) => !p.stock)
+                    .filter((p:any) => !p.stock)
                     .slice(0, 5)
-                    .map((p, index) => (
+                    .map((p:any, index) => (
                       <div
                         key={index}
                         className="flex flex-col bg-zinc-50 p-1 min-w-59 justify-between shadow-lg m-1 rounded-lg "
@@ -162,9 +173,9 @@ export default function Home() {
                 </div>
                 <div className="basis-5/6 flex flex-row w-[80%] mx-auto justify-between overflow-x-auto">
                   {products
-                    .filter((p) => p.stock)
+                    .filter((p:any) => p.stock)
                     .slice(0, 5)
-                    .map((p, index) => (
+                    .map((p:any, index) => (
                       <div
                         key={index}
                         className="flex flex-col bg-zinc-50 p-1 min-w-59 shadow-lg m-1 rounded-lg "

@@ -40,7 +40,7 @@ const ResponsiveDialog = ({
   if (isDesktop) {
     return (
       // dialog
-      <Dialog open={isOpen} onOpenChange={setIsOpen} s>
+      <Dialog open={isOpen} onOpenChange={setIsOpen}>
         <DialogContent
           className={cn(
             "fixed left-[50%] top-[50%] ",

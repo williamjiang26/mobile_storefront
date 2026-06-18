@@ -5,7 +5,7 @@ import { motion } from "motion/react";
 import { useRouter } from "@/node_modules/next/navigation";
 import ResponsiveDialog from "../../components/ResponsiveDialog";
 import { useState } from "react";
-import ordermanagementdemo from "../../../public/ordermanagementdemo.mp4";
+  
 const Page = () => {
   const itemVariants = {
     hidden: { opacity: 0, y: 30 },
@@ -21,16 +21,16 @@ const Page = () => {
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
   const [feature, setFeature] = useState({
-    video: ordermanagementdemo,
+    video: " ",
     title: "automated customer support",
   });
-  const handleOpen = (p) => {
+  const handleOpen = (p:any) => {
     setFeature(p);
     setIsOpen(true);
   };
   const features = [
-    { video: ordermanagementdemo, title: "manage customer conversations" },
-    { video: ordermanagementdemo, title: "customize knowledge database" },
+    { video: " ", title: "manage customer conversations" },
+    { video: " ", title: "customize knowledge database" },
     //
     // { video: ordermanagementdemo, title: "store views" },
     // { video: ordermanagementdemo, title: "post products" },
@@ -63,7 +63,7 @@ const Page = () => {
             borderRadius: 7,
           }}
         >
-          <source src={feature.video} type="video/mp4" />
+          <source src="/ordermanagementdemo.mp4" type="video/mp4" />
         </video>
       </ResponsiveDialog>
       <div className="space-y-3">

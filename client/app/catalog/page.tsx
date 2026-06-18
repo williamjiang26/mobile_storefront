@@ -5,7 +5,7 @@ import { useState } from "react";
 import Footer from "../components/footer";
 import Header from "../components/header";
 import { motion } from "motion/react";
-import { fetchMyProducts } from "../actions/products";
+import { client, GET_PRODUCTS_QUERY } from "../actions/products";
 //
 interface LineItem {
   price: string;
@@ -16,13 +16,24 @@ const Catalog = () => {
   const router = useRouter();
   const [products, setProducts] = useState([]);
   const [productType, setType] = useState("Made-To-Order");
-  fetchMyProducts(setProducts);
-  const handleAdd = (p) => {
+  const fetchMyProducts = async () => {
+    try {
+      const response = await client.query({
+        query: GET_PRODUCTS_QUERY,
+        fetchPolicy: "network-only",
+      });
+      setProducts((response.data as any).products);
+    } catch (error) {
+      console.error("Error fetching products:", error);
+    }
+  };
+  fetchMyProducts();
+  const handleAdd = (p:any) => {
     const serializedItems = encodeURIComponent(JSON.stringify(p));
     router.push(`/order?items=${serializedItems}`);
     return;
   };
-  const handleCheckout = (p) => {
+  const handleCheckout = (p: any) => {
     const serializedItems = encodeURIComponent(JSON.stringify(p));
     router.push(`/checkout?items=${serializedItems}`);
     return;
@@ -62,7 +73,7 @@ const Catalog = () => {
         {/* made to order */}
         {productType === "Made-To-Order" &&
           products
-            .filter((p) => !p.stock)
+            .filter((p:any) => !p.stock)
             .map((p) => (
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -108,7 +119,7 @@ const Catalog = () => {
         {/* stock */}
         {productType === "Stock" &&
           products
-            .filter((p) => p.stock)
+            .filter((p:any) => p.stock)
             .map((p) => (
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
