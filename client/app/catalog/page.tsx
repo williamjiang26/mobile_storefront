@@ -42,7 +42,7 @@ const Catalog = () => {
     <div className="flex flex-col min-h-screen ">
       <Header />
       {/* toggle */}
-      <div className="mt-28 flex py-1 gap-5 font-sans dark:bg-black overflow-x-scroll overflow-x-auto ">
+      <div className="mt-28 flex py-1 w-full gap-5 font-sans dark:bg-black overflow-x-scroll no-scrollbar whitespace-nowrap">
         {/* fixed - two options */}
         {[
           "Made-To-Order",
