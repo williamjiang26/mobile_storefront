@@ -126,7 +126,7 @@ export default function Home() {
                   </span>
                 </div>
 
-                <div className="basis-5/6 flex flex-row w-[80%] mx-auto justify-between overflow-x-auto ">
+                <div className="basis-5/6 flex flex-row w-[80%] mx-auto justify-between overflow-x-auto no-scrollbar">
                   {products
                     .filter((p:any) => !p.stock)
                     .slice(0, 5)
@@ -171,7 +171,7 @@ export default function Home() {
                     Products in stock ~ ships in 2-3 weeks
                   </span>
                 </div>
-                <div className="basis-5/6 flex flex-row w-[80%] mx-auto justify-between overflow-x-auto">
+                <div className="basis-5/6 flex flex-row w-[80%] mx-auto justify-between overflow-x-auto no-scrollbar">
                   {products
                     .filter((p:any) => p.stock)
                     .slice(0, 5)

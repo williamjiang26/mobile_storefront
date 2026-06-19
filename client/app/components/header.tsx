@@ -35,10 +35,10 @@ const Header = () => {
         opacity: hidden ? 0 : 1,
       }}
       transition={{ duration: 0.25, ease: "easeOut" }}
-      className="flex fixed px-1 top-10 inset-x-0 z-50 mx-1 sm:w-[80%] sm:mx-auto rounded-lg border backdrop-blur justify-between"
+      className="flex fixed px-1 sm:px-5 py-5 top-5 inset-x-0 z-50 mx-1 sm:w-[80%] sm:mx-auto rounded-lg border backdrop-blur justify-between"
     >
       <div
-        className="flex items-center justify-start hover:bg-zinc-200 hover:rounded-lg"
+        className="flex justify-start items-center hover:bg-zinc-200 hover:rounded-lg"
         onClick={() => router.push("/landing")}
       >
         Get Active Foods
@@ -57,7 +57,7 @@ const Header = () => {
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 exit={{ opacity: 0, y: 10, scale: 0.98 }}
                 transition={{ duration: 0.18, ease: "easeOut" }}
-                className="absolute top-full mt-2 w-56 rounded-lg border bg-white shadow-lg"
+                className="absolute top-15 mt-2 w-56 rounded-lg border bg-white shadow-lg"
               >
                 <div
                   className="p-3 hover:bg-zinc-100 rounded-lg"
@@ -88,7 +88,7 @@ const Header = () => {
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 exit={{ opacity: 0, y: 10, scale: 0.98 }}
                 transition={{ duration: 0.18, ease: "easeOut" }}
-                className="absolute top-full mt-2 w-56 rounded-lg border bg-white shadow-lg"
+                className="absolute top-15 right-1 mt-2 w-56 rounded-lg border bg-white shadow-lg"
               >
                 <div className="p-3 hover:bg-zinc-100 rounded-lg">
                   product selection guide
@@ -122,7 +122,7 @@ const Header = () => {
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 exit={{ opacity: 0, y: 10, scale: 0.98 }}
                 transition={{ duration: 0.18, ease: "easeOut" }}
-                className="absolute top-full mt-2 w-56 rounded-lg border bg-white shadow-lg"
+                className="absolute top-15 right-10 mt-2 w-56 rounded-lg border bg-white shadow-lg"
               >
                 <div className="p-3 hover:bg-zinc-100 rounded-lg">
                   refund policy
