@@ -20,19 +20,21 @@ const Page = () => {
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
 
+
   //
   const [feature, setFeature] = useState({
     video: "ordermanagementdemo",
     title: "automated customer support",
   });
+
   const handleOpen = (p: any) => {
     setFeature(p);
     setIsOpen(true);
   };
   //
   const features = [
-    { video: "ordermanagementdemo", title: "automated customer support" },
-    { video: "ordermanagementdemo", title: "request sales representative" },
+    { video: "/ordermanagementdemo.mp4", title: "automated customer support" },
+    // { video: "ordermanagementdemo", title: "request sales representative" },
     // { video: ordermanagementdemo, title: "account management: rewards" },
     // { video: ordermanagementdemo, title: "account management: order tracking" },
     // { video: ordermanagementdemo, title: "streamlined checkout" },
@@ -61,14 +63,14 @@ const Page = () => {
               borderRadius: 7,
             }}
           >
-            <source src="/ordermanagementdemo.mp4" type="video/mp4" />
+            <source src={feature.video} type="video/mp4" />
           </video>
         </ResponsiveDialog>
         {/* storefront */}
         <div className="text-3xl font-light">storefront</div>
         {/*  a dashboard  */}
         <div>a mobile site</div>
-        {/* <div>
+        <div>
           <li className="pl-3">feature demos:</li>
           <ol className="pl-6">
             {features.map((p: any) => (
@@ -77,7 +79,7 @@ const Page = () => {
               </li>
             ))}
           </ol>
-        </div> */}
+        </div>
       </div>
 
       {/* preview click for live demo */}
@@ -96,7 +98,6 @@ const Page = () => {
             sizes="100"
             className="object-cover transition hover:scale-110 duration-300 ease-in-out "
           />
-
           <div className="absolute bottom-0 left-0 p-6 text-white bg-linear-to-t from-black/60 to-transparent w-full">
             <h2 className="font-bold">try demo</h2>
           </div>
