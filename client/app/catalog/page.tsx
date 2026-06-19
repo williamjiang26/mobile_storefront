@@ -28,7 +28,7 @@ const Catalog = () => {
     }
   };
   fetchMyProducts();
-  const handleAdd = (p:any) => {
+  const handleAdd = (p: any) => {
     const serializedItems = encodeURIComponent(JSON.stringify(p));
     router.push(`/order?items=${serializedItems}`);
     return;
@@ -73,9 +73,10 @@ const Catalog = () => {
         {/* made to order */}
         {productType === "Made-To-Order" &&
           products
-            .filter((p:any) => !p.stock)
-            .map((p) => (
+            .filter((p: any) => !p.stock)
+            .map((p, index) => (
               <motion.div
+                key={index}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.9 }}
@@ -119,9 +120,10 @@ const Catalog = () => {
         {/* stock */}
         {productType === "Stock" &&
           products
-            .filter((p:any) => p.stock)
-            .map((p) => (
+            .filter((p: any) => p.stock)
+            .map((p, index) => (
               <motion.div
+                key={index}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.9 }}
@@ -130,7 +132,7 @@ const Catalog = () => {
                   <div className="group rounded-lg cursor-pointer w-full h-96">
                     <div className="relative overflow-hidden rounded-lg h-full w-full ">
                       <Image
-                        src={p["url"]}
+                        src={p["img"]}
                         alt=""
                         fill
                         className="object-cover scale-110 transition-transform duration-500 ease-out group-hover:scale-100"

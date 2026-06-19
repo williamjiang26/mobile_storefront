@@ -118,31 +118,30 @@
   "process": [
     {
       "id": 1,
-      "name": "high quality",
+      "name": "Place order directly or through chat for consultation",
       "url": "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/Screen+Shot+2026-05-16+at+2.45.40+PM.png"
     },
     {
       "id": 2,
-      "name": "fresh",
+      "name": "We will contact you for your order specifications",
       "url": "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/Screen+Shot+2026-05-16+at+2.45.40+PM.png"
     },
     {
       "id": 3,
-      "name": "healthy",
+      "name": "We will contact you when your order is ready",
       "url": "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/Screen+Shot+2026-05-16+at+2.45.40+PM.png"
     },
     {
       "id": 4,
-      "name": "convenient",
+      "name": "We deliver your order to you",
       "url": "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/Screen+Shot+2026-05-16+at+2.45.40+PM.png"
     },
     {
       "id": 5,
-      "name": "convenient",
+      "name": "Order is complete, let us know your feedback",
       "url": "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/Screen+Shot+2026-05-16+at+2.45.40+PM.png"
     }
   ],
-
   "reviews": [
     {
       "id": 1,
@@ -189,5 +188,7 @@
       "location": "san francisco, ca",
       "attachedPhotos": " "
     }
-  ]
+  ],
+  "guides":[],
+  "policies":[{}]
 }
