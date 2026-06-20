@@ -33,14 +33,16 @@ const Page = () => {
   };
   //
   const features = [
-    { video: "/ordermanagementdemo.mp4", title: "automated customer support" },
-    // { video: "ordermanagementdemo", title: "request sales representative" },
-    // { video: ordermanagementdemo, title: "account management: rewards" },
-    // { video: ordermanagementdemo, title: "account management: order tracking" },
-    // { video: ordermanagementdemo, title: "streamlined checkout" },
-    // { video: ordermanagementdemo, title: "find nearby locations" },
-    // { video: ordermanagementdemo, title: "animated landing page" },
-    // { video: ordermanagementdemo, title: "browse catalog" },
+    { video: "/ordermanagementdemo.mp4", title: "machine learning: automated customer support" },
+    { video: "/ordermanagementdemo.mp4", title: "websockets: request sales representative" },
+    { video: "/ordermanagementdemo.mp4", title: "machine learning: explore page" },
+    { video: "/ordermanagementdemo.mp4", title: "account management: rewards" },
+    { video: "/ordermanagementdemo.mp4", title: "account management: order tracking" },
+    { video:  "/ordermanagementdemo.mp4", title: "streamlined checkout" },
+    { video:  "/ordermanagementdemo.mp4", title: "find nearby locations" },
+    { video:  "/ordermanagementdemo.mp4", title: "animated landing page" },
+
+    { video:  "/ordermanagementdemo.mp4", title: "browse catalog" },
   ];
   return (
     <div className="flex flex-col m-1 w-screen h-screen">

@@ -1,7 +1,11 @@
-import React from "react";
+import { useKeenSlider } from "keen-slider/react";
+import "keen-slider/keen-slider.min.css";
+// import "./styles.css";
+
 import { motion } from "motion/react";
 import data from "../data.json";
 import { useRouter } from "@/node_modules/next/navigation";
+
 // Split Media Review Card Component
 interface CardProps {
   name: string;
@@ -19,7 +23,7 @@ const Card = ({
   review,
   attachedPhotos,
 }: CardProps) => (
-  <div className="flex flex-col justify-between overflow-hidden bg-white border border-slate-10 p-2 rounded-2xl shadow-sm hover:shadow-md transition-shadow duration-300 group *:**:">
+  <div className="keen-slider__slide flex flex-col justify-between overflow-hidden bg-white border border-slate-10 p-2 rounded-2xl shadow-sm hover:shadow-md transition-shadow duration-300 group *:**:">
     {/* top */}
     <div className="flex justify-between">
       <div className="flex flex-col">
@@ -41,12 +45,19 @@ const Card = ({
 
 export default function MotionReviewTicker() {
   const datasets = data["reviews"];
-
   const router = useRouter();
-
+  const [sliderRef] = useKeenSlider({
+    // loop: true,
+    slides: {
+      origin: "center",
+      perView: 3,
+      spacing: 10,
+    },
+    vertical: true,
+  });
   return (
     <div className="w-full   py-20 px-3 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto">
+      <div className="relative max-w-7xl mx-auto">
         {/* Title */}
         <div className="text-center max-w-3xl mx-auto mb-16">
           <h2 className="text-3xl font-black tracking-tight text-white dark:text-white sm:text-5xl">
@@ -55,25 +66,31 @@ export default function MotionReviewTicker() {
             </span>
           </h2>
         </div>
-        <div className="relative h-150 overflow-hidden rounded-3xl  border-slate-200 dark:border-slate-800 bg-slate-100/30 dark:bg-slate-900/20 p-5 max-w-xl mx-auto">
+        <div
+          ref={sliderRef}
+          className="keen-slider   h-150 overflow-hidden rounded-3xl border-slate-200 dark:border-slate-800 bg-slate-100/30 dark:bg-slate-900/20 p-5 max-w-xl mx-auto"
+        >
           <motion.div
-            className="flex flex-col gap-5"
+            className="flex flex-col gap-5 w-full h-full"
             initial={{ y: 0 }}
             animate={{ y: "-50%" }}
             transition={{
               repeat: Infinity,
               ease: "linear",
               duration: 30,
-              repeatType: "reverse",
+              repeatType: "loop",
             }}
           >
+            {data["reviews"].map((review, i) => (
+              <Card key={i} {...review} />
+            ))}
             {data["reviews"].map((review, i) => (
               <Card key={i} {...review} />
             ))}
           </motion.div>
 
           <div className="absolute top-0 inset-x-0 h-20 bg-linear-to-b from-slate-50 dark:from-slate-950 to-transparent pointer-events-none z-10" />
-          <div className="absolute bottom-0 inset-x-0 h-20 bg-linear-to-t from-slate-50 dark:from-slate-950 to-transparent pointer-events-none z-10" />
+          {/* <div className="absolute bottom-0 inset-x-0 h-20 bg-linear-to-t from-slate-50 dark:from-slate-950 to-transparent pointer-events-none z-10" /> */}
         </div>
         {/* Title */}
         <div className="text-center max-w-lg mt-5 mx-auto mb-16">

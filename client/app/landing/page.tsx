@@ -16,7 +16,9 @@ import ScrollHorizontal from "../components/features";
 import VerticalTicker from "../components/reviews";
 import Button from "../components/slideButton";
 import { client, GET_PRODUCTS_QUERY } from "../actions/products";
-
+import { useKeenSlider } from "keen-slider/react";
+import "keen-slider/keen-slider.min.css";
+import "./styles.css";
 // import Image from "next/image";
 
 function AccordionItem({ f }: { f: Record<string, any> }) {
@@ -72,12 +74,12 @@ export default function Home() {
     }
   };
   fetchMyProducts();
-  const handleAdd = (p:any) => {
+  const handleAdd = (p: any) => {
     const serializedItems = encodeURIComponent(JSON.stringify(p));
     router.push(`/order?items=${serializedItems}`);
     return;
   };
-  const handleCheckout = (p:any) => {
+  const handleCheckout = (p: any) => {
     const serializedItems = encodeURIComponent(JSON.stringify(p));
     router.push(`/checkout?items=${serializedItems}`);
     return;
@@ -93,7 +95,22 @@ export default function Home() {
       },
     },
   };
-
+  const [sliderRef] = useKeenSlider({
+    loop: true,
+    mode: "free",
+    slides: {
+      perView: 2,
+      spacing: 15,
+    },
+    breakpoints: {
+      "(min-width: 640px)": {
+        slides: { perView: 3, spacing: 15 },
+      },
+      "(min-width: 1024px)": {
+        slides: { perView: 5, spacing: 15 },
+      },
+    },
+  });
   return (
     <div className="flex flex-col bg-slate-100/95">
       <Header />
@@ -126,14 +143,14 @@ export default function Home() {
                   </span>
                 </div>
 
-                <div className="basis-5/6 flex flex-row w-[80%] mx-auto justify-between overflow-x-auto no-scrollbar">
+                <div ref={sliderRef} className="keen-slider">
                   {products
-                    .filter((p:any) => !p.stock)
+                    .filter((p: any) => !p.stock)
                     .slice(0, 5)
-                    .map((p:any, index) => (
+                    .map((p: any, index) => (
                       <div
                         key={index}
-                        className="flex flex-col bg-zinc-50 p-1 min-w-59 justify-between shadow-lg m-1 rounded-lg "
+                        className="keen-slider__slide   flex flex-col bg-zinc-50 p-1 min-w-59 justify-between shadow-lg m-1 rounded-lg "
                       >
                         <div className="   flex-col rounded-md p-1">
                           <div className="rounded-lg relative  h-59  bg-zinc-50 p-1 overflow-hidden  ">
@@ -171,14 +188,14 @@ export default function Home() {
                     Products in stock ~ ships in 2-3 weeks
                   </span>
                 </div>
-                <div className="basis-5/6 flex flex-row w-[80%] mx-auto justify-between overflow-x-auto no-scrollbar">
+                <div ref={sliderRef} className="keen-slider">
                   {products
-                    .filter((p:any) => p.stock)
+                    .filter((p: any) => p.stock)
                     .slice(0, 5)
-                    .map((p:any, index) => (
+                    .map((p: any, index) => (
                       <div
                         key={index}
-                        className="flex flex-col bg-zinc-50 p-1 min-w-59 shadow-lg m-1 rounded-lg "
+                        className="keen-slider__slide   flex flex-col bg-zinc-50 p-1 min-w-59 shadow-lg m-1 rounded-lg "
                       >
                         <div className="w-full mx-auto  flex-col rounded-md p-1">
                           <div className="rounded-lg relative     bg-zinc-50 p-1 overflow-hidden h-59">
@@ -206,8 +223,8 @@ export default function Home() {
                 </div>
               </div>
             </div>
-            <div className="relative overflow-hidden flex w-full items-center justify-center">
-              <div className="font-bold text-3xl text-white/90 bg-blue-300">
+            <div className="relative overflow-hidden flex w-full justify-center bg-blue-300">
+              <div className="font-bold text-3xl text-white/90  text-start">
                 "Conveniently placed healthy foods that will help you stay fit.
                 Organic sugars and protein - no added ingredients." - brand
                 motto
