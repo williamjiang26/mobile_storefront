@@ -117,26 +117,14 @@ export default function Home() {
       <div className="flex-1 scroll-smooth font-sans ">
         {/* 1 - checkout */}
         <div className="group flex flex-col cursor-pointer">
-          {/* The main image container controls the rounding and hides the expanding/shrinking image */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1 }}
           >
             <div className="relative overflow-hidden">
-              {/* Image starts scaled up, and zooms out to scale-100 when the group is hovered */}
-              {/* <Image
-              src={
-                // "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/Family_mart.webp"
-              } // Fixed the fallback logic string
-              alt={"hero bg"}
-              fill
-              className="object-cover scale-110 transition-transform duration-500 ease-out group-hover:scale-100"
-            /> */}
-              {/* Dark gradient overlay to ensure text is legible against light images */}
-              {/* <div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/80 to-transparent" /> */}
               {/* 1 - shop right away - popular products - glimpse of all categories */}
-              <div className="relative flex mt-30 flex-col md:h-125 rounded-lg items-center justify-center bg-transparent font-sans dark:bg-black pb-5">
+              <div className="relative flex mt-30 flex-col h-full rounded-lg items-center justify-center bg-transparent font-sans dark:bg-black pb-5">
                 <div className="basis-1/6 flex items-center justify-center font-bold text-3xl text-white/90">
                   <span className="[text-shadow:1px_1px_5px_rgba(0,0,0,0.3)] tracking-wide">
                     Shop popular products
@@ -150,9 +138,9 @@ export default function Home() {
                     .map((p: any, index) => (
                       <div
                         key={index}
-                        className="keen-slider__slide    flex flex-col bg-zinc-50 p-1 min-w-59 justify-between shadow-lg m-1 rounded-lg "
+                        className="keen-slider__slide   flex flex-col bg-zinc-50 p-1 min-w-59 justify-between shadow-lg m-1 rounded-lg "
                       >
-                        <div className="   flex-col rounded-md p-1">
+                        <div className=" flex-col rounded-md p-1">
                           <div className="rounded-lg relative  h-59  bg-zinc-50 p-1 overflow-hidden  ">
                             {p.img && (
                               <Image
@@ -182,13 +170,13 @@ export default function Home() {
                 </div>
               </div>
               {/* 2 - shop right away - products in stock - glimpse of all categories */}
-              <div className="relative flex flex-col h-125 rounded-lg items-center justify-center bg-transparent font-sans dark:bg-black pb-5">
+              <div className="relative flex flex-col h-full rounded-lg items-center justify-center bg-transparent font-sans dark:bg-black pb-5">
                 <div className="basis-1/6 flex items-center justify-center font-bold text-3xl text-white/90 text-center mx-1">
                   <span className="[text-shadow:1px_1px_5px_rgba(0,0,0,0.3)] tracking-wide">
                     Products in stock ~ ships in 2-3 weeks
                   </span>
                 </div>
-                <div ref={sliderRef} className="keen-slider">
+                <div ref={sliderRef} className="keen-slider h-full">
                   {products
                     .filter((p: any) => p.stock)
                     .slice(0, 5)
@@ -198,7 +186,7 @@ export default function Home() {
                         className="keen-slider__slide flex flex-col bg-zinc-50 p-1 min-w-59 shadow-lg m-1 rounded-lg "
                       >
                         <div className="w-full mx-auto  flex-col rounded-md p-1">
-                          <div className="rounded-lg relative     bg-zinc-50 p-1 overflow-hidden h-59">
+                          <div className="rounded-lg relative bg-zinc-50 p-1 overflow-hidden h-59">
                             {p.img && (
                               <Image
                                 src={p.img || "/placeholder.png"}
@@ -294,7 +282,7 @@ export default function Home() {
           <ScrollHorizontal listName={"process"} />
         </motion.div>
         {/* 7 - contact */}
-        <div className="flex border mb-3  bg-gray-500 text-white font-bold text-lg p-1 h-32">
+        <div className="flex border mb-3 justify-between bg-gray-500 text-white font-bold text-lg p-1 h-32 *:w-full">
           <div className="flex items-center">
             Our team is available 9-5 7x/week, contact or get a quote
           </div>
@@ -311,7 +299,7 @@ export default function Home() {
         </div>
 
         {/* 8 - guides */}
-        <div className="flex flex-col md:flex-row sm:space-y-1 w-full md:w-[90%] mx-auto rounded-lg md:h-screen h-full items-center justify-between gap-3 mb-3 px-1">
+        <div className="flex flex-col sm:flex-row sm:space-y-1 w-full md:w-[90%] mx-auto rounded-lg md:h-screen h-full items-center justify-between gap-3 mb-3 px-1">
           {/* mobile screen rectangle */}
           <div className="relative group overflow-hidden w-full md:aspect-square aspect-video rounded-lg bg-zinc-200">
             {/* Image starts scaled up, and zooms out to scale-100 when the group is hovered */}
@@ -349,7 +337,7 @@ export default function Home() {
               </Button>
             </div>
           </div>
-          <div className="relative w-full md:aspect-square rounded-lg bg-zinc-200">
+          <div className="relative group overflow-hidden w-full md:aspect-square rounded-lg bg-zinc-200">
             {/* 5 - FAQ */}
             <div className="m-5">
               <div className="font-semibold text-xl w-full">FAQs</div>
@@ -368,32 +356,3 @@ export default function Home() {
     </div>
   );
 }
-
-const PageComponent = () => (
-  <div className="relative w-full md:w-[90%] md:mx-auto overflow-hidden   h-250 bg-zinc-200">
-    {/* Image starts scaled up, and zooms out to scale-100 when the group is hovered */}
-    <Image
-      src={
-        "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/Screen+Shot+2026-05-16+at+2.45.40+PM.png"
-      } // Fixed the fallback logic string
-      alt={""}
-      fill
-      className="object-cover scale-110 transition-transform duration-500 ease-out group-hover:scale-100"
-    />
-    {/* Dark gradient overlay to ensure text is legible against light images */}
-    <div className="absolute inset-0 bg-linear-to-t from-black/60 via-black/20 to-transparent" />
-    {/* Text forced to the bottom-left corner */}
-    <motion.div
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true }}
-      // variants={containerVariants}
-    >
-      <div className="w-full md:w-[90%] mx-auto">
-        <div className="absolute bottom-0 mb-5">
-          {/* <Button onClick={() => router.push("/contact")}>Contact</Button> */}
-        </div>
-      </div>
-    </motion.div>
-  </div>
-);
