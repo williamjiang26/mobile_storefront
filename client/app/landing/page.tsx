@@ -195,7 +195,7 @@ export default function Home() {
                     .map((p: any, index) => (
                       <div
                         key={index}
-                        className="keen-slider__slide   flex flex-col bg-zinc-50 p-1 min-w-59 shadow-lg m-1 rounded-lg "
+                        className="keen-slider__slide flex flex-col bg-zinc-50 p-1 min-w-59 shadow-lg m-1 rounded-lg "
                       >
                         <div className="w-full mx-auto  flex-col rounded-md p-1">
                           <div className="rounded-lg relative     bg-zinc-50 p-1 overflow-hidden h-59">
@@ -294,90 +294,74 @@ export default function Home() {
           <ScrollHorizontal listName={"process"} />
         </motion.div>
         {/* 7 - contact */}
-
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={containerVariants}
-        >
-          <div className="m-1 flex justify-center text-center font-semibold text-lg">
-            <div className="flex md:flex-row items-center justify-center">
-              <div>
-                Our team is available 9-5 7x/week, contact or get a quote
-              </div>
-              <div className="flex px-1 my-1 items-center justify-center">
-                <Button
-                  className="items-center "
-                  onClick={() => {
-                    router.push("/contact");
-                  }}
-                >
-                  Contact
-                </Button>
-              </div>
-            </div>
+        <div className="flex border mb-3  bg-gray-500 text-white font-bold text-lg p-1 h-32">
+          <div className="flex items-center">
+            Our team is available 9-5 7x/week, contact or get a quote
           </div>
-        </motion.div>
+          <div className="flex px-1 my-1 items-center justify-center">
+            <Button
+              className="items-center"
+              onClick={() => {
+                router.push("/contact");
+              }}
+            >
+              Contact
+            </Button>
+          </div>
+        </div>
 
         {/* 8 - guides */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={containerVariants}
-        >
-          <div className="flex flex-col md:flex-row sm:space-y-1 w-full md:w-[90%] mx-auto rounded-lg md:h-screen h-full items-center justify-between gap-3 mb-3 px-1">
-            {/* mobile screen rectangle */}
-            <div className="relative group overflow-hidden w-full md:aspect-square aspect-video rounded-lg bg-zinc-200">
-              {/* Image starts scaled up, and zooms out to scale-100 when the group is hovered */}
-              <Image
-                src={
-                  "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/Screen+Shot+2026-05-16+at+2.45.40+PM.png"
-                } // Fixed the fallback logic string
-                alt={""}
-                fill
-                className="object-cover scale-110 transition-transform duration-500 ease-out group-hover:scale-100"
-              />
+        <div className="flex flex-col md:flex-row sm:space-y-1 w-full md:w-[90%] mx-auto rounded-lg md:h-screen h-full items-center justify-between gap-3 mb-3 px-1">
+          {/* mobile screen rectangle */}
+          <div className="relative group overflow-hidden w-full md:aspect-square aspect-video rounded-lg bg-zinc-200">
+            {/* Image starts scaled up, and zooms out to scale-100 when the group is hovered */}
+            <Image
+              src={
+                "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/Screen+Shot+2026-05-16+at+2.45.40+PM.png"
+              } // Fixed the fallback logic string
+              alt={""}
+              fill
+              className="object-cover scale-110 transition-transform duration-500 ease-out group-hover:scale-100"
+            />
 
-              {/* Dark gradient overlay to ensure text is legible against light images */}
-              <div className="absolute inset-0 bg-linear-to-t from-black/60 via-black/20 to-transparent" />
+            {/* Dark gradient overlay to ensure text is legible against light images */}
+            <div className="absolute inset-0 bg-linear-to-t from-black/60 via-black/20 to-transparent" />
 
-              <div className="absolute bottom-0 p-5">
-                <Button onClick={() => router.push("/locations")}>
-                  Find a outlet near you
-                </Button>
-              </div>
+            <div className="absolute bottom-0 p-5">
+              <Button onClick={() => router.push("/locations")}>
+                Find a outlet near you
+              </Button>
             </div>
-            <div className="relative group overflow-hidden w-full md:aspect-square aspect-video rounded-lg bg-zinc-200">
-              <Image
-                src={
-                  "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/Screen+Shot+2026-05-16+at+2.45.40+PM.png"
-                } // Fixed the fallback logic string
-                alt={""}
-                fill
-                className="object-cover scale-110 transition-transform duration-500 ease-out group-hover:scale-100"
-              />
-              <div className="absolute inset-0 bg-linear-to-t from-black/60 via-black/20 to-transparent" />
-              <div className="absolute bottom-0 m-5     ">
-                <Button onClick={() => router.push("/guides")}>
-                  Delivery guide
-                </Button>
-              </div>
+          </div>
+          <div className="relative group overflow-hidden w-full md:aspect-square aspect-video rounded-lg bg-zinc-200">
+            <Image
+              src={
+                "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/Screen+Shot+2026-05-16+at+2.45.40+PM.png"
+              } // Fixed the fallback logic string
+              alt={""}
+              fill
+              className="object-cover scale-110 transition-transform duration-500 ease-out group-hover:scale-100"
+            />
+            <div className="absolute inset-0 bg-linear-to-t from-black/60 via-black/20 to-transparent" />
+            <div className="absolute bottom-0 m-5">
+              <Button onClick={() => router.push("/guides")}>
+                Delivery guide
+              </Button>
             </div>
-            <div className="relative w-full md:aspect-square rounded-lg bg-zinc-200">
-              {/* 5 - FAQ */}
-              <div className="m-5">
-                <div className="font-semibold text-xl w-full">FAQs</div>
-                <div className="flex flex-col w-full">
-                  {data["frequently asked questions"].map((f) => (
-                    <AccordionItem f={f} />
-                  ))}
-                </div>
+          </div>
+          <div className="relative w-full md:aspect-square rounded-lg bg-zinc-200">
+            {/* 5 - FAQ */}
+            <div className="m-5">
+              <div className="font-semibold text-xl w-full">FAQs</div>
+              <div className="flex flex-col w-full">
+                {data["frequently asked questions"].map((f) => (
+                  <AccordionItem f={f} />
+                ))}
               </div>
             </div>
           </div>
-        </motion.div>
+        </div>
+
         {/* footer  */}
         <Footer />
       </div>

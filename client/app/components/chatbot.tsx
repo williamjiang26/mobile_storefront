@@ -117,7 +117,7 @@ export default function ChatSupport() {
       {/* Floating Trigger Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed bottom-6 right-6 z-50 rounded-full bg-green-100 p-5"
+        className="fixed bottom-30 right-3 sm:right-6 z-50 rounded-full bg-green-100 p-5"
       >
         {isOpen ? "X" : "Chat"}
       </button>
