@@ -23,7 +23,7 @@ export default function ChatSupport() {
     },
     {
       id: "button",
-      role: "",
+      role: "assistant",
       content: "Click to speak to live sales representative",
     },
   ]);
@@ -37,7 +37,6 @@ export default function ChatSupport() {
   };
   const sendAgentMessage = async () => {
     if (!message.trim()) return; // Prevent sending empty messages
-    
 
     // 1. Clear the input box right away
     const currentInput = message;
@@ -117,21 +116,21 @@ export default function ChatSupport() {
       {/* Floating Trigger Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed bottom-30 right-3 sm:right-6 z-50 rounded-full bg-green-100 p-5"
+        className="fixed bottom-6 right-6  z-50 rounded-full bg-green-100 p-5"
       >
         {isOpen ? "X" : "Chat"}
       </button>
 
       {/* Floating Chat Window */}
       {isOpen && (
-        <div className="fixed bottom-23 right-6 w-82.5 h-150 z-50 flex flex-col bg-background border rounded-lg shadow-lg">
+        <div className="fixed bottom-26 right-6 w-82.5 h-150 z-50 flex flex-col bg-background border rounded-lg shadow-lg">
           {/* chat */}
           <div className="flex-1 overflow-y-auto p-3 space-y-2 bg-muted/20">
             {messages.map((m, index) => (
               <div
                 key={index}
                 className={`p-2.5 rounded-2xl max-w-[80%] w-fit text-sm shadow-sm ${
-                  m.role === "assistant" || m.role === "button"
+                  m.role === "assistant" || m.role === ""
                     ? "bg-blue-100 text-blue-950 mr-auto rounded-tl-none border border-blue-200"
                     : "bg-green-100 text-green-950 ml-auto rounded-tr-none border border-green-200"
                 }`}
