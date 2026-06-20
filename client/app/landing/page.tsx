@@ -18,7 +18,7 @@ import Button from "../components/slideButton";
 import { client, GET_PRODUCTS_QUERY } from "../actions/products";
 import { useKeenSlider } from "keen-slider/react";
 import "keen-slider/keen-slider.min.css";
-import "./styles.css";
+
 // import Image from "next/image";
 
 function AccordionItem({ f }: { f: Record<string, any> }) {
@@ -96,7 +96,7 @@ export default function Home() {
     },
   };
   const [sliderRef] = useKeenSlider({
-    loop: true,
+    // loop: true,
     mode: "free",
     slides: {
       perView: 2,
@@ -150,7 +150,7 @@ export default function Home() {
                     .map((p: any, index) => (
                       <div
                         key={index}
-                        className="keen-slider__slide   flex flex-col bg-zinc-50 p-1 min-w-59 justify-between shadow-lg m-1 rounded-lg "
+                        className="keen-slider__slide    flex flex-col bg-zinc-50 p-1 min-w-59 justify-between shadow-lg m-1 rounded-lg "
                       >
                         <div className="   flex-col rounded-md p-1">
                           <div className="rounded-lg relative  h-59  bg-zinc-50 p-1 overflow-hidden  ">

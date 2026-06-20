@@ -6,12 +6,12 @@ import Footer from "../components/footer";
 import Header from "../components/header";
 import { motion } from "motion/react";
 import { client, GET_PRODUCTS_QUERY } from "../actions/products";
-//
+import { useKeenSlider } from "keen-slider/react";
+import "keen-slider/keen-slider.min.css";
 interface LineItem {
   price: string;
   quantity: number;
 }
-//
 const Catalog = () => {
   const router = useRouter();
   const [products, setProducts] = useState([]);
@@ -38,11 +38,26 @@ const Catalog = () => {
     router.push(`/checkout?items=${serializedItems}`);
     return;
   };
+  const [sliderRef] = useKeenSlider({
+    mode: "free",
+    slides: {
+      perView: 2,
+      spacing: 15,
+    },
+    breakpoints: {
+      "(min-width: 650px)": {
+        slides: { perView: 3, spacing: 15 },
+      },
+      "(min-width: 1023px)": {
+        slides: { perView: 5, spacing: 15 },
+      },
+    },
+  });
   return (
     <div className="flex flex-col min-h-screen ">
       <Header />
       {/* toggle */}
-      <div className="mt-28 flex py-1 gap-5 font-sans dark:bg-black overflow-x-scroll no-scrollbar whitespace-nowrap">
+      <div ref={sliderRef} className="keen-slider mt-28">
         {/* fixed - two options */}
         {[
           "Made-To-Order",
@@ -54,7 +69,7 @@ const Catalog = () => {
         ].map((c, index) => (
           <div
             key={index}
-            className={`border shrink-0 rounded-lg px-2 py-3 m-1 flex items-center gap-3 cursor-pointer select-none transition-all ${
+            className={`keen-slider__slide border shrink-0 rounded-lg px-2 py-3 m-1 flex items-center gap-3 cursor-pointer select-none transition-all ${
               productType === c
                 ? "underline underline-offset-3"
                 : "hover:bg-zinc-200"
