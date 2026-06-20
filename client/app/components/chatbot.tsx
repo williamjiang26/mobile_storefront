@@ -22,8 +22,8 @@ export default function ChatSupport() {
         "Hi I'm the customer support assistant. You can message directly here and customer service will be with you shortly. You can also call us at , or email us at .",
     },
     {
-      id: "welcome-message",
-      role: "button",
+      id: "button",
+      role: "",
       content: "Click to speak to live sales representative",
     },
   ]);
@@ -138,7 +138,7 @@ export default function ChatSupport() {
               >
                 {m.role === "assistant" ? (
                   <Markdown>{m.content}</Markdown>
-                ) : m.role === "button" ? (
+                ) : m.id === "button" ? (
                   <button onClick={handleSalesRep}>{m.content}</button>
                 ) : (
                   m.content
