@@ -84,7 +84,7 @@ const Catalog = () => {
         ))}
       </div>
       {/* catalog */}
-      <div className="grid w-full 5xl:w-[80%] 5xl:mx-auto grid-cols-2 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-5 5xl:grid-cols-7 p-5 scroll-smooth font-sans dark:bg-black gap-10 overflow-y-auto">
+      <div className="grid w-full 5xl:w-[80%] 5xl:mx-auto grid-cols-2 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-5 5xl:grid-cols-7 p-3 scroll-smooth font-sans dark:bg-black gap-3 overflow-y-auto">
         {/* made to order */}
         {productType === "Made-To-Order" &&
           products
