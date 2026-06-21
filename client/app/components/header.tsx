@@ -39,7 +39,7 @@ const Header = () => {
     >
       <div
         className="flex justify-start items-center hover:bg-zinc-200 hover:rounded-lg text-lg font-light"
-        onClick={() => router.push("/landing")}
+        onClick={() => router.push("/")}
       >
         Get Active Foods
       </div>
