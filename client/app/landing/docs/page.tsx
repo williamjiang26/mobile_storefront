@@ -71,8 +71,8 @@ const Page = () => {
         {/* storefront */}
         <div className="text-3xl font-light">storefront</div>
         {/*  a dashboard  */}
-        <div>a mobile site</div>
-        <div>
+         <div>a mobile site</div>
+        {/* <div>
           <li className="pl-3">feature demos:</li>
           <ol className="pl-6">
             {features.map((p: any) => (
@@ -81,7 +81,7 @@ const Page = () => {
               </li>
             ))}
           </ol>
-        </div>
+        </div> */} 
       </div>
 
       {/* preview click for live demo */}
