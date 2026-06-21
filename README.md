@@ -1,23 +1,22 @@
-# ecomm-store food
-ecommerce store to sell cpg goods
-easy to navigate and browse products
+build ecommerce store for your retail business
 
-detailed photos, descriptions and reviews
-one click checkout, manage, track order
+Problem: retail business not seen online? designed a brand? communicate with customers? 
 
-# car marketplace
-best experience, best design to shop for cars
-transparent, robust, draw from goat or stockx
+download storefront template and start designing your brand and publishing content for your customers today 
 
-# ecomm-store renovation
-ecommerce store to purchase and renovate easy
+Steps: Clone repository -> download packages -> plugin data in sampleData.json file -> npm run dev -> deploy
 
-git reset --soft origin/main - if u have 2-3 commits for example above origin main and one of the commits is blocking you from pushing all the commits, reset --soft to combine all them to the most recent commit
+features:
+- checkout flow 
+- blogs 
+- automated chat support 
+- crm 
+- order management 
+- customer portal 
+- favorites cart 
+- mobile responsive 
+- guides 
+- policies 
+- locations 
 
-# todo
-create a backend to upload blog and products to db
-
-
-i am building this brand i want to animate the buttons - add a autoplay video of the brand - animated scroll section describing features - add a reviews section and see reviews of other people's photo of their products - chatbot with option to call and send email - written guides and blog i want to also make the purchase and checkout process as convenient as possible part of the user experience is the app that comes along with it, it is not just another store that delivers the product to you, then why would you want to purchase from this company specially designed packaging is important as well this is a fitness, healthy lifestyle brand - write a guide - add chat support - backend for adding blogs, products and responding to messages - add-on pricing - reviews page - showroom maps page - contact page - guides - blog page - account management - touchups - content - fix checkout - design components - add products and blog posts
-i'm analytical, detail oriented person whos also familiar with many software tools including developing tools from scratch , interested in being a Corporate Development & Research Analyst or other opportunities as i'm excited aboiut richtech robotics.
-publish products to the store - connect to stripe - publish blogs - manage order processing - manage storefront analytics - toronto, markham, san francisco, san jose, santa clara, shenzhen, vancouver, palo alto. design , product direction how would businesses use this? if they dont already have an option why this one - is it better - mobile because easy to access for retail stores, reimagine retail shopping, rewards and brand loyalty with personal account management, blogs for content brand distribution, designed landing page animations branded discovery, for businesses not doing this already, how many downloads? github stars - dedicated team to do this - functional features?
+different business types:  CPG, ecommerce, retail
