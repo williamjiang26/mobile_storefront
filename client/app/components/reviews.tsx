@@ -92,14 +92,12 @@ export default function MotionReviewTicker() {
           <div className="absolute top-0 inset-x-0 h-20 bg-linear-to-b from-slate-50 dark:from-slate-950 to-transparent pointer-events-none z-10" />
           {/* <div className="absolute bottom-0 inset-x-0 h-20 bg-linear-to-t from-slate-50 dark:from-slate-950 to-transparent pointer-events-none z-10" /> */}
         </div>
-        {/* Title */}
         <div className="text-center max-w-lg mt-5 mx-auto mb-16">
           <div
             className="relative overflow-hidden z-10 bg-white
             px-5 py-3 rounded-lg  
-            text-slate-300 font-semibold uppercase tracking-wider
+            text-slate-300 font-semibold tracking-wider
             transition-colors duration-300 ease-in-out hover:text-white  
-            
             before:absolute before:top-0 before:left-0 before:h-full before:w-full before:-z-10
             before:bg-slate-300 before:scale-x-0 before:origin-left
             before:transition-transform before:duration-300 before:ease-in-out

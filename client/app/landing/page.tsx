@@ -12,14 +12,15 @@ import {
 import { useState, useEffect, useRef } from "react";
 import Header from "../components/header";
 import Footer from "../components/footer";
-import ScrollHorizontal from "../components/features";
+import ScrollHorizontal from "../components/scrollSlider";
 import VerticalTicker from "../components/reviews";
 import Button from "../components/slideButton";
 import { client, GET_PRODUCTS_QUERY } from "../actions/products";
 import { useKeenSlider } from "keen-slider/react";
 import "keen-slider/keen-slider.min.css";
-
 // import Image from "next/image";
+
+
 
 function AccordionItem({ f }: { f: Record<string, any> }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -109,14 +110,18 @@ export default function Home() {
       "(min-width: 1024px)": {
         slides: { perView: 5, spacing: 15 },
       },
+      "(min-width: 2068px)": {
+        slides: { perView: 7, spacing: 15 },
+      },
     },
   });
+
   return (
     <div className="flex flex-col bg-slate-100/95">
       <Header />
       <div className="flex-1 scroll-smooth font-sans ">
         {/* 1 - checkout */}
-        <div className="group flex flex-col cursor-pointer">
+        <div className="group flex flex-col cursor-pointer md:w-[90%] mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -211,14 +216,14 @@ export default function Home() {
                 </div>
               </div>
             </div>
-            <div className="relative overflow-hidden flex w-full justify-center bg-blue-300">
-              <div className="font-bold text-3xl text-white/90  text-start">
-                "Conveniently placed healthy foods that will help you stay fit.
-                Organic sugars and protein - no added ingredients." - brand
-                motto
-              </div>
-            </div>
           </motion.div>
+        </div>
+        {/* 2 - banner brand quote*/}
+        <div className="relative overflow-hidden flex w-full justify-center bg-blue-300 p-1">
+          <div className="font-bold text-3xl text-white/90  text-start">
+            "Conveniently placed healthy foods that will help you stay fit.
+            Organic sugars and protein - no added ingredients." - brand motto
+          </div>
         </div>
         {/* 3 - video and explore button product catalog */}
         <div className="relative w-full h-screen overflow-hidden group font-sans bg-green-200">
@@ -281,27 +286,39 @@ export default function Home() {
         >
           <ScrollHorizontal listName={"process"} />
         </motion.div>
-        {/* 7 - contact */}
-        <div className="flex border mb-3 justify-between bg-gray-500 text-white font-bold text-lg p-1 h-32 *:w-full">
-          <div className="flex items-center">
-            Our team is available 9-5 7x/week, contact or get a quote
-          </div>
-          <div className="flex px-1 my-1 items-center justify-center">
-            <Button
-              className="items-center"
-              onClick={() => {
-                router.push("/contact");
-              }}
-            >
-              Contact
-            </Button>
+        {/* 7 - FAQ */}
+        <div className="m-5 w-full md:w-[90%] mx-auto md:rounded-lg bg-zinc-200 p-5">
+          <div className="font-semibold text-xl w-full">FAQ</div>
+          <div className="flex flex-col w-full">
+            {data["frequently asked questions"].map((f) => (
+              <AccordionItem f={f} />
+            ))}
           </div>
         </div>
-
+        {/* 8 - Connect */}
+        <div className="flex m-5 w-full md:w-[90%] mx-auto md:rounded-lg h-full bg-slate-50 p-10">
+          <div className="flex w-full sm:w-[90%] justify-end items-center h-50">
+            <Button onClick={() => router.push("/guides")}>follow us</Button>
+          </div>
+        </div>
         {/* 8 - guides */}
-        <div className="flex flex-col sm:flex-row sm:space-y-1 w-full md:w-[90%] mx-auto rounded-lg md:h-screen h-full items-center justify-between gap-3 mb-3 px-1">
+        <div className="flex flex-col sm:flex-row sm:space-y-1 w-full md:w-[90%] mx-auto rounded-lg h-full items-center justify-between gap-3 mb-3 px-1">
           {/* mobile screen rectangle */}
-          <div className="relative group overflow-hidden w-full md:aspect-square aspect-video rounded-lg bg-zinc-200">
+          <div className="relative group overflow-hidden w-full sm:aspect-square aspect-video rounded-lg bg-zinc-200">
+            <Image
+              src={
+                "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/Screen+Shot+2026-05-16+at+2.45.40+PM.png"
+              } // Fixed the fallback logic string
+              alt={""}
+              fill
+              className="object-cover scale-110 transition-transform duration-500 ease-out group-hover:scale-100"
+            />
+            <div className="absolute inset-0 bg-linear-to-t from-black/60 via-black/20 to-transparent" />
+            <div className="absolute bottom-0 m-5">
+              <Button onClick={() => router.push("/guides")}>Contact</Button>
+            </div>
+          </div>
+          <div className="relative group overflow-hidden w-full sm:aspect-square aspect-video rounded-lg bg-zinc-200">
             {/* Image starts scaled up, and zooms out to scale-100 when the group is hovered */}
             <Image
               src={
@@ -321,7 +338,7 @@ export default function Home() {
               </Button>
             </div>
           </div>
-          <div className="relative group overflow-hidden w-full md:aspect-square aspect-video rounded-lg bg-zinc-200">
+          <div className="relative group overflow-hidden w-full sm:aspect-square aspect-video rounded-lg bg-zinc-200">
             <Image
               src={
                 "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/Screen+Shot+2026-05-16+at+2.45.40+PM.png"
@@ -337,19 +354,7 @@ export default function Home() {
               </Button>
             </div>
           </div>
-          <div className="relative group overflow-hidden w-full md:aspect-square rounded-lg bg-zinc-200">
-            {/* 5 - FAQ */}
-            <div className="m-5">
-              <div className="font-semibold text-xl w-full">FAQs</div>
-              <div className="flex flex-col w-full">
-                {data["frequently asked questions"].map((f) => (
-                  <AccordionItem f={f} />
-                ))}
-              </div>
-            </div>
-          </div>
         </div>
-
         {/* footer  */}
         <Footer />
       </div>

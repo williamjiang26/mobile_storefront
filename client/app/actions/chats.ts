@@ -60,7 +60,6 @@ const SEND_MESSAGE_MUTATION = gql`
     }
   }
 `;
-// Helper function to fire off user chat actions
 export async function handleUserSendMessage(
   name: string,
   typedText: string,

@@ -8,6 +8,7 @@ import { motion } from "motion/react";
 import { client, GET_PRODUCTS_QUERY } from "../actions/products";
 import { useKeenSlider } from "keen-slider/react";
 import "keen-slider/keen-slider.min.css";
+import { Warehouse, NotebookPen } from "lucide-react";
 interface LineItem {
   price: string;
   quantity: number;
@@ -54,37 +55,37 @@ const Catalog = () => {
     },
   });
   return (
-    <div className="flex flex-col min-h-screen ">
+    <div className="flex flex-col min-h-screen w-full 2xl:w-[80%] 2xl:mx-auto">
       <Header />
       {/* toggle */}
-      <div ref={sliderRef} className="keen-slider mt-28">
-        {/* fixed - two options */}
+      <div ref={sliderRef} className="keen-slider mt-28 h-full">
         {[
-          "Made-To-Order",
-          "Stock",
-          "Made-To-Order",
-          "Stock",
-          "Made-To-Order",
-          "Stock",
+          {productType: "Made-To-Order", img: <NotebookPen className="absolute top-3 left-3"/>},
+          {productType: "Stock", img: <Warehouse className="absolute top-3 left-3"/>},
+          {productType: "Made-To-Order", img: <NotebookPen className="absolute top-3 left-3"/>},
+          { productType: "Stock", img: <Warehouse className="absolute top-3 left-3" /> },
+          { productType: "Made-To-Order", img: <NotebookPen className="absolute top-3 left-3" /> },
+          {productType: "Stock", img: <Warehouse className="absolute top-3 left-3"/>},
         ].map((c, index) => (
           <div
             key={index}
-            className={`keen-slider__slide border shrink-0 rounded-lg px-2 py-3 m-1 flex items-center gap-3 cursor-pointer select-none transition-all ${
-              productType === c
+            className={`keen-slider__slide border shrink-0 rounded-lg px-2 py-3 m-1 w-[80%] mx-auto flex items-center justify-between gap-3 cursor-pointer select-none transition-all ${
+              productType === c.productType
                 ? "underline underline-offset-3"
                 : "hover:bg-zinc-200"
             } hover:underline hover:underline-offset-3`}
-            onClick={() => setType(c)}
+            onClick={() => setType(c.productType)}
           >
-            <div className="relative aspect-square h-12 w-12 shrink-0 overflow-hidden rounded-lg bg-zinc-300 dark:bg-zinc-700">
-              <div className="absolute inset-0 bg-linear-to-t from-black/60 via-black/20 to-transparent" />
+            <div className="relative aspect-square h-12 w-12 shrink-0 overflow-hidden rounded-lg bg-zinc-300/10 dark:bg-zinc-700">
+              {/* <div className="absolute inset-0 bg-linear-to-t from-black/60 via-black/20 to-transparent" /> */}
+              {c.img}
             </div>
-            <div>{c}</div>
+            <div className="w-full">{c.productType}</div>
           </div>
         ))}
       </div>
       {/* catalog */}
-      <div className="grid w-full 5xl:w-[80%] 5xl:mx-auto grid-cols-2 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-5 5xl:grid-cols-7 p-3 scroll-smooth font-sans dark:bg-black gap-3 overflow-y-auto">
+      <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-5 p-3 scroll-smooth font-sans min-h-full gap-3 overflow-y-auto">
         {/* made to order */}
         {productType === "Made-To-Order" &&
           products

@@ -35,10 +35,10 @@ const Header = () => {
         opacity: hidden ? 0 : 1,
       }}
       transition={{ duration: 0.25, ease: "easeOut" }}
-      className="flex fixed px-1 sm:px-5 py-5 top-5 inset-x-0 z-50 mx-1 sm:w-[80%] sm:mx-auto rounded-lg border backdrop-blur justify-between"
+      className="flex fixed px-1 sm:px-5 py-5 top-1 sm:top-5 inset-x-0 z-50 mx-1 sm:w-[80%] sm:mx-auto rounded-lg border backdrop-blur justify-between"
     >
       <div
-        className="flex justify-start items-center hover:bg-zinc-200 hover:rounded-lg text-2xl font-light"
+        className="flex justify-start items-center hover:bg-zinc-200 hover:rounded-lg text-lg font-light"
         onClick={() => router.push("/landing")}
       >
         Get Active Foods
@@ -49,7 +49,7 @@ const Header = () => {
           onMouseEnter={() => setOpen("about")}
           onMouseLeave={() => setOpen("")}
         >
-          <div className="hover:bg-zinc-200 hover:rounded-lg ">About</div>
+          <div className="hover:bg-zinc-200 hover:rounded-lg">About</div>
           <AnimatePresence>
             {open === "about" && (
               <motion.div

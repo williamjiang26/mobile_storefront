@@ -21,27 +21,4 @@ export const GET_PRODUCTS_QUERY = gql`
   }
 `;
  
-
-// get by id
-// const PRODUCT_ID_QUERY = gql`
-//   query getById($id: Int!) {
-//     product(id: $id) {
-//       id
-//       name
-//       img
-//       stock
-//       price
-//     }
-//   }
-// `;
-// export const fetchById = async (id) => {
-//   try {
-//     const response = await client.query({
-//       query: PRODUCT_ID_QUERY,
-//       fetchPolicy: "network-only",
-//     });
-//     return response.data.product;
-//   } catch (error) {
-//     console.error("Error fetching products:", error);
-//   }
-// };
+ 

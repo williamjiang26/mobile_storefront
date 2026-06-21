@@ -1,12 +1,4 @@
 {
-  "headers": [
-    "cookies",
-    "placeholder",
-    "placeholder",
-    "placeholder",
-    "placeholder",
-    "placeholder"
-  ],
   "popular products": [
     {
       "id": 11,
@@ -111,34 +103,33 @@
     },
     {
       "question": "do you deliver?",
-
       "answer": "yes we deliver "
     }
   ],
   "process": [
     {
       "id": 1,
-      "name": "Place order directly or through chat for consultation",
+      "name": "Place order",
       "url": "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/Screen+Shot+2026-05-16+at+2.45.40+PM.png"
     },
     {
       "id": 2,
-      "name": "We will contact you for your order specifications",
+      "name": "Get details",
       "url": "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/Screen+Shot+2026-05-16+at+2.45.40+PM.png"
     },
     {
       "id": 3,
-      "name": "We will contact you when your order is ready",
+      "name": "Order updated",
       "url": "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/Screen+Shot+2026-05-16+at+2.45.40+PM.png"
     },
     {
       "id": 4,
-      "name": "We deliver your order to you",
+      "name": "Deliver order",
       "url": "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/Screen+Shot+2026-05-16+at+2.45.40+PM.png"
     },
     {
       "id": 5,
-      "name": "Order is complete, let us know your feedback",
+      "name": "Leave review",
       "url": "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/Screen+Shot+2026-05-16+at+2.45.40+PM.png"
     }
   ],

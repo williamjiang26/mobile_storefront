@@ -1,25 +1,21 @@
 "use server";
-
+import Stripe from "stripe";
 import { headers } from "next/headers";
 
-import Stripe from "stripe";
-
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string);
-
 interface LineItem {
   price: string;
   quantity: number;
 }
-
 interface FetchSecretArgs {
   lineItems: LineItem[];
 }
+
+
 export async function fetchClientSecret({
   lineItems,
 }: FetchSecretArgs): Promise<string> {
-  const origin = (await headers()).get("origin");
-
-  // Create Checkout Sessions from body params.
+  const origin = (await headers()).get("origin")
   const session = await stripe.checkout.sessions.create({
     ui_mode: "embedded_page",
     line_items: lineItems,
