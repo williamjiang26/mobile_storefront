@@ -4,21 +4,17 @@ import { createClient } from "graphql-ws";
 
 import { getMainDefinition } from "@apollo/client/utilities";
 import { gql } from "@apollo/client";
-// 1. HTTP Link for standard Queries and Mutations
-const httpLink = new HttpLink({
-  uri: process.env.NEXT_PUBLIC_CHATS_API_URL as string,
-});
 
-// 2. WebSocket Link for real-time Subscriptions
+const httpLink = new HttpLink({
+  uri: process.env.NEXT_PUBLIC_CHATS_URL as string,
+});
 const wsLink = new GraphQLWsLink(
   createClient({
-    url:  process.env.NEXT_PUBLIC_WS_CHATS_URL as string,
+    url: process.env.NEXT_PUBLIC_WS_CHATS_URL as string,
   })
 );
-
-// 3. Split traffic: Send mutations to HTTP, send subscriptions to WS
 const splitLink = split(
-  ({ query  }) => {
+  ({ query }) => {
     const definition = getMainDefinition(query);
     return (
       definition.kind === "OperationDefinition" &&

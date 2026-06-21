@@ -66,7 +66,6 @@ export default function ChatSupport() {
     ); // switch the route to sales rep
     setSalesRep(true);
   };
-
   useEffect(() => {
     const subscription = client
       .subscribe<ListenMessagesData>({
@@ -76,7 +75,7 @@ export default function ChatSupport() {
       .subscribe({
         next(response) {
           const newMessage = response.data?.listenMessages;
-
+          console.log("🚀 ~ next ~ newMessage:", newMessage)
           if (!newMessage) {
             console.warn("new message undefined");
             return;
@@ -130,15 +129,17 @@ export default function ChatSupport() {
               <div
                 key={index}
                 className={`p-2.5 rounded-2xl max-w-[80%] w-fit text-sm shadow-sm ${
-                  m.role === "assistant" || m.role === ""
+                  m.role === "assistant"
                     ? "bg-blue-100 text-blue-950 mr-auto rounded-tl-none border border-blue-200"
                     : "bg-green-100 text-green-950 ml-auto rounded-tr-none border border-green-200"
                 }`}
               >
                 {m.role === "assistant" ? (
-                  <Markdown>{m.content}</Markdown>
-                ) : m.id === "button" ? (
-                  <button onClick={handleSalesRep}>{m.content}</button>
+                  m.id === "button" ? (
+                    <button onClick={handleSalesRep}>{m.content}</button>
+                  ) : (
+                    <Markdown>{m.content}</Markdown>
+                  )
                 ) : (
                   m.content
                 )}
@@ -153,9 +154,8 @@ export default function ChatSupport() {
                 isSalesRep ? sendMessage() : sendAgentMessage();
               }
             }}
-            className=" "
           >
-            <div className=" w-full bottom-0 rounded-b-lg flex h-10">
+            <div className="w-full bottom-0 rounded-b-lg flex h-10">
               <input
                 type="text"
                 className="w-full hover:border hover:rounded-bl-lg"

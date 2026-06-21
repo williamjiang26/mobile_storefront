@@ -32,7 +32,7 @@ export default function ScrollHorizontal({
         {/* Sticky Wrapper - Changed to justify-center with a responsive gap */}
         <div className="sticky top-0 h-screen w-full flex flex-col items-center justify-center gap-[8vh] overflow-hidden motion-reduce:relative motion-reduce:h-auto motion-reduce:py-12">
           {/* 1. Header - Centers horizontally automatically */}
-          <h1 className="text-center text-[clamp(32px,5vh,72px)] text-white m-0 uppercase font-bold tracking-tight z-10">
+          <h1 className="text-center text-[clamp(32px,5vh,72px)] text-white m-0 font-bold tracking-tight z-10">
             <span className="[text-shadow:1px_1px_1px_rgba(0,0,0,0.1)] tracking-wide">
               {listName}
             </span>
