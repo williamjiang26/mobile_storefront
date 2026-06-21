@@ -1,0 +1,55 @@
+{
+  "popular products": [
+    {
+      "id": 11,
+      "name": "yogurt",
+      "url": "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/images.jpg",
+      "price": "price_1TZyy605ICSAGFaRs7vAqujS",
+      "start amount": "$5",
+      "description": " ",
+      "storage instructions": " "
+    }
+  ],
+  "products in stock": [
+    {
+      "id": 21,
+      "name": "coconut water",
+      "url": "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/1518783__1psd.webp",
+      "amount": "$5",
+      "price": "price_1TZyze05ICSAGFaR0lEGR2WC"
+    }
+  ],
+  "features": [
+    {
+      "id": 1,
+      "name": "quality, healthy, organic",
+      "url": "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/Screen+Shot+2026-05-16+at+2.45.40+PM.png",
+      "description": "get the sugars and protein your body needs without added mysterious ingredients"
+    }
+  ],
+  "frequently asked questions": [
+    {
+      "question": "how do I place an order?",
+      "answer": "you can place an order by selecting a product or through the chat"
+    }
+  ],
+  "process": [
+    {
+      "id": 1,
+      "name": "Place order",
+      "url": "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/Screen+Shot+2026-05-16+at+2.45.40+PM.png"
+    }
+  ],
+  "reviews": [
+    {
+      "id": 1,
+      "name": "chet",
+      "review": "great food",
+      "date": "march 2025 ",
+      "stars": 5,
+      "location": "san francisco, ca",
+      "attachedPhotos": " "
+    }
+  ],
+  "guides": [{}]
+}
