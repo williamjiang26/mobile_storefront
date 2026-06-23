@@ -17,7 +17,7 @@ const Page = () => {
     <div className="flex flex-col max-h-screen ">
       <Header />
       <div className="w-[90%] mx-auto">
-        <div className="shrink-0 mt-25 sm:mt-30 m-5 text-2xl border h-52 rounded-lg flex items-center justify-center">
+        <div className="shrink-0 mt-25 sm:mt-30 m-5 text-2xl border h-25 sm:h-52 rounded-lg flex items-center justify-center">
           <div>Orders</div>
         </div>
       </div>
