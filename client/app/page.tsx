@@ -284,6 +284,12 @@ export default function Home() {
         >
           <ScrollHorizontal listName={"process"} />
         </motion.div>
+        {/* 8 - Connect */}
+        <div className="flex m-5 w-full md:w-[90%] mx-auto md:rounded-lg h-full bg-slate-50 p-10">
+          <div className="flex w-full sm:w-[90%] justify-end items-center h-50">
+            <Button onClick={() => router.push("/guides")}>follow us</Button>
+          </div>
+        </div>
         {/* 7 - FAQ */}
         <div className="m-5 w-full md:w-[90%] mx-auto md:rounded-lg bg-zinc-200 p-5">
           <div className="font-semibold text-xl w-full">FAQ</div>
@@ -291,12 +297,6 @@ export default function Home() {
             {data["frequently asked questions"].map((f) => (
               <AccordionItem f={f} />
             ))}
-          </div>
-        </div>
-        {/* 8 - Connect */}
-        <div className="flex m-5 w-full md:w-[90%] mx-auto md:rounded-lg h-full bg-slate-50 p-10">
-          <div className="flex w-full sm:w-[90%] justify-end items-center h-50">
-            <Button onClick={() => router.push("/guides")}>follow us</Button>
           </div>
         </div>
         {/* 8 - guides */}

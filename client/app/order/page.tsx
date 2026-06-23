@@ -126,7 +126,7 @@ const Page = () => {
             <div className="text-sm ">{product.description}</div>
           </div>
         </div>
-        {/* Form */}
+        {/* mobile - drawer, web - multi-step form */}
         <div className="cols-span-1 rounded-r-lg mr-auto w-full">
           {/* multistep form */}
           <form className="space-y-1 px-1">
@@ -291,18 +291,9 @@ const Page = () => {
     </div>
   );
 };
+
 const Order = () => {
-  return (
-    <Suspense
-      fallback={
-        <div className="p-8 text-center text-zinc-500">
-          Loading checkout forms...
-        </div>
-      }
-    >
-      <Page />
-    </Suspense>
+  return (<Suspense fallback={<div className="p-8 text-center text-zinc-500"> Loading checkout forms... </div>}> <Page /> </Suspense>
   );
 };
-
 export default Order;

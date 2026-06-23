@@ -9,10 +9,9 @@ import { client, GET_PRODUCTS_QUERY } from "../actions/products";
 import { useKeenSlider } from "keen-slider/react";
 import "keen-slider/keen-slider.min.css";
 import { Warehouse, NotebookPen } from "lucide-react";
-interface LineItem {
-  price: string;
-  quantity: number;
-}
+import NavPage from "../components/nav";
+
+
 const Catalog = () => {
   const router = useRouter();
   const [products, setProducts] = useState([]);
@@ -55,10 +54,10 @@ const Catalog = () => {
     },
   });
   return (
-    <div className="flex flex-col min-h-screen w-full 2xl:w-[80%] 2xl:mx-auto">
+    <div className="flex flex-col max-h-screen w-full 2xl:w-[80%] 2xl:mx-auto">
       <Header />
       {/* toggle */}
-      <div ref={sliderRef} className="keen-slider mt-28 h-full">
+      <div ref={sliderRef} className="keen-slider mt-30 px-3">
         {[
           {productType: "Made-To-Order", img: <NotebookPen className="absolute top-3 left-3"/>},
           {productType: "Stock", img: <Warehouse className="absolute top-3 left-3"/>},
@@ -85,7 +84,7 @@ const Catalog = () => {
         ))}
       </div>
       {/* catalog */}
-      <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-5 p-3 scroll-smooth font-sans min-h-full gap-3 overflow-y-auto">
+      <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-5 p-3 scroll-smooth font-sans h-screen gap-3 overflow-y-auto">
         {/* made to order */}
         {productType === "Made-To-Order" &&
           products
@@ -139,14 +138,14 @@ const Catalog = () => {
             .filter((p: any) => p.stock)
             .map((p, index) => (
               <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.9 }}
-              >
-                <div className="col-span-1 grid grid-cols-1 w-full h-full pb-1 justify-between bg-zinc-50 shadow-md rounded-lg space-y-3">
-                  <div className="group rounded-lg cursor-pointer w-full h-96">
-                    <div className="relative overflow-hidden rounded-lg h-full w-full ">
+              key={index}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.9 }}
+            >
+              <div className="col-span-1 grid grid-cols-1 w-full h-full pb-1 justify-between bg-zinc-50 shadow-md rounded-lg space-y-3">
+                <div className="group rounded-lg cursor-pointer w-full h-96">
+                  <div className="relative overflow-hidden rounded-lg w-full h-full">
                       <Image
                         src={p["img"]}
                         alt=""
@@ -180,7 +179,9 @@ const Catalog = () => {
               </motion.div>
             ))}
       </div>
-      <Footer />
+      
+      {/* bottom nav */}
+      <NavPage />
     </div>
   );
 };

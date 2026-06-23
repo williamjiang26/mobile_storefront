@@ -115,14 +115,14 @@ export default function ChatSupport() {
       {/* Floating Trigger Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed bottom-6 right-6  z-50 rounded-full bg-green-100 p-5"
+        className="fixed bottom-30 right-1 sm:right-6  z-50 rounded-full bg-green-100 p-5"
       >
         {isOpen ? "X" : "Chat"}
       </button>
 
       {/* Floating Chat Window */}
       {isOpen && (
-        <div className="fixed bottom-26 right-6 w-82.5 h-150 z-50 flex flex-col bg-background border rounded-lg shadow-lg">
+        <div className="fixed bottom-55 right-6 w-82.5 h-150 z-50 flex flex-col bg-transparent border rounded-lg shadow-lg">
           {/* chat */}
           <div className="flex-1 overflow-y-auto p-3 space-y-2 bg-muted/20">
             {messages.map((m, index) => (
@@ -155,10 +155,10 @@ export default function ChatSupport() {
               }
             }}
           >
-            <div className="w-full bottom-0 rounded-b-lg flex h-10">
+            <div className="w-full border bottom-0 rounded-b-lg flex h-10">
               <input
                 type="text"
-                className="w-full hover:border hover:rounded-bl-lg"
+                className="w-full rounded-bl-lg"
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
               />

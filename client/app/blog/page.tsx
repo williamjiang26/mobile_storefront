@@ -39,14 +39,14 @@ const Page = () => {
   };
   fetchMyProducts();
   return (
-    <div className="flex flex-col min-h-screen ">
+    <div className="flex flex-col min-h-screen">
       <Header />
       {/* toggle */}
-      <div className="mt-28 flex py-1 gap-5 font-sans dark:bg-black overflow-x-auto justify-center">
+      <div className="flex flex-col mt-28 w-[90%] sm:w[80%] mx-auto py-1 gap-5 font-sans dark:bg-black overflow-y-auto h-screen">
         {products.map((p:any, index) => (
           <div
             key={index}
-            className="border rounded-lg w-[80%] p-3 flex items-center"
+            className="border rounded-lg  p-3 flex items-center"
             onClick={() => router.push(`/blog/${p.title}`)}
           >
             <div className="text-lg font-light">{p.date}</div>-
