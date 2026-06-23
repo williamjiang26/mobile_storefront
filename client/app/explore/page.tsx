@@ -1,12 +1,13 @@
 'use client'
+import Header from "../components/header";
 import NavPage from "../components/nav";
 
 
 const Page = () => {
   return (
     <div>
-      
-      what's the feature
+      <Header />
+      {/* what's the feature */}
       <NavPage />
     </div>
   );

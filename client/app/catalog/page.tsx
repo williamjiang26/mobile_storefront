@@ -57,7 +57,7 @@ const Catalog = () => {
     <div className="flex flex-col max-h-screen w-full 2xl:w-[80%] 2xl:mx-auto">
       <Header />
       {/* toggle */}
-      <div ref={sliderRef} className="keen-slider mt-30 px-3">
+      <div ref={sliderRef} className="keen-slider mt-19 py-3 sm:mt-30 px-3">
         {[
           {productType: "Made-To-Order", img: <NotebookPen className="absolute top-3 left-3"/>},
           {productType: "Stock", img: <Warehouse className="absolute top-3 left-3"/>},
