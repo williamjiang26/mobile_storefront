@@ -16,10 +16,8 @@ const Page = () => {
   return (
     <div className="flex flex-col max-h-screen ">
       <Header />
-      <div className="w-[90%] mx-auto">
-        <div className="shrink-0 mt-25 sm:mt-30 m-5 text-2xl border h-25 sm:h-52 rounded-lg flex items-center justify-center">
-          <div>Orders</div>
-        </div>
+      <div className="w-[90%] mx-auto shrink-0 mt-25 sm:mt-30 m-3 text-2xl border h-25 sm:h-52 rounded-lg flex items-center justify-center">
+        <div>Orders</div>
       </div>
       <div className="p-1 space-y-5 overflow-y-auto flex-auto h-screen w-[90%] mx-auto">
         {[1, 2, 3].map((p) => (
@@ -29,8 +27,7 @@ const Page = () => {
               <div className="pt-1 px-1 border m-1 min-w-20 sm:min-w-52">
                 <div className="mt-1">Orange juice</div>
                 <div className="text-sm pl-1 sm:flex ">
-                  (
-                  {sampleDescription.map((p) => (
+                  ({sampleDescription.map((p) => (
                     <div className="min-w-fit">{p}, </div>
                   ))}
                   )
@@ -38,7 +35,7 @@ const Page = () => {
               </div>
             </div>
             <div className="flex justify-between space-x-1">
-              <div className="border rounded-lg p-1">edit</div>{" "}
+              <div className="border rounded-lg p-1">edit</div>
               <div className="border rounded-lg p-1">checkout</div>
             </div>
           </div>
