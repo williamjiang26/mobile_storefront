@@ -3,7 +3,7 @@ import { useRouter } from "@/node_modules/next/navigation";
 import Header from "../components/header";
 
 import NavPage from "../components/nav";
-import Button from "../components/slideButton";
+// import Button from "../components/slideButton";
 const Page = () => {
   const router = useRouter();
   const sampleDescription = ["fresh-squeezed","30% sugar","30% ice",
