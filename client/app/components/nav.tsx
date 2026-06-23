@@ -1,5 +1,5 @@
 import { useRouter } from "@/node_modules/next/navigation";
-import React from "react";
+
 
 
 const NavPage = () => {
