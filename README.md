@@ -1,4 +1,4 @@
-build ecommerce store for your retail business
+# Build ecommerce store for your retail business
 
 Problem: retail business not seen online? designed a brand? communicate with customers? 
 
