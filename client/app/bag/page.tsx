@@ -6,10 +6,7 @@ import NavPage from "../components/nav";
 import Button from "../components/slideButton";
 const Page = () => {
   const router = useRouter();
-  const sampleDescription = [
-    "fresh-squeezed",
-    "30% sugar",
-    "30% ice",
+  const sampleDescription = ["fresh-squeezed","30% sugar","30% ice",
     "medium",
     "to-go",
   ];
@@ -24,7 +21,7 @@ const Page = () => {
           <div className="border rounded-lg p-1 flex justify-between items-center">
             <div className="flex items-center">
               <div className="border rounded-lg h-10 w-10 p-15"></div>
-              <div className="pt-1 px-1 border m-1 min-w-20 sm:min-w-52">
+              <div className="pt-1 px-1 border m-1 min-w-21 sm:min-w-52">
                 <div className="mt-1">Orange juice</div>
                 <div className="text-sm pl-1 sm:flex ">
                   ({sampleDescription.map((p) => (
