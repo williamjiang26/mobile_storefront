@@ -39,7 +39,7 @@
     {
       "id": 22,
       "name": "chicken breast",
-      "url": "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/Screen+Shot+2026-05-16+at+2.45.40+PM.png",
+      "url": "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/sousvidechicken.png",
       "amount": "$5",
       "price": "price_1TZz0O05ICSAGFaRsAxwvr2b"
     },
@@ -76,19 +76,19 @@
     {
       "id": 1,
       "name": "quality, healthy, organic",
-      "url": "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/Screen+Shot+2026-05-16+at+2.45.40+PM.png",
+      "url": "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/sousvidechicken.png",
       "description": "get the sugars and protein your body needs without added mysterious ingredients"
     },
     {
       "id": 2,
       "name": "convenient",
-      "url": "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/Screen+Shot+2026-05-16+at+2.45.40+PM.png",
+      "url": "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/sousvidechicken.png",
       "description": "conveniently packaged and located, ready to eat to get the most - instantly "
     },
     {
       "id": 3,
       "name": "energized",
-      "url": "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/Screen+Shot+2026-05-16+at+2.45.40+PM.png",
+      "url": "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/sousvidechicken.png",
       "description": "leaves your body feeling energetic, feeling good and feeling light for active activities"
     }
   ],
@@ -110,27 +110,27 @@
     {
       "id": 1,
       "name": "Place order",
-      "url": "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/Screen+Shot+2026-05-16+at+2.45.40+PM.png"
+      "url": "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/sousvidechicken.png"
     },
     {
       "id": 2,
       "name": "Get details",
-      "url": "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/Screen+Shot+2026-05-16+at+2.45.40+PM.png"
+      "url": "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/sousvidechicken.png"
     },
     {
       "id": 3,
       "name": "Order updated",
-      "url": "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/Screen+Shot+2026-05-16+at+2.45.40+PM.png"
+      "url": "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/sousvidechicken.png"
     },
     {
       "id": 4,
       "name": "Deliver order",
-      "url": "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/Screen+Shot+2026-05-16+at+2.45.40+PM.png"
+      "url": "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/sousvidechicken.png"
     },
     {
       "id": 5,
       "name": "Leave review",
-      "url": "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/Screen+Shot+2026-05-16+at+2.45.40+PM.png"
+      "url": "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/sousvidechicken.png"
     }
   ],
   "reviews": [

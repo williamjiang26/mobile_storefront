@@ -140,7 +140,7 @@ const Header = () => {
             <div
               onMouseEnter={() => setOpen("user-portal")}
               onMouseLeave={() => setOpen("")}
-              className="inline-block" // Keeps layout tight around the avatar
+              className="inline-block mr-1" // Keeps layout tight around the avatar
             >
               <UserAvatar />
             </div>
@@ -154,11 +154,11 @@ const Header = () => {
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 exit={{ opacity: 0, y: 10, scale: 0.98 }}
                 transition={{ duration: 0.18, ease: "easeOut" }}
-                className="absolute top-full mt-2 w-56 rounded-lg border bg-white shadow-lg"
+                className="absolute top-15 right-0 sm: w-56 rounded-lg border bg-white shadow-lg"
               >
                 <div
                   className="p-3 hover:bg-zinc-100 rounded-lg"
-                  onClick={() => router.push("/customer")}
+                  onClick={() => router.push("/customer/orders")}
                 >
                   my account
                 </div>
