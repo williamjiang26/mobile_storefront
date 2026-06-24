@@ -12,7 +12,6 @@ import "keen-slider/keen-slider.min.css";
 import { Warehouse, NotebookPen } from "lucide-react";
 import NavPage from "../components/nav";
 
-
 const Catalog = () => {
   const router = useRouter();
   const [products, setProducts] = useState([]);
@@ -60,12 +59,30 @@ const Catalog = () => {
       {/* toggle */}
       <div ref={sliderRef} className="keen-slider mt-19 py-3 sm:mt-30 px-3">
         {[
-          {productType: "Made-To-Order", img: <NotebookPen className="absolute top-3 left-3"/>},
-          {productType: "Stock", img: <Warehouse className="absolute top-3 left-3"/>},
-          {productType: "Made-To-Order", img: <NotebookPen className="absolute top-3 left-3"/>},
-          { productType: "Stock", img: <Warehouse className="absolute top-3 left-3" /> },
-          { productType: "Made-To-Order", img: <NotebookPen className="absolute top-3 left-3" /> },
-          {productType: "Stock", img: <Warehouse className="absolute top-3 left-3"/>},
+          {
+            productType: "Made-To-Order",
+            img: <NotebookPen className="absolute top-3 left-3" />,
+          },
+          {
+            productType: "Stock",
+            img: <Warehouse className="absolute top-3 left-3" />,
+          },
+          {
+            productType: "Made-To-Order",
+            img: <NotebookPen className="absolute top-3 left-3" />,
+          },
+          {
+            productType: "Stock",
+            img: <Warehouse className="absolute top-3 left-3" />,
+          },
+          {
+            productType: "Made-To-Order",
+            img: <NotebookPen className="absolute top-3 left-3" />,
+          },
+          {
+            productType: "Stock",
+            img: <Warehouse className="absolute top-3 left-3" />,
+          },
         ].map((c, index) => (
           <div
             key={index}
@@ -85,7 +102,7 @@ const Catalog = () => {
         ))}
       </div>
       {/* catalog */}
-      <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-5 p-3 scroll-smooth font-sans h-screen gap-3 overflow-y-auto">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-7 p-3 scroll-smooth font-sans h-screen gap-3 overflow-y-auto">
         {/* made to order */}
         {productType === "Made-To-Order" &&
           products
@@ -97,7 +114,7 @@ const Catalog = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.9 }}
               >
-                <div className="col-span-1 grid grid-cols-1 w-full h-full pb-1 justify-between bg-zinc-50 shadow-md rounded-lg space-y-3">
+                <div className="col-span-1 grid grid-cols-1 w-full  pb-1 justify-between bg-zinc-50 shadow-md rounded-lg space-y-3">
                   <div className="group rounded-lg cursor-pointer w-full h-96">
                     <div className="relative overflow-hidden rounded-lg w-full h-full">
                       <Image
@@ -139,14 +156,14 @@ const Catalog = () => {
             .filter((p: any) => p.stock)
             .map((p, index) => (
               <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.9 }}
-            >
-              <div className="col-span-1 grid grid-cols-1 w-full h-full pb-1 justify-between bg-zinc-50 shadow-md rounded-lg space-y-3">
-                <div className="group rounded-lg cursor-pointer w-full h-96">
-                  <div className="relative overflow-hidden rounded-lg w-full h-full">
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.9 }}
+              >
+                <div className="col-span-1 grid grid-cols-1 w-full   pb-1 justify-between bg-zinc-50 shadow-md rounded-lg space-y-3">
+                  <div className="group rounded-lg cursor-pointer w-full h-96">
+                    <div className="relative overflow-hidden rounded-lg w-full h-full">
                       <Image
                         src={p["img"]}
                         alt=""
@@ -180,7 +197,7 @@ const Catalog = () => {
               </motion.div>
             ))}
       </div>
-      
+
       {/* bottom nav */}
       <NavPage />
     </div>
