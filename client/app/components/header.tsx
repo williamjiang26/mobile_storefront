@@ -160,7 +160,7 @@ const Header = () => {
                   className="p-3 hover:bg-zinc-100 rounded-lg"
                   onClick={() => router.push("/customer/orders")}
                 >
-                  my account
+                  My account
                 </div>
                 <div className="p-3 hover:bg-zinc-100">
                   <SignOutButton />

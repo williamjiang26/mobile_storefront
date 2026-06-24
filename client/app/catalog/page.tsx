@@ -115,7 +115,7 @@ const Catalog = () => {
                 transition={{ duration: 0.9 }}
               >
                 <div className="col-span-1 grid grid-cols-1 w-full  pb-1 justify-between bg-zinc-50 shadow-md rounded-lg space-y-3">
-                  <div className="group rounded-lg cursor-pointer w-full h-96">
+                  <div className="group rounded-lg cursor-pointer w-full h-59">
                     <div className="relative overflow-hidden rounded-lg w-full h-full">
                       <Image
                         src={p["img"]}
@@ -162,7 +162,7 @@ const Catalog = () => {
                 transition={{ duration: 0.9 }}
               >
                 <div className="col-span-1 grid grid-cols-1 w-full   pb-1 justify-between bg-zinc-50 shadow-md rounded-lg space-y-3">
-                  <div className="group rounded-lg cursor-pointer w-full h-96">
+                  <div className="group rounded-lg cursor-pointer w-full h-59">
                     <div className="relative overflow-hidden rounded-lg w-full h-full">
                       <Image
                         src={p["img"]}
