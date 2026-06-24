@@ -1,10 +1,10 @@
 "use client";
+import React from "react";
 import Header from "../../components/header";
-import BottomNav from "../bottomNav";
 
 import Image from "next/image";
+import BottomNav from "../../components/bottomNav";
 const Page = () => {
- 
   return (
     <div className="h-screen w-full flex flex-col">
       <Header />
@@ -24,11 +24,31 @@ const Page = () => {
         </div>
         <div className="flex flex-col space-y-1 w-[90%] mx-auto py-3">
           {[
-            { itemName: "Burrito ", points: "10 points", img: "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/sousvidechicken.png" },
-            { itemName: "Burrito Bowl", points: "10 points", img: "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/sousvidechicken.png" },
-            { itemName: "Quesadilla", points: "10 points", img: "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/sousvidechicken.png" },
-            { itemName: "Tacos ", points: "10 points", img: "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/sousvidechicken.png" },
-            { itemName: "Salad", points: "10 points", img: "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/sousvidechicken.png" },
+            {
+              itemName: "Burrito ",
+              points: "10 points",
+              img: "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/sousvidechicken.png",
+            },
+            {
+              itemName: "Burrito Bowl",
+              points: "10 points",
+              img: "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/sousvidechicken.png",
+            },
+            {
+              itemName: "Quesadilla",
+              points: "10 points",
+              img: "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/sousvidechicken.png",
+            },
+            {
+              itemName: "Tacos ",
+              points: "10 points",
+              img: "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/sousvidechicken.png",
+            },
+            {
+              itemName: "Salad",
+              points: "10 points",
+              img: "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/sousvidechicken.png",
+            },
           ].map((c, index) => (
             <div
               className="border rounded-lg w-full flex justify-between items-center p-3"

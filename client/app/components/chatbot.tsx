@@ -122,7 +122,7 @@ export default function ChatSupport() {
 
       {/* Floating Chat Window */}
       {isOpen && (
-        <div className="fixed bottom-33 sm:bottom-55 right-1 sm:right-6 w-82.5 h-130 sm:h-150 z-50 flex flex-col bg-transparent border rounded-lg shadow-lg">
+        <div className="fixed bottom-33 sm:bottom-55 right-1 sm:right-6 w-82.5 h-[70vh] sm:h-150 z-50 flex flex-col bg-transparent border rounded-lg shadow-lg">
           {/* chat */}
           <div className="flex-1 overflow-y-auto p-3 space-y-2 bg-muted/20">
             {messages.map((m, index) => (
