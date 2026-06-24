@@ -5,7 +5,7 @@ import { useRouter } from "@/node_modules/next/navigation";
 const NavPage = () => {
   const router = useRouter();
   return (
-    <div className="flex flex-col w-full border rounded-t-lg p-7 sm:p-10">
+    <div className="flex flex-col w-full border rounded-t-lg p-3 sm:p-7">
       {/* <div className="">bottom nav</div> */}
       <div className="flex justify-between w-[80%] mx-auto text-lg">
         <div onClick={() => router.push("/explore")}>explore</div>

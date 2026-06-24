@@ -35,7 +35,7 @@ const Header = () => {
         opacity: hidden ? 0 : 1,
       }}
       transition={{ duration: 0.25, ease: "easeOut" }}
-      className="flex fixed px-1 sm:px-5 py-5 top-1 sm:top-5 inset-x-0 z-50 mx-1 w-full sm:w-[80%] sm:mx-auto rounded-lg  backdrop-blur justify-between"
+      className="flex fixed px-1 sm:px-5 py-5 top-1 sm:top-5 inset-x-0 z-50 mx-1 w-full sm:w-[80%] sm:mx-auto rounded-lg backdrop-blur justify-between"
     >
       <div
         className="flex justify-start items-center hover:bg-zinc-200 hover:rounded-lg text-lg font-light"
@@ -43,7 +43,7 @@ const Header = () => {
       >
         Get Active Foods
       </div>
-      <div className="flex justify-end items-center gap-3 py-3">
+      <div className="flex justify-end items-center gap-3 py-1 sm:py-3">
         <div
           className=""
           onMouseEnter={() => setOpen("about")}
