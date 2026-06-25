@@ -75,13 +75,17 @@ export default function Home() {
   fetchMyProducts();
   const handleAdd = (p: any) => {
     const { __typename, ...params } = p;
-    console.log("🚀 ~ handleAdd ~ params:", params)
     const serializedItems = encodeURIComponent(JSON.stringify(params));
     router.push(`/order?items=${serializedItems}`);
     return;
   };
+
+
+  
+  // 
   const handleCheckout = (p: any) => {
-    const serializedItems = encodeURIComponent(JSON.stringify(p));
+    const { __typename, ...params } = p;
+    const serializedItems = encodeURIComponent(JSON.stringify(params));
     router.push(`/checkout?items=${serializedItems}`);
     return;
   };
@@ -319,7 +323,7 @@ export default function Home() {
             </div>
           </div>
           <div className="relative group overflow-hidden w-full sm:aspect-square aspect-video rounded-lg bg-zinc-200">
-             {/* <Image
+            {/* <Image
               src={
                 "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/Screen+Shot+2026-05-16+at+2.45.40+PM.png"
               } // Fixed the fallback logic string
@@ -327,7 +331,7 @@ export default function Home() {
               fill
               className="object-cover scale-110 transition-transform duration-500 ease-out group-hover:scale-100"
             /> */}
-             {/* <div className="absolute inset-0 bg-linear-to-t from-black/60 via-black/20 to-transparent" /> */}
+            {/* <div className="absolute inset-0 bg-linear-to-t from-black/60 via-black/20 to-transparent" /> */}
             <div className="absolute bottom-0 p-5">
               <Button onClick={() => router.push("/locations")}>
                 Find a outlet near you

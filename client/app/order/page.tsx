@@ -69,7 +69,7 @@ const Page = () => {
   };
   const nextStep = () => setStep((s) => Math.min(s + 1, steps.length));
   const prevStep = () => setStep((s) => Math.max(s - 1, 1));
-  const handleFruit = (fruit) => {
+  const handleFruit = (fruit:string) => {
     // if fruit one is selected, select fruit two, if fruit 2 is selected, do not add,
     // if fruit one or two is selected again deselect fruit
     const { fruitAddOns, ...data } = formData;
