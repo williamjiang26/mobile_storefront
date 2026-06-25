@@ -74,7 +74,9 @@ export default function Home() {
   };
   fetchMyProducts();
   const handleAdd = (p: any) => {
-    const serializedItems = encodeURIComponent(JSON.stringify(p));
+    const { __typename, ...params } = p;
+    console.log("🚀 ~ handleAdd ~ params:", params)
+    const serializedItems = encodeURIComponent(JSON.stringify(params));
     router.push(`/order?items=${serializedItems}`);
     return;
   };

@@ -14,14 +14,14 @@ const Page = () => {
             <div>Username</div> <div>100 points</div>
           </div>
         </div>
-        <div className="flex flex-col space-y-1 w-[90%] mx-auto py-3">
+        {/* <div className="flex flex-col space-y-1 w-[90%] mx-auto py-3">
           {[{ itemName: "Leave a review", points: "+10 points" }].map((c) => (
             <div className="border rounded-lg w-full px-5 py-3 flex justify-between">
               <div>{c.itemName}</div>
               <div>{c.points}</div>
             </div>
           ))}
-        </div>
+        </div> */}
         <div className="flex flex-col space-y-1 w-[90%] mx-auto py-3">
           {[
             {

@@ -14,37 +14,74 @@ import Button from "../components/slideButton";
 
 const Page = () => {
   const searchParams = useSearchParams();
+
   const itemsParam = searchParams.get("items");
+
   const product = itemsParam
     ? JSON.parse(decodeURIComponent(itemsParam))
     : null;
   const { id, name, price, img, stock } = product;
   // const product = data["products in stock"][0];
-  const add_ons = ["medium, ", "30% sugar, ", "to-go"];
-  const questions = [
+  const [formData, setFormData] = useState({
+    yogurtFlavor: "",
+    size: "",
+    fruitAddOns: new Set<string>([]),
+    sugar: "",
+    ice: "",
+    delivery: "",
+  });
+  const steps = [
+    { id: 1, title: "Yogurt Flavor", subtitle: "Select a yogurt flavor:" },
+    { id: 2, title: "Size", subtitle: "Choose a size:" },
     {
-      question: "Portion size",
-      selections: [
-        { id: 1, answer: "small" },
-        { id: 2, answer: "medium" },
-        { id: 3, answer: "large" },
-      ],
+      id: 3,
+      title: "Fruit Flavor (select any two)",
+      subtitle: "Select a fruit flavor:",
     },
     {
-      question: "Sugar level",
-      selections: [
-        { id: 1, answer: "30% sugar" },
-        { id: 2, answer: "50% sugar" },
-      ],
+      id: 4,
+      title: "Sugar level",
+      subtitle: "Select a level:",
+    },
+    //
+    { id: 5, title: "Ice level", subtitle: "Select a level:" },
+    {
+      id: 6,
+      title: "Delivery",
+      subtitle: "Pick Up or Delivery?",
     },
     {
-      question: "Ice level",
-      selections: [
-        { id: 1, answer: "30% ice" },
-        { id: 2, answer: "50% ice" },
-      ],
+      id: 7,
+      title: "Terms and Agreements",
+      subtitle: "Confirm that you have read and agreed",
+    },
+    {
+      id: 8,
+      title: "Return policy and Warranty",
+      subtitle: "Confirm that you have read and agreed",
     },
   ];
+  const [step, setStep] = useState(1);
+  const router = useRouter();
+  const handleCheckout = () => {
+    router.push(`/checkout?${searchParams}`);
+    return;
+  };
+  const nextStep = () => setStep((s) => Math.min(s + 1, steps.length));
+  const prevStep = () => setStep((s) => Math.max(s - 1, 1));
+  const handleFruit = (fruit) => {
+    // if fruit one is selected, select fruit two, if fruit 2 is selected, do not add,
+    // if fruit one or two is selected again deselect fruit
+    const { fruitAddOns, ...data } = formData;
+    if (fruitAddOns.has(fruit)) {
+      fruitAddOns.delete(fruit);
+    } else if (fruitAddOns.size < 2) {
+      fruitAddOns.add(fruit);
+    } else {
+      throw new Error("you can add fruit on the side");
+    }
+    setFormData({fruitAddOns: new Set(fruitAddOns), ...data});
+  };
   const MultiForm = () => {
     const Card = ({
       index,
@@ -53,10 +90,8 @@ const Page = () => {
       index: number;
       children: React.ReactNode;
     }) => (
-      <div className={`rounded-lg p-3 border`}>
-        <div className=""> {steps[index - 1].title}</div>
-
-        {children}
+      <div className={`sm:rounded-lg sm:border border-b p-3`}>
+        <div className="">{steps[index - 1].title}</div> {children}{" "}
         {index == step && (
           <div className="mt-8 flex items-center justify-between gap-3">
             <button
@@ -67,7 +102,6 @@ const Page = () => {
             >
               Back
             </button>
-
             {step < steps.length ? (
               <button
                 type="button"
@@ -89,47 +123,8 @@ const Page = () => {
         )}
       </div>
     );
-    const steps = [
-      { id: 1, title: "Yogurt Flavor", subtitle: "Select a yogurt flavor:" },
-      { id: 2, title: "Size", subtitle: "Choose a size:" },
-      {
-        id: 3,
-        title: "Fruit Flavor (select any two)",
-        subtitle: "Select a fruit flavor:",
-      },
-      {
-        id: 4,
-        title: "Delivery",
-        subtitle: "Pick Up or Delivery?",
-      },
-      {
-        id: 5,
-        title: "Terms and Agreements",
-        subtitle: "Confirm that you have read and agreed",
-      },
-      {
-        id: 6,
-        title: "Return policy and Warranty",
-        subtitle: "Confirm that you have read and agreed",
-      },
-    ];
-    const [step, setStep] = useState(1);
-    const [formData, setFormData] = useState({
-      yogurtFlavor: "",
-      size: "",
-      fruitAddOns: "",
-      delivery: "",
-    });
-    const router = useRouter();
-    const handleCheckout = () => {
-      router.push(`/checkout?items=${searchParams}`); // if (!response.ok)
-      return;
-    };
-    const nextStep = () => setStep((s) => Math.min(s + 1, steps.length));
-    const prevStep = () => setStep((s) => Math.max(s - 1, 1));
-
     return (
-      <div className="cols-span-1 rounded-r-lg mr-auto w-full">
+      <div className="cols-span-1 mr-auto w-full border rounded-t-lg sm:border-0">
         {/* multistep form */}
         <form className="space-y-1 px-1">
           <Card index={1}>
@@ -202,16 +197,13 @@ const Page = () => {
                   (fruit) => (
                     <div
                       className={`relative overflow-hidden rounded-lg border px-3 py-2 w-full aspect-square group cursor-pointer ${
-                        formData.fruitAddOns === fruit
+                        formData.fruitAddOns.has(fruit)
                           ? "border-orange-300"
                           : ""
                       }`}
-                      onClick={() =>
-                        setFormData((prev) => ({
-                          ...prev,
-                          fruitAddOns: fruit,
-                        }))
-                      }
+                      onClick={() => {
+                        handleFruit(fruit);
+                      }}
                     >
                       <Image
                         src={img} // Fixed the fallback logic string
@@ -230,6 +222,64 @@ const Page = () => {
           </Card>
           <Card index={4}>
             {step === 4 && (
+              <div className="flex gap-1">
+                {["30% sugar", "50% sugar"].map((fruit) => (
+                  <div
+                    className={`relative overflow-hidden rounded-lg border px-3 py-2 w-full aspect-square group cursor-pointer ${
+                      formData.sugar === fruit ? "border-orange-300" : ""
+                    }`}
+                    onClick={() =>
+                      setFormData((prev) => ({
+                        ...prev,
+                        sugar: fruit,
+                      }))
+                    }
+                  >
+                    <Image
+                      src={img} // Fixed the fallback logic string
+                      alt={""}
+                      fill
+                      className="object-cover scale-110 transition-transform duration-500 ease-out group-hover:scale-100"
+                    />
+                    <div className="absolute top-0 left-0 m-3 text-lg">
+                      {fruit}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </Card>
+          <Card index={5}>
+            {step === 5 && (
+              <div className="flex gap-1">
+                {["30% ice", "50% ice"].map((fruit) => (
+                  <div
+                    className={`relative overflow-hidden rounded-lg border px-3 py-2 w-full aspect-square group cursor-pointer ${
+                      formData.ice === fruit ? "border-orange-300" : ""
+                    }`}
+                    onClick={() =>
+                      setFormData((prev) => ({
+                        ...prev,
+                        ice: fruit,
+                      }))
+                    }
+                  >
+                    <Image
+                      src={img} // Fixed the fallback logic string
+                      alt={""}
+                      fill
+                      className="object-cover scale-110 transition-transform duration-500 ease-out group-hover:scale-100"
+                    />
+                    <div className="absolute top-0 left-0 m-3 text-lg">
+                      {fruit}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </Card>
+          <Card index={6}>
+            {step === 6 && (
               <div className="flex gap-1">
                 {["pick up", "delivery"].map((option) => (
                   <div
@@ -257,8 +307,8 @@ const Page = () => {
               </div>
             )}
           </Card>
-          <Card index={5}>
-            {step === 5 && (
+          <Card index={7}>
+            {step === 7 && (
               <div className="flex gap-1">
                 {/* terms and agreements */}
                 <div className="flex gap-1">
@@ -268,8 +318,8 @@ const Page = () => {
               </div>
             )}
           </Card>
-          <Card index={6}>
-            {step === 6 && (
+          <Card index={8}>
+            {step === 8 && (
               <div className="flex gap-1">
                 {/* return policy */}
                 <div className="flex gap-1">
@@ -302,9 +352,12 @@ const Page = () => {
           </div>
           <div className=" flex flex-col w-[80%] mx-auto space-y-1">
             <div className="text-xl">{name}</div>
-            <div className="font-semibold text-xl">{price}</div>
-            <div className=" ">{add_ons}</div>
-            <div className=" ">{product["storage instructions"]}</div>
+            <div className="font-semibold text-xl">${price}</div>
+            <div className="text-xs">
+              {formData?.yogurtFlavor} {formData?.size} {[...formData?.fruitAddOns].join(" ")}{" "}
+              {formData?.sugar} {formData?.ice} {formData?.delivery}
+            </div>
+            <div className="">{product["storage instructions"]}</div>
             <div className="text-sm ">{product.description}</div>
           </div>
         </div>

@@ -22,6 +22,7 @@ export async function fetchClientSecret({
     mode: "payment",
     return_url: `${origin}/return?session_id={CHECKOUT_SESSION_ID}`,
   });
+  // return url, fetch stripe product info to post to customer's account
   if (!session.client_secret) {
     throw new Error(
       "Stripe failed to generate a client_secret for this session."

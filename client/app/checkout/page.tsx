@@ -22,9 +22,7 @@ const CheckoutForm = () => {
     ? JSON.parse(decodeURIComponent(itemsParam))
     : null;
   const { id, name, price, img, stock, priceId } = product;
-  const quantity = 1;
   const lineItems = [{ price: priceId, quantity: 1 }];
-
   return (
     <EmbeddedCheckoutProvider
       stripe={stripePromise}

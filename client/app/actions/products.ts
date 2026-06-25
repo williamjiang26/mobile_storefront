@@ -17,6 +17,7 @@ export const GET_PRODUCTS_QUERY = gql`
       img
       stock
       price
+      priceId
     }
   }
 `;

@@ -1,8 +1,8 @@
 "use client";
-import React from 'react';
+import BottomNav from "../../components/bottomNav";
 import Header from "../../components/header";
 
-import BottomNav from "../../components/bottomNav";
+
 
 
 const Page = () => {
@@ -17,13 +17,13 @@ const Page = () => {
           "+10 points",
           "+10 points",
         ].map((c) => (
-          <div className="border rounded-lg mx-auto px-5 py-3 flex justify-between w-[90%] ">
+          <div className="border rounded-lg mx-auto px-3 py-3 flex justify-between w-[90%] ">
             <div className="flex flex-col">
               <div className="text-xl"># 16000</div> 
               <div className="text-xs font-light">9/25/24</div>
             </div>
-            <div className="flex flex-col justify-center">
-              <div>+ 210 points</div>
+            <div className="flex flex-col">
+              <div className='ml-auto'>210 points</div>   <div className='text-sm border rounded-lg p-1 font-light'>Leave a review + 10 points</div>
             </div>
           </div>
         ))}
