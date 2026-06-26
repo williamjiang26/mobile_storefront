@@ -9,7 +9,7 @@ const BottomNav = () => {
       <div className="w-[50%] mx-auto flex justify-between items-center py-3">
         {/* Navigation Links / Icons */}
         <button
-          className="flex flex-col items-center text-sm text-gray-500 hover:text-blue-600"
+          className="flex flex-col items-center text-sm text-gray-500 hover:text-yellow-600"
           onClick={() => router.push("/customer/rewards")}
         >
           <span>
@@ -18,7 +18,7 @@ const BottomNav = () => {
           <span>Rewards</span>
         </button>
         <button
-          className="flex flex-col items-center text-sm text-gray-500 hover:text-blue-600 "
+          className="flex flex-col items-center text-sm text-gray-500 hover:text-yellow-600 "
           onClick={() => router.push("/customer/orders")}
         >
           <span>
