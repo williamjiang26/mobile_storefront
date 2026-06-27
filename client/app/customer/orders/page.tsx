@@ -1,8 +1,6 @@
 "use client";
 import {
-  client,
   fetchCustomer,
-  GET_CUSTOMER_QUERY,
 } from "@/app/actions/customers";
 import { useRouter } from "@/node_modules/next/navigation";
 import { useEffect, useState } from "react";
@@ -39,7 +37,7 @@ const Page = () => {
     <div className="max-h-screen w-full flex flex-col">
       <Header />
       <main className="space-y-5 overflow-y-auto mt-27 h-screen scroll-smooth">
-        {customer.orders.map((c, index) => (
+        {customer.orders.map((c: any, index) => (
           <div
             key={index}
             className="border rounded-lg mx-auto px-3 py-3 flex justify-between w-[90%]"
@@ -53,7 +51,7 @@ const Page = () => {
                 <div className="ml-auto text-xs">210 points</div>
               </div>
               <div className="flex justify-between items-center">
-                <div className="text-xs font-light">9/25/24</div>{" "}
+                <div className="text-xs font-light">9/25/24</div>
                 <div className="ml-auto"></div>
               </div>
               <div className="flex justify-between items-center">
