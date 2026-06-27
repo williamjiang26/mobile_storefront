@@ -136,7 +136,7 @@ const Header = () => {
           </AnimatePresence>
         </div>
         <div>
-          <Show when="signed-in">
+          {/* <Show when="signed-in"> */}
             <div
               onMouseEnter={() => setOpen("user-portal")}
               onMouseLeave={() => setOpen("")}
@@ -144,9 +144,10 @@ const Header = () => {
             >
               <UserAvatar />
             </div>
-          </Show>
-          <Show when="signed-out"><SignInButton />
-          </Show>
+          {/* </Show> */}
+          {/* <Show when="signed-out"> */}
+            <SignInButton />
+          {/* </Show> */}
           <AnimatePresence>
             {open === "user-portal" && (
               <motion.div
