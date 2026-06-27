@@ -7,14 +7,14 @@ import {
 } from "motion/react";
 import { useState } from "react";
 import { useRouter } from "@/node_modules/next/navigation";
-import {
-  ClerkProvider,
-  Show,
-  SignInButton,
-  SignOutButton,
-  UserAvatar,
-  UserButton,
-} from "@clerk/nextjs";
+// import {
+//   ClerkProvider,
+//   Show,
+//   SignInButton,
+//   SignOutButton,
+//   UserAvatar,
+//   UserButton,
+// } from "@clerk/nextjs";
 const Header = () => {
   const router = useRouter();
   const { scrollY } = useScroll();

@@ -34,7 +34,7 @@ export const GET_PRODUCTS_QUERY = gql`
     }
   }
 `;
-export const fetchProduct = async (id) => {
+export const fetchProduct = async (id: number) => {
   try {
     const response = await client.query({
       query: GET_PRODUCT_QUERY,
