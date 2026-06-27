@@ -22,4 +22,29 @@ export const GET_PRODUCTS_QUERY = gql`
   }
 `;
  
- 
+ export const GET_PRODUCT_QUERY = gql`
+  query product($id: Int!) {
+    product(id: $id) {
+      id
+      name
+      img
+      stock
+      price
+      priceId
+    }
+  }
+`;
+export const fetchProduct = async (id) => {
+  try {
+    const response = await client.query({
+      query: GET_PRODUCT_QUERY,
+      fetchPolicy: "network-only",
+      variables: {
+        id: id,
+      },
+    });
+    return ((response.data as any)?.product); 
+  } catch (error) {
+    console.error("Error fetching products:", error);
+  }
+};

@@ -93,8 +93,7 @@ const Catalog = () => {
             } hover:underline hover:underline-offset-3`}
             onClick={() => setType(c.productType)}
           >
-            <div className="relative aspect-square h-12 w-12 shrink-0 overflow-hidden rounded-lg bg-zinc-300/10 dark:bg-zinc-700">
-              {/* <div className="absolute inset-0 bg-linear-to-t from-black/60 via-black/20 to-transparent" /> */}
+            <div className="relative aspect-square h-12 w-12 shrink-0 overflow-hidden rounded-lg "> 
               {c.img}
             </div>
             <div className="w-full">{c.productType}</div>

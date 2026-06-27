@@ -1,13 +1,12 @@
-'use client'
+"use client";
 import Header from "../components/header";
 import NavPage from "../components/nav";
 
-
 const Page = () => {
   return (
-    <div>
+    <div className="flex flex-col max-h-screen ">
       <Header />
-      {/* what's the feature */}
+      <div className="mt-28 h-screen">{/* what's the feature */}</div>
       <NavPage />
     </div>
   );

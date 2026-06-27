@@ -64,12 +64,13 @@ const Page = () => {
   const [step, setStep] = useState(1);
   const router = useRouter();
   const handleCheckout = () => {
+    // add to bag
     router.push(`/checkout?${searchParams}`);
     return;
-  };
+  }; 
   const nextStep = () => setStep((s) => Math.min(s + 1, steps.length));
   const prevStep = () => setStep((s) => Math.max(s - 1, 1));
-  const handleFruit = (fruit:string) => {
+  const handleFruit = (fruit: string) => {
     // if fruit one is selected, select fruit two, if fruit 2 is selected, do not add,
     // if fruit one or two is selected again deselect fruit
     const { fruitAddOns, ...data } = formData;
@@ -80,7 +81,7 @@ const Page = () => {
     } else {
       throw new Error("you can add fruit on the side");
     }
-    setFormData({fruitAddOns: new Set(fruitAddOns), ...data});
+    setFormData({ fruitAddOns: new Set(fruitAddOns), ...data });
   };
   const MultiForm = () => {
     const Card = ({
@@ -111,13 +112,15 @@ const Page = () => {
                 Continue
               </button>
             ) : (
-              <button
-                type="button"
-                onClick={handleCheckout}
-                className="rounded-lg bg-yellow-500 px-5 py-3 text-sm font-semibold text-white hover:bg-yellow-600"
-              >
-                Submit
-              </button>
+                <div className="space-x-1">
+                  <button
+                  type="button"
+                  onClick={handleCheckout}
+                  className="rounded-lg bg-yellow-500 px-5 py-3 text-sm font-semibold text-white hover:bg-yellow-600"
+                >
+                  Checkout
+                </button> 
+              </div>
             )}
           </div>
         )}
@@ -354,8 +357,9 @@ const Page = () => {
             <div className="text-xl">{name}</div>
             <div className="font-semibold text-xl">${price}</div>
             <div className="text-xs">
-              {formData?.yogurtFlavor} {formData?.size} {[...formData?.fruitAddOns].join(" ")}{" "}
-              {formData?.sugar} {formData?.ice} {formData?.delivery}
+              {formData?.yogurtFlavor} {formData?.size}{" "}
+              {[...formData?.fruitAddOns].join(" ")} {formData?.sugar}{" "}
+              {formData?.ice} {formData?.delivery}
             </div>
             <div className="">{product["storage instructions"]}</div>
             <div className="text-sm ">{product.description}</div>

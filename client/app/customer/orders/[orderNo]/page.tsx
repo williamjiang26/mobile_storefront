@@ -1,6 +1,29 @@
-import Header from "@/app/components/header";
-import React from "react";
+"use client";
 import Image from "next/image";
+import Header from "@/app/components/header";
+
+import React from "react";
+import { Minus, Plus } from "lucide-react";
+import { Bar, BarChart, ResponsiveContainer } from "recharts";
+import { Button } from "@/components/ui/button";
+import {
+  Drawer,
+  DrawerClose,
+  DrawerContent,
+  DrawerDescription,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerTrigger,
+} from "@/components/ui/drawer";
+import { Input } from "@/components/ui/input";
+import {
+  Field,
+  FieldDescription,
+  FieldLabel,
+  FieldLegend,
+} from "@/components/ui/field";
+import { Slider } from "@/components/ui/slider";
 
 const Page = () => {
   const c = {
@@ -35,10 +58,7 @@ const Page = () => {
           </div>
         </div>
         <div className="flex justify-center">
-          <div className="border rounded-lg p-1 flex w-56 justify-between">
-            <div className=" ">leave a review </div>
-            <div className=" ">+ 10 points </div> 
-          </div>
+          <Review />
         </div>
       </div>
     </div>
@@ -46,3 +66,68 @@ const Page = () => {
 };
 
 export default Page;
+
+const Review = () => {
+  const handleSubmit = () => {};
+  return (
+    <Drawer>
+      <DrawerTrigger asChild>
+        <Button variant="outline">leave a review + 10 points</Button>
+      </DrawerTrigger>
+      <DrawerContent>
+        <form
+          onSubmit={handleSubmit}
+          className="w-full flex flex-col gap-1 mx-auto max-w-sm h-[70vh]"
+        >
+          <FieldLegend>Thank you for your feedback </FieldLegend>
+          <FieldDescription>
+            As a reward for helping us improve you get +10 points
+          </FieldDescription>
+          <Field className="my-3">
+            <FieldLabel htmlFor="rating"> Rating:</FieldLabel>
+            <Slider
+              defaultValue={[3]}
+              max={5}
+              step={0.5}
+              className="mx-auto w-full max-w-xs"
+            />
+          </Field>
+          <div className="flex gap-1">
+            <Field>
+              <FieldLabel htmlFor="name"> Name:</FieldLabel>
+              <Input id="name" type="name" placeholder="Bob" />
+            </Field>
+            <Field>
+              <FieldLabel htmlFor="location"> Location:</FieldLabel>
+              <Input
+                id="location"
+                type="location"
+                placeholder="san francisco, ca"
+              />
+            </Field>
+          </div>
+          <Field className="my-3">
+            <FieldLabel htmlFor="review"> Review:</FieldLabel>
+            <textarea placeholder="Review" className="border rounded-lg p-1" />
+            <FieldDescription>
+              Share your thoughts about our service.
+            </FieldDescription>
+          </Field>
+          <Field>
+            <FieldLabel htmlFor="images"> Images:</FieldLabel>
+             <div className="flex"> <div className="aspect-square border rounded-lg w-25 text-gray-500 flex justify-center items-center text-xl">+</div></div>
+            <FieldDescription>
+              Share photos of your product
+            </FieldDescription>
+          </Field>
+          <DrawerFooter>
+            <Button>Submit</Button>
+            <DrawerClose asChild>
+              <Button variant="outline">Cancel</Button>
+            </DrawerClose>
+          </DrawerFooter>
+        </form>
+      </DrawerContent>
+    </Drawer>
+  );
+};

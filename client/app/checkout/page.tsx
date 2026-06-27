@@ -10,6 +10,7 @@ import {
 import { fetchClientSecret } from "../actions/stripe";
 import Header from "../components/header";
 import data from "../data.json";
+import { updateCustomer } from "../actions/customers";
 const stripePromise = loadStripe(
   process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY as string
 );
@@ -23,6 +24,8 @@ const CheckoutForm = () => {
     : null;
   const { id, name, price, img, stock, priceId } = product;
   const lineItems = [{ price: priceId, quantity: 1 }];
+  // upload the order to cart if order is not already in cart
+  updateCustomer(id)
   return (
     <EmbeddedCheckoutProvider
       stripe={stripePromise}
