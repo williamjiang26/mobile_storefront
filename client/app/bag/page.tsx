@@ -24,7 +24,7 @@ const Page = () => {
       try {
         const customerData = await fetchCustomer();
         if (customerData) {
-          const fetchPromises = customerData.shoppingCart.map(async (order) => {
+          const fetchPromises = customerData.shoppingCart.map(async (order: any) => {
             const product = await fetchProduct(order.productId);
             return { ...order, product }; // Combine order data with product details
           });
