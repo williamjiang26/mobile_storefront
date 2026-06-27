@@ -102,7 +102,7 @@ const Review = () => {
               <Input
                 id="location"
                 type="location"
-                placeholder="san francisco, ca"
+                placeholder="San francisco, CA"
               />
             </Field>
           </div>
