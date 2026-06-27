@@ -5,7 +5,7 @@ import Header from "../components/header";
 import Nav from "../components/nav";
 import Image from "next/image";
 import { fetchCustomer } from "@/app/actions/customers";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { fetchProduct } from "../actions/products";
 import { Trash2 } from 'lucide-react';
 const Page = () => {
@@ -41,7 +41,7 @@ const Page = () => {
   return (
     <div className="flex flex-col max-h-screen ">
       <Header />
-      <div className="mt-28 shadow-sm relative overflow-hidden rounded-lg mx-auto h-25 px-5 py-3 flex justify-center w-[90%] ">
+      <div className="mt-28 shadow-sm relative overflow-hidden rounded-lg mx-auto h-35 px-5 py-3 flex justify-center w-[90%] ">
         <div className="flex flex-col items-center justify-between">
           <Image
             src={
@@ -61,7 +61,7 @@ const Page = () => {
               key={index}
               className="border rounded-lg w-full flex justify-between items-center p-3"
             >
-              <div className="relative overflow-hidden rounded-lg aspect-square w-56 mr-5">
+              <div className="relative overflow-hidden rounded-lg aspect-square w-full mr-5">
                 <Image
                   src={orders["product"]["img"]}
                   alt=""
@@ -73,7 +73,7 @@ const Page = () => {
                 <div className="text-md">{orders["product"]["name"]}</div>
                 <div className="text-xs">{orders["product"]["stock"] ? "stock" : "made-to-order"}</div>
               </div>
-              <div className="text-center px-3 w-full"> {orders["product"]["price"]}</div>
+              <div className="text-center px-3 w-fit"> {orders["product"]["price"]}</div>
               <div className="flex justify-between space-x-1">
                 <div
                   className="border rounded-lg p-1"

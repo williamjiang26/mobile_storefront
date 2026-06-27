@@ -135,7 +135,7 @@ const Header = () => {
             )}
           </AnimatePresence>
         </div>
-        <div>
+        <div className="flex items-center">
           {/* <Show when="signed-in"> */}
             <div
               onMouseEnter={() => setOpen("user-portal")}
