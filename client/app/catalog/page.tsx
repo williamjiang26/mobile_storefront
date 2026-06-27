@@ -3,7 +3,6 @@ import { useRouter } from "@/node_modules/next/navigation";
 import Image from "next/image";
 
 import { useState } from "react";
-import Footer from "../components/footer";
 import Header from "../components/header";
 import { motion } from "motion/react";
 import { client, GET_PRODUCTS_QUERY } from "../actions/products";
@@ -83,7 +82,7 @@ const Catalog = () => {
             productType: "Stock",
             img: <Warehouse className="absolute top-3 left-3" />,
           },
-        ].map((c, index) => (
+        ].map((c:any, index) => (
           <div
             key={index}
             className={`keen-slider__slide border shrink-0 rounded-lg px-2 py-3 m-1 w-[80%] mx-auto flex items-center justify-between gap-3 cursor-pointer select-none transition-all ${
@@ -153,7 +152,7 @@ const Catalog = () => {
         {productType === "Stock" &&
           products
             .filter((p: any) => p.stock)
-            .map((p, index) => (
+            .map((p:any, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 20 }}
