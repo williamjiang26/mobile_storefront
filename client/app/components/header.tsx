@@ -142,11 +142,12 @@ const Header = () => {
               onMouseLeave={() => setOpen("")}
               className="inline-block mr-1" // Keeps layout tight around the avatar
             >
-              <UserAvatar />
+            {/* <UserAvatar /> */}
+            <div className="rounded-full border w-5 h-5 p-1">{" "}</div>
             </div>
           {/* </Show> */}
           {/* <Show when="signed-out"> */}
-            <SignInButton />
+            {/* <SignInButton /> */}
           {/* </Show> */}
           <AnimatePresence>
             {open === "user-portal" && (
@@ -164,7 +165,7 @@ const Header = () => {
                   My account
                 </div>
                 <div className="p-3 hover:bg-zinc-100">
-                  <SignOutButton />
+                  {/* <SignOutButton /> */}
                 </div>
               </motion.div>
             )}

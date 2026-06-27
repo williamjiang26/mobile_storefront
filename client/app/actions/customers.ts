@@ -67,7 +67,7 @@ const UPDATE_CUSTOMER_QUERY = gql`
   }
 `;
 
-export const updateCustomer = async (id:number) => {
+export const updateCustomer = async (id: number) => {
   try {
     const response = await client.mutate({
       mutation: UPDATE_CUSTOMER_QUERY,
