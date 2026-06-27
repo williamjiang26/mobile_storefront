@@ -2,9 +2,9 @@
 import Image from "next/image";
 import Header from "@/app/components/header";
 
-import React from "react";
-import { Minus, Plus } from "lucide-react";
-import { Bar, BarChart, ResponsiveContainer } from "recharts";
+// import React from "react";
+// import { Minus, Plus } from "lucide-react";
+// import { Bar, BarChart, ResponsiveContainer } from "recharts";
 import { Button } from "@/components/ui/button";
 import {
   Drawer,
