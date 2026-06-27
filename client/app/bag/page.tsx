@@ -7,6 +7,7 @@ import Image from "next/image";
 import { fetchCustomer } from "@/app/actions/customers";
 import React, { useEffect, useState } from "react";
 import { fetchProduct } from "../actions/products";
+import { Trash2 } from 'lucide-react';
 const Page = () => {
   const router = useRouter();
   const [customer, setCustomer] = useState({
@@ -44,13 +45,13 @@ const Page = () => {
         <div className="flex flex-col items-center justify-between">
           <Image
             src={
-              "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/sousvidechicken.png"
+              "https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/ordersBanner.jpg"
             }
             alt=""
             fill
-            className="object-cover scale-110  transition-transform duration-500 ease-out group-hover:scale-100"
+            className="object-cover scale-110 -z-10 transition-transform duration-500 ease-out group-hover:scale-100"
           />
-          <div className="z-15 my-auto">Bag</div>
+          <div className="my-auto text-xl font-semibold">Bag</div>
         </div>
       </div>
       <div className="pt-5 space-y-3 overflow-y-auto flex-auto h-screen w-[90%] mx-auto">
@@ -72,7 +73,7 @@ const Page = () => {
                 <div className="text-md">{orders["product"]["name"]}</div>
                 <div className="text-xs">{orders["product"]["stock"] ? "stock" : "made-to-order"}</div>
               </div>
-              <div className="text-center px-3"> {orders["product"]["price"]}</div>
+              <div className="text-center px-3 w-full"> {orders["product"]["price"]}</div>
               <div className="flex justify-between space-x-1">
                 <div
                   className="border rounded-lg p-1"
@@ -89,6 +90,13 @@ const Page = () => {
                   }}
                 >
                   checkout
+                </div><div
+                  className="border rounded-lg p-1"
+                  onClick={() => {
+                    router.push(`/checkout`);
+                  }}
+                >
+                  <Trash2 className="w-5 h-5" />
                 </div>
               </div>
             </div>

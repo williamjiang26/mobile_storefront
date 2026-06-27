@@ -89,8 +89,8 @@ const Page = () => {
                   className="object-cover scale-110 transition-transform duration-500 ease-out group-hover:scale-100"
                 />
               </div>
-              <div className="w-full">{c.itemName}</div>  
-                <div className="w-full text-center"> {c.points}</div>
+              <div className="w-full text-center">{c.itemName}</div>
+              <div className="w-full text-center"> {c.points} points</div>
             </div>
           ))}
         </div>

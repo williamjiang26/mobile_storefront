@@ -39,10 +39,10 @@ export default function RootLayout({
     >
       <TooltipProvider>
         <body className="flex flex-col">
-          <ClerkProvider telemetry={false}>
+          {/* <ClerkProvider telemetry={false}> */}
             {children}
             <Chatbot />
-          </ClerkProvider>
+          {/* </ClerkProvider> */}
         </body>
       </TooltipProvider>
     </html>
