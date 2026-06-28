@@ -73,24 +73,23 @@ const Page = () => {
         </div>
 
         <div className="flex flex-col space-y-1 w-[90%] mx-auto py-3">
-          {rewards.map((c, index) => (
-            <div
-              key={index}
-              className="border rounded-lg w-full flex justify-between items-center p-3"
-              // onClick={() => {
-              //   router.push(`/customer/rewards/itemName=${c.itemName}`);
-              // }}
-            >
-              <div className="relative overflow-hidden rounded-lg aspect-square w-56 mr-5">
+          {rewards.map((c:any, index) => (
+            <div key={index} className="shadow-md py-1 border rounded-xl h-27 flex px-1">
+              <div className="rounded-xl aspect-square h-full mx-auto my-auto relative overflow-hidden">
                 <Image
-                  src={c["img"]}
+                  src="https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/spicyTripeOg.png"
                   alt=""
                   fill
-                  className="object-cover scale-110 transition-transform duration-500 ease-out group-hover:scale-100"
+                  className="object-cover"
                 />
               </div>
-              <div className="w-full text-center">{c.itemName}</div>
-              <div className="w-full text-center"> {c.points} points</div>
+              <div className="mx-auto my-auto space-y-1 pb-1 pl-1 w-full">
+                <div className="text-xl font-semibold">{c.itemName}</div>
+                <div className="text-xs font-light">{c.description}</div>
+              </div>
+              <div className="mx-auto my-auto font-extralight pb-1 pl-1">
+                {c.points}
+              </div>
             </div>
           ))}
         </div>

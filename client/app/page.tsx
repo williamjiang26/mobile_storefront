@@ -300,8 +300,8 @@ export default function Home() {
         <div className="m-5 w-full md:w-[90%] mx-auto md:rounded-lg p-5">
           <div className="font-semibold text-xl w-full">FAQ</div>
           <div className="flex flex-col w-full">
-            {data["frequently asked questions"].map((f) => (
-              <AccordionItem f={f} />
+            {data["frequently asked questions"].map((f, index) => (
+              <AccordionItem f={f} key={index} />
             ))}
           </div>
         </div>
