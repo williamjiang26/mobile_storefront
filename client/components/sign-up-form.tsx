@@ -16,6 +16,7 @@ import {
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import Link from 'next/link'
+import { createCustomer } from '@/app/actions/customers'
 
 export function SignUpForm({ className, ...props }: React.ComponentPropsWithoutRef<'div'>) {
   const [email, setEmail] = useState('')
@@ -28,6 +29,7 @@ export function SignUpForm({ className, ...props }: React.ComponentPropsWithoutR
   const handleSignUp = async (e: React.FormEvent) => {
     e.preventDefault()
     const supabase = createClient()
+    createCustomer(email)
     setIsLoading(true)
     setError(null)
 

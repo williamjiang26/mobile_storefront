@@ -45,6 +45,40 @@ export const fetchCustomer = async () => {
   }
 };
 
+// create customer - two ways - polling to see if user.email is in customers db, if not create it after signup.
+const CREATE_CUSTOMER_QUERY = gql`
+  mutation postCustomer($accountInfo: AccountInput!) {
+    postCustomer(accountInformation: $accountInfo) {
+      accountInformation {
+        email
+      }
+      shoppingCart {
+        productId
+        isPurchased
+      }
+      orders {
+        productId
+        isPurchased
+      }
+    }
+  }
+`;
+export const createCustomer = async (email: string) => {
+  try {
+    const response = await client.mutate({
+      mutation: CREATE_CUSTOMER_QUERY,
+      fetchPolicy: "network-only",
+      variables: {
+        accountInfo: {
+          email: email,
+        },
+      },
+    });
+    return (response.data as any)?.postCustomer;
+  } catch (error) {
+    console.error("Error fetching customers:", error);
+  }
+};
 // update orders
 // update cart
 // update account in formation

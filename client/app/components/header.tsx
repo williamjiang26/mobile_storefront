@@ -18,7 +18,6 @@ const Header = () => {
   const [user, setUser] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const supabase = createClient();
-  console.log("🚀 ~ Header ~ supabase:", supabase);
   useMotionValueEvent(scrollY, "change", (current) => {
     const previous = scrollY.getPrevious() ?? 0;
     if (current > previous && current > 150) {
@@ -158,7 +157,9 @@ const Header = () => {
             className="inline-block mr-1"
           >
             {!user ? (
-              <div className="text-sm border" onClick={() => router.push("/auth/login")}>Sign In</div>
+              <div className="" onClick={() => router.push("/auth/login")}>
+                SignIn
+              </div>
             ) : (
               <div className="rounded-full w-10 h-10 border p-1"> </div>
             )}
