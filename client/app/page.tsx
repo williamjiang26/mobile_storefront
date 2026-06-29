@@ -19,7 +19,6 @@ import { client, GET_PRODUCTS_QUERY } from "./actions/products";
 import { useKeenSlider } from "keen-slider/react";
 import "keen-slider/keen-slider.min.css";
 // import Image from "next/image";
-
 function AccordionItem({ f }: { f: Record<string, any> }) {
   const [isOpen, setIsOpen] = useState(false);
   return (

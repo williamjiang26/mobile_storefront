@@ -6,10 +6,8 @@ import { useRouter } from "@/node_modules/next/navigation";
 import { useEffect, useState } from "react";
 import BottomNav from "../../components/bottomNav";
 import Header from "../../components/header";
-
 const Page = () => {
   const router = useRouter();
-
   const [customer, setCustomer] = useState({
     accountInformation: {
       email: "new@gmail.com",
@@ -18,7 +16,6 @@ const Page = () => {
     orders: [],
   });
   // get customer orders
-
   useEffect(() => {
     const loadCustomer = async () => {
       try {

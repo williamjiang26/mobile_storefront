@@ -5,21 +5,20 @@ import {
   useMotionValueEvent,
   AnimatePresence,
 } from "motion/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "@/node_modules/next/navigation";
-// import {
-//   ClerkProvider,
-//   Show,
-//   SignInButton,
-//   SignOutButton,
-//   UserAvatar,
-//   UserButton,
-// } from "@clerk/nextjs";
+import { LogoutButton } from "@/components/logout-button";
+import { createClient } from "@/lib/supabase/client";
+
 const Header = () => {
   const router = useRouter();
   const { scrollY } = useScroll();
   const [hidden, setHidden] = useState(false);
   const [open, setOpen] = useState("");
+  const [user, setUser] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
+  const supabase = createClient();
+  console.log("🚀 ~ Header ~ supabase:", supabase);
   useMotionValueEvent(scrollY, "change", (current) => {
     const previous = scrollY.getPrevious() ?? 0;
     if (current > previous && current > 150) {
@@ -28,6 +27,23 @@ const Header = () => {
       setHidden(false);
     }
   });
+  useEffect(() => {
+    async function checkUser() {
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+      setUser(user);
+      setLoading(false);
+    }
+
+    checkUser();
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_event, session) => {
+      setUser(session?.user ?? null);
+    });
+    return () => subscription.unsubscribe();
+  }, []);
   return (
     <motion.header
       animate={{
@@ -136,40 +152,40 @@ const Header = () => {
           </AnimatePresence>
         </div>
         <div className="flex items-center">
-          {/* <Show when="signed-in"> */}
-            <div
-              onMouseEnter={() => setOpen("user-portal")}
-              onMouseLeave={() => setOpen("")}
-              className="inline-block mr-1" // Keeps layout tight around the avatar
-            >
-            {/* <UserAvatar /> */}
-            <div className="rounded-full border w-5 h-5 p-1">{" "}</div>
-            </div>
-          {/* </Show> */}
-          {/* <Show when="signed-out"> */}
-            {/* <SignInButton /> */}
-          {/* </Show> */}
-          <AnimatePresence>
-            {open === "user-portal" && (
-              <motion.div
-                initial={{ opacity: 0, y: 10, scale: 0.98 }}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                exit={{ opacity: 0, y: 10, scale: 0.98 }}
-                transition={{ duration: 0.25, ease: "easeOut" }}
-                className="absolute top-10 right-0 sm: w-56 rounded-lg border bg-white shadow-lg"
-              >
-                <div
-                  className="p-3 hover:bg-zinc-100 rounded-lg"
-                  onClick={() => router.push("/customer/orders")}
-                >
-                  My account
-                </div>
-                <div className="p-3 hover:bg-zinc-100">
-                  {/* <SignOutButton /> */}
-                </div>
-              </motion.div>
+          <div
+            onMouseEnter={() => setOpen("user-portal")}
+            onMouseLeave={() => setOpen("")}
+            className="inline-block mr-1"
+          >
+            {!user ? (
+              <div className="text-sm border" onClick={() => router.push("/auth/login")}>Sign In</div>
+            ) : (
+              <div className="rounded-full w-10 h-10 border p-1"> </div>
             )}
-          </AnimatePresence>
+          </div>
+          {user && (
+            <AnimatePresence>
+              {open === "user-portal" && (
+                <motion.div
+                  initial={{ opacity: 0, y: 10, scale: 0.98 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{ opacity: 0, y: 10, scale: 0.98 }}
+                  transition={{ duration: 0.25, ease: "easeOut" }}
+                  className="absolute top-10 right-0 sm: w-56 rounded-lg border bg-white shadow-lg"
+                >
+                  <div
+                    className="p-3 hover:bg-zinc-100 rounded-lg"
+                    onClick={() => router.push("/customer/orders")}
+                  >
+                    My account
+                  </div>
+                  <div className="p-3 hover:bg-zinc-100">
+                    <LogoutButton />
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          )}
         </div>
       </div>
     </motion.header>

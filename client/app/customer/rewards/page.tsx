@@ -74,7 +74,7 @@ const Page = () => {
 
         <div className="flex flex-col space-y-1 w-[90%] mx-auto py-3">
           {rewards.map((c:any, index) => (
-            <div key={index} className="shadow-md py-1 border rounded-xl h-27 flex px-1">
+            <div key={index} className="shadow-md py-1 border rounded-xl h-27 flex px-1 w-full">
               <div className="rounded-xl aspect-square h-full mx-auto my-auto relative overflow-hidden">
                 <Image
                   src="https://warehouse-inventory-management.s3.us-east-1.amazonaws.com/spicyTripeOg.png"
@@ -83,11 +83,11 @@ const Page = () => {
                   className="object-cover"
                 />
               </div>
-              <div className="mx-auto my-auto space-y-1 pb-1 pl-1 w-full">
+              <div className="mx-auto my-auto space-y-1 pb-1 pl-1 w-[50%] border">
                 <div className="text-xl font-semibold">{c.itemName}</div>
                 <div className="text-xs font-light">{c.description}</div>
               </div>
-              <div className="mx-auto my-auto font-extralight pb-1 pl-1">
+              <div className="mx-auto my-auto font-extralight pb-1 pl-1 w-[10%] border">
                 {c.points}
               </div>
             </div>
