@@ -1,49 +1,35 @@
 "use client";
-import { useState } from "react";
-import { ApolloClient, InMemoryCache, HttpLink, gql } from "@apollo/client";
-
+import { useEffect, useState } from "react";
 import Header from "../components/header";
+
 import Footer from "../components/footer";
 import { useRouter } from "@/node_modules/next/navigation";
-export const GET_PRODUCTS_QUERY = gql`
-  query GetEssays {
-    essays {
-      id
-      date
-      title
-      content
-    }
-  }
-`;
-const httpLink = new HttpLink({
-  uri: process.env.NEXT_PUBLIC_BLOG_URL,
-  // uri: "http://localhost:8007/graphql",
-});
-export const client = new ApolloClient({
-  link: httpLink,
-  cache: new InMemoryCache(),
-});
+import { fetchEssays } from "../actions/essays";
+
+ 
 const Page = () => {
   const router = useRouter();
-  const [products, setProducts] = useState([]);
-  const fetchMyProducts = async () => {
-    try {
-      const response = await client.query({
-        query: GET_PRODUCTS_QUERY,
-        fetchPolicy: "network-only",
-      });
-      setProducts((response.data as any).essays);
-    } catch (error) {
-      console.error("Error fetching products:", error);
-    }
-  };
-  fetchMyProducts();
+  const [essays, setEssays] = useState([]);
+ 
+  useEffect(() => {
+    const loadEssay = async () => {
+      try {
+        const essayData = await fetchEssays();
+        if (essayData) {
+          setEssays(essayData);
+        }
+      } catch (error) {
+        console.error("Failed to load customer profile data:", error);
+      }
+    };
+    loadEssay();
+  }, []);
   return (
     <div className="flex flex-col min-h-screen">
       <Header />
       {/* toggle */}
       <div className="flex flex-col mt-28 w-[90%] sm:w[80%] mx-auto py-1 gap-5 font-sans dark:bg-black overflow-y-auto h-screen">
-        {products.map((p:any, index) => (
+        {essays.map((p: any, index) => (
           <div
             key={index}
             className="border rounded-lg  p-3 flex items-center"
