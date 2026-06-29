@@ -192,7 +192,7 @@ const ProductCard2 = () => {
       <div className="group rounded-lg cursor-pointer w-full h-59">
         <div className="relative overflow-hidden rounded-lg w-full h-full">
           <Image
-            src={p["img"]}
+            src={c["img"]}
             alt=""
             fill
             className="object-cover scale-110 transition-transform duration-500 ease-out group-hover:scale-100"
@@ -202,8 +202,8 @@ const ProductCard2 = () => {
       </div>
       <div className="justify-center flex flex-col">
         <div className="p-1">
-          <div className="font-semibold ">{p["name"]}</div>
-          <div>Starting at ${p["price"]}</div>
+          <div className="font-semibold ">{c["pname"]}</div>
+          <div>Starting at ${c["price"]}</div>
         </div>
         <div
           className="w-[80%] mx-auto flex items-center justify-center  relative overflow-hidden z-10 bg-zinc-50
@@ -215,7 +215,7 @@ const ProductCard2 = () => {
     before:bg-zinc-100 before:scale-x-0 before:origin-left
     before:transition-transform before:duration-300 before:ease-in-out
     hover:before:scale-x-100 "
-          onClick={() => handleAdd(p)}
+       
         >
           Add
         </div>
