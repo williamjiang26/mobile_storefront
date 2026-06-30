@@ -6,7 +6,7 @@ download storefront template and start designing your brand and publishing conte
 
 Steps: Clone repository -> download packages -> plugin data in sampleData.json file -> npm run dev -> deploy
 
-features:
+features: 
 - checkout flow 
 - blogs 
 - automated chat support 
