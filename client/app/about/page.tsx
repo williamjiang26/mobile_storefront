@@ -4,7 +4,7 @@ import Header from "../components/header";
 //
 //
 const Page = () => {
-  return (
+  return ( 
     <div>
       <div className="flex flex-col justify-center h-screen items-center ">
         <Header />
